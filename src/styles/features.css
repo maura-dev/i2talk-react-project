@@ -1,0 +1,65 @@
+
+
+/* ========================================================
+                FEATURES PAGE
+========================================================*/
+.main-content{
+  background-color: #fff;
+  color: var(--primary-color);
+  font-size: 15px;
+
+}
+
+.main-content > h3{
+  color: var(--primary-color);
+  text-align: center;
+  padding-top: 20px;
+}
+
+.feature-items-container{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 40px;
+}
+
+.feature-items{
+  width: 40%;
+  padding: 20px;
+  margin-bottom: 40px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.feature-items > i{
+  font-size:50px;
+  color: var(--secondary-color);
+  margin-bottom:20px;
+}
+
+.all-feature-btns{
+  width:20%;
+  text-align: center;
+  min-width: 240px;
+  display:block;
+  margin: 0 auto;
+  padding-bottom: 2rem;
+}
+
+.feature-btn{
+  padding:10px;
+  border-radius:20px;
+  background-color:var(--primary-color);
+  color:#fff;
+  width:40%;
+  outline-style:none;
+  border:2px solid var(--primary-color);
+  margin-left:20px;
+}
+
+.feature-btn:hover{
+  background-color: #6277d3;
+  color:#fff;
+  border:2px solid  #6277d3;
+}

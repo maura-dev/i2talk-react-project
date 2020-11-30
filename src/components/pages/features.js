@@ -1,7 +1,9 @@
-import React from 'react' 
-import Card2 from './indexComponents/card2'
-import '../App.css'
-import {Link} from 'react-router-dom'
+import React from 'react';
+import Card2 from '../layout/card2';
+import {Link} from 'react-router-dom';
+
+import '../../App.css';
+import '../../styles/features.css'
 
 export default function Feature() {
 	return (

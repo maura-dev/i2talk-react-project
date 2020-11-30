@@ -1,0 +1,51 @@
+/*--------------------------------------
+              FAQ PAGE  
+----------------------------------------*/
+
+.faq-heading  img{
+  display:block;
+  margin: auto;
+  width: 40%;
+  height: 40%;
+}
+
+.faq-heading h2 {
+  text-align: center;
+  margin-top: 2rem;
+  color: var(--primary-color);
+}
+
+.faq-box {
+  margin: 1rem 0;
+}
+
+.faq-questions{
+  display:block;
+  width:50%;
+  margin:auto;
+  cursor: pointer;
+  color:#f7f7ff;
+}
+
+.answer{
+  padding:20px;
+  color:var(--primary-color);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border: 2px solid var(--secondary-color);
+}
+
+.question-heading{
+  background-color: var(--secondary-color);
+  padding:10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fa-minus-circle{
+  margin-left: 98%;
+  display:none;
+}

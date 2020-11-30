@@ -1,0 +1,140 @@
+/* Navbar Styling */
+nav {
+  background: var(--primary-color);
+  padding: 10px 15px;
+}
+
+.menu {  
+  display: flex;
+  /* justify-content: flex-end; */
+  list-style-type: none;
+  margin: 0;
+}
+
+.logo {
+  font-size: 20px;
+  padding: 7.5px 10px 7.5px 0;
+}
+
+.logo a {
+  color: var(--bg-color);
+}
+
+.item a {
+  color: var(--bg-color);
+}
+
+.item a:hover,
+.item a:hover::after {
+  color: var(--secondary-color);
+}
+
+.nav-button {
+  /* padding: 10px; */
+  margin-left: 10px;
+  border-radius: 8px;
+  border-style: none;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.6s ease-in;
+}
+
+.nav-button:hover{
+  background-color: var(--secondary-color);
+}
+
+.nav-button a{
+  color: var(--primary-color);
+}
+
+.nav-button a:hover,
+.nav-button:hover::after {
+  color: #fff;
+}
+
+/** MOBILE MENU NAVBAR **/
+.menu {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu li a:not(.nav-button) {
+  display: block;
+  padding: 15px 5px;
+}
+.toggle {
+  order: 1;
+  font-size: 20px;
+}
+.toggle i {
+  color: var(--bg-color);
+}
+.toggle i:hover {
+  color: var(--secondary-color);
+}
+.item {
+  order: 2;
+  width: 100%;
+  text-align: center;
+  display: none;
+  padding: 10px;
+  transition: all 0.6s ease-in;
+}
+.item.nav-button {
+  text-align: center;
+  order: 3;
+}
+.active .item {
+  display: block;
+}
+
+@media all and (min-width: 600px) {
+  /**MENU NAV BAR **/
+  .menu {
+    justify-content: center;
+    align-items: flex-start;     
+    flex-wrap: nowrap;
+    background: none;
+    width: 90%;
+    margin: auto;
+  }
+  .logo {
+    flex: 1;
+    order: 0;
+    padding: 0;
+  }
+  .item {
+    order: 1;
+    padding: 0;
+    position: relative;
+    display: block; 
+    width: auto;
+    margin: 0 10px;
+  }
+  .item.nav-button {
+    width: auto;
+    order: 1;
+    display: block;
+  }
+  .menu li.nav-button a {
+    padding: 10px 15px;
+    margin: 5px 0;
+  }
+  .nav-button a {
+    background: var(--bg-color);
+    color: var(--primary-color);
+    border-radius: 10px;
+    transition: all 0.6s ease-in;
+  }
+  .nav-button a:hover {
+    text-decoration: none;
+    background: var(--secondary-color);
+    color: var(--bg-color);
+  }
+  .nav-button {
+    order: 2;
+  }
+  .toggle {
+    display: none;
+  }
+}
