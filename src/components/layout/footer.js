@@ -1,9 +1,10 @@
-import React from 'react' 
-import '../App.css'
-import {Link} from'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom'
 
-function Footer() {
+import '../../App.css';
+import '../../styles/footer.css'
 
+function Footer () {
 	return(
 		<footer>
 			<div className="footer-row">
@@ -11,7 +12,7 @@ function Footer() {
 					<h4><span>QUICKLINKS</span></h4>
 						<ul>
 							<li><Link to="/features">Features</Link></li>
-							<li><Link to="/faq">FAQs</Link></li>
+							<li><Link to="/faqs">FAQs</Link></li>
 							<li><Link to="/contact">Help</Link></li>
 						</ul>
 				</div>
@@ -39,5 +40,5 @@ function Footer() {
 	
 }
 
-export default Footer
+export default Footer;
 //this component contains the footer
