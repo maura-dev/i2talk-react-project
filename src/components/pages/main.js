@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 
 // import page components
+import Header from '../layout/header'
+import Footer from '../layout/footer'
 import Card from '../layout/card';
 import HeroBox from '../layout/hero';
 import LogInForm from '../forms/LogInForm';
@@ -28,50 +30,57 @@ class Main extends Component {
 
 		return(
 			<div>
-				
-				<div className="hero">
-					<HeroBox />
-					<LogInForm />
-				</div>
+        <Header />
 
-				<div className="signup-modal">
-					{showSignUp ? (<div className="hero-modal-form"><SignUpForm /></div>) : null}
+				<div>
+					<div className="hero">
+						<HeroBox />
+						<LogInForm />
+					</div>
+
+					<div className="signup-modal">
+						{showSignUp ? (<div className="hero-modal-form"><SignUpForm /></div>) : null}
+						
+						<div className="close-icon">
+							<i onClick = {()=>
+							this.setState({ showSignUp: !this.state.showSignUp })
+						} className="fas fa-times"></i>
+						</div>
+					</div>
+
+					<div className="one">
+						<img src={Divider} alt="" />
+					</div>
 					
-					<div className="close-icon">
-						<i onClick = {()=>
-            this.setState({ showSignUp: !this.state.showSignUp })
-          } className="fas fa-times"></i>
+					<div className="two user-j">
+						<h3>Get Started...</h3>
+						<div className="userjny">
+							<Card 
+							source={UserJImg1}
+							text="Sign Up"/>
+			
+							<Card 
+							source={UserJImg2}
+							text="Enable Location"/>
+			
+							<Card 
+							source={UserJImg3}
+							text="Find Friends"/>
+			
+							<Card 
+							source={UserJImg4}
+							text="Join ChatRooms"/>
+			
+							<Card 
+							source={UserJImg5}
+							text="Connect on the go!"/>
+						</div>
 					</div>
 				</div>
 
-				<div className="one">
-					<img src={Divider} alt="" />
-				</div>
-				<div className="two user-j">
-					<h3>Get Started...</h3>
-					<div className="userjny">
-						<Card 
-						source={UserJImg1}
-						text="Sign Up"/>
+        <Footer />
+      </div>
 		
-						<Card 
-						source={UserJImg2}
-						text="Enable Location"/>
-		
-						<Card 
-						source={UserJImg3}
-						text="Find Friends"/>
-		
-						<Card 
-						source={UserJImg4}
-						text="Join ChatRooms"/>
-		
-						<Card 
-						source={UserJImg5}
-						text="Connect on the go!"/>
-					</div>
-				</div>
-			</div>
 		)
 	}
 	
