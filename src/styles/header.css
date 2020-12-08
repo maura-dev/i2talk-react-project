@@ -30,7 +30,6 @@ nav {
 }
 
 .nav-button {
-  /* padding: 10px; */
   margin-left: 10px;
   border-radius: 8px;
   border-style: none;
@@ -117,8 +116,8 @@ nav {
     display: block;
   }
   .menu li.nav-button a {
-    padding: 10px 15px;
-    margin: 5px 0;
+    padding: 10px;
+    margin: 2px;
   }
   .nav-button a {
     background: var(--bg-color);

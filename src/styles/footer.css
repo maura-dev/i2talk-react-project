@@ -2,10 +2,6 @@
 /* *********************   FOOTER   ********************** */
 /* ******************************************************* */
 
-#footer {
-  background: var(--primary-color);
-}
-
 .footer-row {  
   display: flex;
   flex-wrap: nowrap;
@@ -28,7 +24,7 @@
 .footer-bar {
   background: var(--secondary-color);
   color: white;
-  padding: 20px;
+  padding: 10px;
   font-size: 16px;
   text-align: center;
   margin: 0;
@@ -38,7 +34,7 @@
   padding: 20px 30px;
   justify-content: center;
   align-content: center;
-  text-align: left;
+  text-align: center;
   color: var(--bg-color);
 }
 .box h4 span {

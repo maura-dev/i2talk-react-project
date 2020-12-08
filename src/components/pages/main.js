@@ -8,15 +8,22 @@ import UserJImg2 from '../../img/user-journey-img2.svg';
 import UserJImg3 from '../../img/user-journey-img3.svg';
 import UserJImg4 from '../../img/user-journey-img4.svg';
 import UserJImg5 from '../../img/user-journey-img5.svg';
-
-
 import '../../App.css';
 import '../../styles/main.css'
 
 class Main extends Component {
-	state = {
-		showSignUp: false
-	};
+	state={
+		showSignUp : false
+	}
+
+	showForm=()=>{
+		this.setState({...this.state, showSignUp: true})
+		console.log(this.state)
+	}
+
+	hideForm=()=>{
+        this.setState({...this.state, showSignUp: false})
+	}
 
 	render() {
 		// const { title, body } = this.props.faqDetail;
@@ -25,19 +32,13 @@ class Main extends Component {
 		return(
 			<div>
 				<div className="hero">
-					<HeroBox />
+					<HeroBox showForm={this.showForm}/>
 					<LogInForm />
 				</div>
 
-				<div className="signup-modal">
-					{showSignUp ? (<div className="hero-modal-form"><SignUpForm /></div>) : null}
-					
-					<div className="close-icon">
-						<i onClick = {()=>
-            this.setState({ showSignUp: !this.state.showSignUp })
-          } className="fas fa-times"></i>
-					</div>
-				</div>
+				{showSignUp ? <div className="signup-modal">
+					<SignUpForm hideForm={this.hideForm}/>
+					</div> : null}
 
 				<svg className="one" viewBox="0 0 1443 328" fill="none" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
 					<path d="M1443 200.5C1164.5-26.5 198 578 .5 200.5V0H1443v200.5z" fill="var(--background)" />

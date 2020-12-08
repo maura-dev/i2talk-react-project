@@ -53,7 +53,8 @@ class SignUpForm extends Component {
     const { fullname, username, email, password, cpassword } = this.state;
 
     return (
-     
+    <React.Fragment>
+      <div className="hero-modal-form">
         <div className ="wrapper">
           <div className ="title">Sign Up</div>
           {/* <form onSubmit={this.onSubmit.bind
@@ -112,6 +113,19 @@ class SignUpForm extends Component {
             <p>Already have an account? <a href="./index.html">Log In</a></p>
           </form>
         </div>
+
+        <div className="close-icon">
+            <i onClick = {this.props.hideForm} className="fas fa-times"></i>
+        </div>
+
+      </div>
+
+        
+
+    </React.Fragment>
+
+
+        
      
     )
   }
