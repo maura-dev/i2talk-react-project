@@ -1,4 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+// import react router link 
+import { Link } from 'react-router-dom';
 
 class ChatMenu extends Component {
   render() {
@@ -8,10 +10,8 @@ class ChatMenu extends Component {
         <div className="chat-menu-head">
           <div className="chat-menu-profile">
             <div className="chat-menu-open side-bar-profile"> <a href="./profile.html" id="menu-profile"> </a></div>
-            <div className="tooltip">
-              <a href="./isearch.html"><i className="fas fa-search fa-1x"></i></a>
-              <p className="tooltiptext">iSearch</p>
-            </div>
+            
+            <Link to="/dashboard/isearch" className="tooltip"><i className="fas fa-search fa-1x"></i><span className="tooltiptext">iSearch</span></Link>
             <div className="tooltip">
               <a href=""><i className="far fa-comment-dots"></i></a>
               <p className="tooltiptext">New Chat</p>
