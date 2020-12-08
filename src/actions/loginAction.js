@@ -1,3 +1,3 @@
-export const AddCity = (data) => {
+export const AddLogin = (data) => {
   return {type: 'ADD', payload: data}
 }
