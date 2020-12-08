@@ -107,9 +107,9 @@ class ContactForm extends Component {
           </div>
           
           <p className="contact-plist">
-            <a href="tel:+2348012345678" target="_blank"><i className="fas fa-phone"> </i> <span>+2348012345678</span></a>
-            <a href="mailto: hello@i2talk.com" target="_blank"><i className="fa fa-envelope"> </i> <span>hello@i2talk.com</span></a>
-            <a href="https://www.linkedin.com/in/i2talk" target="_blank"><i className="fab fa-linkedin"> </i> <span> i2talk</span></a>
+            <a href="tel:+2348012345678" target="_blank"><i className="fas fa-phone"> </i> &nbsp; <span>+2348012345678 &nbsp; </span> &nbsp; </a>
+            <a href="mailto: hello@i2talk.com" target="_blank"> <i className="fa fa-envelope"> </i> &nbsp; <span>hello@i2talk.com &nbsp; </span> &nbsp; </a>
+            <a href="https://www.linkedin.com/in/i2talk" target="_blank"><i className="fab fa-linkedin"> &nbsp; </i> <span> i2talk &nbsp;</span> &nbsp; </a>
           </p>
         </form>
       </div>

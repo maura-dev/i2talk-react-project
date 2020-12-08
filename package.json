@@ -2,7 +2,7 @@
   "name": "react-class",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://jandeh7.github.io/i2talk-react-project",
+  "homepage": "./",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^11.1.2",
@@ -21,7 +21,6 @@
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "deploy": "npm run build&&gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
