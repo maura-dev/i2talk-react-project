@@ -1,12 +1,11 @@
-import React from 'react' 
-import '../../App.css'
-import {Link} from 'react-router-dom'
-
+import React from 'react';
+import '../../App.css';
+import {Link} from 'react-router-dom';
 
 import '../../styles/main.css'
 
 function HeroBox() {
-
+	
 	return (
 		<div className="hero_text-box">
 			<div className="hero_text-box1">

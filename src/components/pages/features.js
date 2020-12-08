@@ -1,7 +1,9 @@
 import React from 'react';
+// import page component
 import Card2 from '../layout/card2';
+// import link
 import {Link} from 'react-router-dom';
-
+// import page styling
 import '../../App.css';
 import '../../styles/features.css'
 
@@ -18,10 +20,9 @@ export default function Feature() {
             	<Card2 type="fas fa-comment-alt fa-1x" name="iSchedule" text="Do you want to schedule messages to be sent later? Communicate scheduled messages at later dates with no internet connection"/>
             </div>
 
-             <div className="all-feature-btns">
-                <button className="hero-btn1">Sign up</button>
+            <div className="all-feature-btns">
+                <Link to="/"><button className="hero-btn1">Sign up</button></Link>
                 <Link to="/"><button className="hero-btn2">Log in</button></Link>
-                {/*<button className="feature-btn" onClick={location.assign('/')}>Log in</button>*/}
             </div>
         </div>
 	);
