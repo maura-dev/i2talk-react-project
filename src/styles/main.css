@@ -21,8 +21,8 @@
   position: relative;
   width: 170px;
   padding: 10px 10px;
-  color: var(--bg-color);
-  background: var(--secondary-color);
+  color: var(--primary-color);
+  background: var(--bg-color-alt);
   border-radius: 20px 20px 20px 0;
   animation: grow 12s ease-out infinite;
 }
@@ -40,9 +40,9 @@
 .hero_text-box1:before {
   content: "";
   position: absolute;
-  border-right: 7px solid var(--secondary-color);
+  border-right: 7px solid var(--bg-color-alt);
   border-left: 10px solid transparent;
-  border-bottom: 12px solid var(--secondary-color);
+  border-bottom: 12px solid var(--bg-color-alt);
   border-top: 14px solid transparent;
   left: -12px;
   bottom: 0px;
@@ -78,7 +78,7 @@ form {
   text-align: center;
 }
 .field{
-  height: 50px;
+  height: 40px;
   width: 80%;
   margin: 20px auto;
   position: relative;
@@ -111,42 +111,54 @@ form {
 .field input:focus ~ label,
 .field input:valid ~ label{
   top: 0%;
-  font-size: 12px;
+  font-size: 10px;
   color: var(--secondary-color);
   background: #fff;
   transform: translateY(-50%);
 }
+
 .content{
   display: flex;
   width: 100%;
   height: 50px;
-  font-size: 12px;
+  font-size: 10px;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
+
 .content .checkbox{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-left: 1rem;
 }
+
+.checkbox .field {
+  height: 10px;
+}
+
+.content .checkbox .field label {
+  top: 50%;
+  font-size: 9px;
+  width: 65px;
+}
+
 .content input{
   width: 12px;
   height: 12px;
   background: red;
 }
+
 .content label{
-  color: var(--primary-color);
   user-select: none;
-  padding-left: 5px;
 }
+
 .content .pass-link{
-  color: "";
+  margin-right: 1rem;
 }
+
 .login-btn{
   color: #fff;
   border: none;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 12px;
+  padding: 10px 0px;
   width: 30%;
   border-radius: 10px;
   cursor: pointer;
@@ -216,25 +228,39 @@ form {
 
 /* SVG Wave dividers */
 
-svg {
-  height: var(--wave-height);
+.divider-svg {
+  /* height: 5vmin; */
   width: 100%;
+  --background: #eff2fd;
 }
+
 .one {
-  --background: var(--bg-color);
+  background: #eff2fd;
 }
+
 .two {
   --background: var(--bg-color-alt);
 }
 
 /* User Journey */
-.userjny {
+.user-j {
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  padding-top: calc(1.5 * 2vmin);
+  padding-bottom: 2rem;
+  margin-top: calc(-1 * 2vmin);
+  background: var(--bg-color-alt);
+}
+
+/* .userjny {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content:space-between;
   margin:30px 150px 30px 150px;
-}
+} */
+
 .user-box {
   width: 240px;
   font-size: 12px;
@@ -263,33 +289,35 @@ portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phon
  
   /* Home Page */
   .hero {
-      flex-direction: row;
-      width: 90%;
-      justify-content: space-evenly;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-evenly;
+    margin-bottom: 10px;
   }
+
   .hero_text-box {
-      width: 45%;
-      max-width: 450px;
+    width: 45%;
+    max-width: 450px;
   }
   .hero_text-box2 {
-      margin-top: 4rem;
+    margin-top: 4rem;
   }
   .hero_text-btn {
-      margin-top: 2rem;
+    margin-top: 2rem;
   }
   .hero_form {
-      width: 40%;
-      max-width: 480px;
-      margin: 0;
+    width: 40%;
+    max-width: 480px;
+    margin: 0;
   }
   .userjny {
-      display: flex;
-      flex-wrap: wrap;
-      width: 70%;
-      margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: 0 auto;
   }
   .user-j h3 {
-      margin-bottom: 2rem;
+    margin-bottom: 2rem;
   }
 
 }

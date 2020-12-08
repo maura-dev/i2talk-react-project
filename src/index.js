@@ -7,6 +7,11 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import store from './reducers/index';
 
+// STORE -> GLOBALIZED STATE
+// ACTION - INCREMENT
+// REDUCER MODIFIES STORE BASED ON THE ACTIONS
+// DISPATCH -> SENDS ACTION TO THE REDUCER
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>

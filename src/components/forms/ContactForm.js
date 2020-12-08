@@ -103,9 +103,14 @@ class ContactForm extends Component {
             </div>
           </div>
           <div className="but">
-            <input type="submit" value ="Submit" className="sub-btn" />
+            <input type="submit" value ="Submit" className="login-btn" />
           </div>
           
+          <p className="contact-plist">
+            <a href="tel:+2348012345678" target="_blank"><i className="fas fa-phone"> </i> <span>+2348012345678</span></a>
+            <a href="mailto: hello@i2talk.com" target="_blank"><i className="fa fa-envelope"> </i> <span>hello@i2talk.com</span></a>
+            <a href="https://www.linkedin.com/in/i2talk" target="_blank"><i className="fab fa-linkedin"> </i> <span> i2talk</span></a>
+          </p>
         </form>
       </div>
     )
