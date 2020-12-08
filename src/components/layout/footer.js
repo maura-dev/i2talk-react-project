@@ -1,8 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom'
+// import react router link 
+import { Link } from 'react-router-dom';
 
 import '../../App.css';
-import '../../styles/footer.css'
+import '../../styles/footer.css';
 
 function Footer () {
 	return(
@@ -36,7 +37,7 @@ function Footer () {
 			<div className="footer-bar"><p>i2talk &copy; 2020, All Rights Reserved.</p></div>
 		</footer>
 
-		)
+	)
 	
 }
 
