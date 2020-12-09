@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
+// import page component
+import Header from '../layout/header'
+import Footer from '../layout/footer'
 import FaqItem from '../layout/faqItem';
+// import page image
 import FaqImage from '../../img/faq.svg';
 
 class Faq extends Component {
@@ -38,7 +42,7 @@ class Faq extends Component {
       {
         id: 7,
         title: 'How do I join a chatroom?',
-        body: "Go to your profile dashboard, select 'chatrooms'. Input the topic you're looking for and select from suggestions provided and you're in!"
+        body: `Go to your profile dashboard and select "chatrooms". Input the topic you're looking for and select from suggestions provided and you're in!`
       }
     ]
   }
@@ -48,19 +52,24 @@ class Faq extends Component {
 
     return (
       <div>
-        <div className="faq-heading">
-          <img src={FaqImage} alt="faq illustration"/>
-          <h2>Frequently Asked Questions</h2>
-        </div>
-        <div className="faq-questions">
-          {faqDetails.map(faqDetail =>
-            <FaqItem 
-              key={faqDetail.Id}
-              faqDetail={faqDetail} 
-            />
-          )}
-        </div>
+        <Header />
         
+        <div>
+          <div className="faq-heading">
+            <img src={FaqImage} alt="faq illustration"/>
+            <h2>Frequently Asked Questions</h2>
+          </div>
+          <div className="faq-questions">
+            {faqDetails.map(faqDetail =>
+              <FaqItem 
+                key={faqDetail.Id}
+                faqDetail={faqDetail} 
+              />
+            )}
+          </div>
+        </div>
+
+        <Footer />
       </div>
     )
   }

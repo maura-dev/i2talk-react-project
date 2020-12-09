@@ -1,17 +1,21 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { AddLogin } from '../../actions/loginAction';
 import TextInputGroup from '../layout/TextInputGroup';
 
 class LogInForm extends Component {
   state = {
     username: '',
-    password: '',
-    checkbox: ''
+    password: ''
   };
 
-  onSubmit = async (dispatch, e) => {
+  onSubmit = (e) => {
     e.preventDefault();
 
-    const { username, password, checkbox } = this.state;
+    console.log(this.state);
+    const { username, password } = this.state;
+
+    this.props.PostLogin(this.state);
 
     // check for errors
 
@@ -24,7 +28,7 @@ class LogInForm extends Component {
     //   return;
     // }
 
-    // const newContact = {
+    // const newUser = {
     //   username,
     //   password
     // }
@@ -36,7 +40,7 @@ class LogInForm extends Component {
     this.setState({
       username: '',
       password: '',
-      checkbox: ''
+      // checkbox: ''
     });
 
     // this.props.history.push('/');
@@ -45,7 +49,7 @@ class LogInForm extends Component {
   onChange = e => this.setState({[e.target.name] : e.target.value });
 
   render() {
-    const { username, password, checkbox } = this.state;
+    const { username, password } = this.props;
 
     return (
       <div className="hero_form" >
@@ -53,7 +57,7 @@ class LogInForm extends Component {
           <div className ="title">Login</div>
           {/* <form onSubmit={this.onSubmit.bind
             (this, dispatch)}> */}
-          <form>
+          <form onSubmit={this.onSubmit}>
             <TextInputGroup 
               label="Username"
               name="username"
@@ -78,7 +82,7 @@ class LogInForm extends Component {
                   name="checkbox"
                   type="checkbox"
                   // placeholder="Enter Email..."
-                  value={checkbox}
+                  // value={checkbox}
                   onChange={this.onChange}
                   // error={errors.email}
                 />
@@ -95,5 +99,10 @@ class LogInForm extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    PostLogin: (data) => dispatch(AddLogin(data))
+  }
+}
 
-export default LogInForm;
+export default connect(null, mapDispatchToProps)(LogInForm);

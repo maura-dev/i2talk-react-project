@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import '../../App.css'
 import {Link} from 'react-router-dom'
 
-
 import '../../styles/main.css'
 class HeroBox extends Component{
 	
