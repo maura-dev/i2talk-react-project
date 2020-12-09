@@ -22,67 +22,70 @@ import '../../App.css';
 import '../../styles/main.css'
 
 class Main extends Component {
-	state = {
-		showSignUp: false
-	};
+	state={
+		showSignUp : false
+	}
+
+	showForm=()=>{
+		this.setState({...this.state, showSignUp: true})
+		console.log(this.state)
+	}
+
+	hideForm=()=>{
+        this.setState({...this.state, showSignUp: false})
+	}
 
 	render() {
 		const { showSignUp } = this.state;
 
 		return(
-			<div>
-        <Header />
 
-				<div>
-					<div className="hero">
-						<HeroBox />
-						<LogInForm />
-					</div>
-					
-					<FormikDemo />
+			<React.Fragment>
+			
+				<Header />
+					<div>
 
-					<div className="signup-modal">
-						{showSignUp ? (<div className="hero-modal-form"><SignUpForm /></div>) : null}
-						
-						<div className="close-icon">
-							<i onClick = {()=>
-							this.setState({ showSignUp: !this.state.showSignUp })
-						} className="fas fa-times"></i>
+						<div className="hero">
+							<HeroBox showForm={this.showForm}/>
+							<LogInForm />
 						</div>
-					</div>
 
-					<div className="one">
-						<img src={Divider} alt="" />
-					</div>
+						{showSignUp ? <div className="signup-modal">
+							<SignUpForm hideForm={this.hideForm} />
+							</div> : null}
+
+							<div className="one">
+								<img src={Divider} alt="" />
+							</div>
+							
+							<div className="two user-j">
+								<h3>Get Started...</h3>
+								<div className="userjny">
+									<Card 
+									source={UserJImg1}
+									text="Sign Up"/>
 					
-					<div className="two user-j">
-						<h2>Get Started...</h2>
-						<div className="userjny">
-							<Card 
-							source={UserJImg1}
-							text="Sign Up"/>
-			
-							<Card 
-							source={UserJImg2}
-							text="Enable Location"/>
-			
-							<Card 
-							source={UserJImg3}
-							text="Find Friends"/>
-			
-							<Card 
-							source={UserJImg4}
-							text="Join ChatRooms"/>
-			
-							<Card 
-							source={UserJImg5}
-							text="Connect on the go!"/>
-						</div>
+									<Card 
+									source={UserJImg2}
+									text="Enable Location"/>
+					
+									<Card 
+									source={UserJImg3}
+									text="Find Friends"/>
+					
+									<Card 
+									source={UserJImg4}
+									text="Join ChatRooms"/>
+					
+									<Card 
+									source={UserJImg5}
+									text="Connect on the go!"/>
+								</div>
+							</div>
 					</div>
-				</div>
 
-        <Footer />
-      </div>
+	        <Footer />
+      	</React.Fragment>
 		
 		)
 	}

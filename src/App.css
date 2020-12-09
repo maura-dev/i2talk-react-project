@@ -41,6 +41,7 @@ button {
     background: var(--primary-color);
     transition: all 0.6s ease-in;
     cursor: pointer;
+    outline-style: none;
 }
 
 button:focus,

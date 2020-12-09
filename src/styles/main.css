@@ -184,16 +184,14 @@ form {
 }
 
 /* SignUp Modal */
-/*.signup-modal {
-  display: none;
+.signup-modal {
+  display: block;
   width: 100%;
   height: 100%;
   position: fixed;
   z-index: 4;
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.8);
 }
@@ -216,14 +214,16 @@ form {
   margin-bottom: 20px;
 }
 .close-icon {
+  display:inline-block;
   font-size: 30px;
   color: var(--bg-color);
   margin-top: 50px;
   margin-left: 20px;
   cursor: pointer;
 }
-.reveal{
-  display: block;
+
+.close-icon:hover{
+  color:var(--secondary-color);
 }
 
 /* SVG Wave dividers */
