@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ContactTextInput from '../layout/ContactTextInput';
+import ContactTextInput from './ContactTextInput';
 
 
 import '../../App.css';

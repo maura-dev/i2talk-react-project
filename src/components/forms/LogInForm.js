@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddLogin } from '../../actions/loginAction';
-import TextInputGroup from '../layout/TextInputGroup';
+import TextInputGroup from './TextInputGroup';
 
 class LogInForm extends Component {
   state = {

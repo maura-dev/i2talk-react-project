@@ -7,6 +7,7 @@ import Card from '../layout/card';
 import HeroBox from '../layout/hero';
 import LogInForm from '../forms/LogInForm';
 import SignUpForm from '../forms/SignUpForm';
+import FormikDemo from '../forms/FormikDemo';
 
 // import component images
 import UserJImg1 from '../../img/user-journey-img1.svg';
@@ -37,6 +38,8 @@ class Main extends Component {
 						<HeroBox />
 						<LogInForm />
 					</div>
+					
+					<FormikDemo />
 
 					<div className="signup-modal">
 						{showSignUp ? (<div className="hero-modal-form"><SignUpForm /></div>) : null}
@@ -53,7 +56,7 @@ class Main extends Component {
 					</div>
 					
 					<div className="two user-j">
-						<h3>Get Started...</h3>
+						<h2>Get Started...</h2>
 						<div className="userjny">
 							<Card 
 							source={UserJImg1}

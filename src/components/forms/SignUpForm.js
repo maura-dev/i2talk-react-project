@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddUser } from '../../actions/signUpAction';
-import TextInputGroup from '../layout/TextInputGroup';
+import TextInputGroup from './TextInputGroup';
 
 
 class SignUpForm extends Component {
