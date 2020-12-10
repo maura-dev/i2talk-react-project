@@ -9,15 +9,15 @@ class ChatMenu extends Component {
 
         <div className="chat-menu-head">
           <div className="chat-menu-profile">
-            <div className="chat-menu-open side-bar-profile"> <a href="./profile.html" id="menu-profile"> </a></div>
+            <div className="chat-menu-open side-bar-profile"> <Link to="/dashboard/profile" id="menu-profile"> </Link></div>
             
             <Link to="/dashboard/isearch" className="tooltip"><i className="fas fa-search fa-1x"></i><span className="tooltiptext">iSearch</span></Link>
             <div className="tooltip">
-              <a href=""><i className="far fa-comment-dots"></i></a>
+              <Link to="#"><i className="far fa-comment-dots"></i></Link>
               <p className="tooltiptext">New Chat</p>
             </div>
             <div className="tooltip">
-              <a onClick=""><i className="fas fa-ellipsis-v"></i></a>
+              <Link to="#"><i className="fas fa-ellipsis-v"></i></Link>
               <p className="tooltiptext">Menu</p>
             </div>
           </div>

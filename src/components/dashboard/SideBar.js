@@ -15,8 +15,6 @@ const SideBar = () => {
           <li><Link to="/dashboard/settings" className="tooltip"><i className="fas fa-cog fa-1x"></i> <span className="tooltiptext">Settings</span></Link></li>
           <li><Link to="/logout" className="tooltip"><i className="fas fa-reply-all fa-1x"></i> <span className="tooltiptext">Log Out</span></Link></li>
           
-          <li><Link to="/dashboard/admin" className="tooltip"><i className="fas fa-comments fa-1x"></i> <span className="tooltiptext">Chat Rooms</span></Link></li>
-          
           {/* <li id="admin-panel-container"></li> */}
         </ul>
       </div>
