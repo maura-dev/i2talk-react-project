@@ -40,7 +40,7 @@ class DirectMsg extends Component {
         <div className="chat-form">
 
           <form id="pmessageForm">
-            <textarea id="pmsg-input" autocapitalize= "sentences" autocomplete="on" placeholder="Type message here ..." rows="1" required></textarea>
+            <textarea id="pmsg-input" autoCapitalize= "sentences" autoComplete="on" placeholder="Type message here ..." rows="1" required></textarea>
             <button id="pmsg-btn"><i className="far fa-paper-plane"></i></button>
           </form>
 

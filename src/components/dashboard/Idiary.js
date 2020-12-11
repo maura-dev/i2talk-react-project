@@ -1,38 +1,30 @@
 import React, { Component } from 'react'
+import Headers from './dashboardComponents/headers'
 
 class Idiary extends Component {
   render() {
     return (
-      <div className="iDiary-container">
+      <div className="dashboard-feature-container">
 
-					<nav className="title-bar">
-						<a className="message-back-arrow" onclick="backToMenu('user-chat-menu', 'user-msg-container')"><i className="fas fa-long-arrow-alt-left"></i></a>
-						<h2 id="featureTitle">iDiary</h2>
-						
-						<span>
-							<i className="fas fa-ellipsis-v"></i>
-							<i className="fas fa-cog"></i>
-						</span>
-					
-					</nav>
+					<Headers text="iDiary" />
 	
 					<div id="overlay"></div>
 					
           <div id="top">
 						<input type="text" id="searchInput" placeholder="Search saved notes" />
-						<button onclick="displayLoader()" id="search-btn"><img src="../assets/img/ajax-loader.gif" width="15px" id="idiary-loader" />Search</button>
-						<button id="addNew-btn" onclick="addNewMessage()"><i className="fas fa-plus-circle"></i> Add New Note</button>
+						<button onClick="displayLoader()" id="search-btn"><img src="../assets/img/ajax-loader.gif" width="15px" id="idiary-loader" />Search</button>
+						<button id="addNew-btn" onClick="addNewMessage()"><i className="fas fa-plus-circle"></i> Add New Note</button>
 					</div>
 				
 				  <h3 id="records"></h3>
 				
-				  <button id="back-btn" onclick="displayBackLoader()"><img src="../assets/img/ajax-loader.gif" width="15px" id="idiary-back-loader" />Back to notes</button>
+				  <button id="back-btn" onClick="displayBackLoader()"><img src="../assets/img/ajax-loader.gif" width="15px" id="idiary-back-loader" />Back to notes</button>
 				
 					<div id="addNew">
 						<textarea type="text" placeholder="Enter your message" name="message" id="messageInput"></textarea>
 						<div>
-							<button id="submitNewMessage-btn" onclick="displayAddedMessage()">Add</button>
-							<button id="cancel" onclick="back()">Cancel</button>
+							<button id="submitNewMessage-btn" onClick="displayAddedMessage()">Add</button>
+							<button id="cancel" onClick="back()">Cancel</button>
 						</div>
 					</div>
 				  
@@ -40,8 +32,8 @@ class Idiary extends Component {
 						<input type="hidden" id="messageId" />
 						<textarea type="text" placeholder="" name="message" id="editMessageInput"></textarea>
 						<div>
-							<button id="editedMessage-btn" onclick="displayEditedMessage()">Add Changes</button>
-							<button id="cancel" onclick="back()">Cancel</button>
+							<button id="editedMessage-btn" onClick="displayEditedMessage()">Add Changes</button>
+							<button id="cancel" onClick="back()">Cancel</button>
 						</div>
 					</div>
 				

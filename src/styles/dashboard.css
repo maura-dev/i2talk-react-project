@@ -533,6 +533,38 @@
 	border-radius: 50%;
 }
 
+
+
+/****************************************************/
+/*##############HEADER COMPONENT####################*/
+/****************************************************/
+.title-bar{
+	box-sizing: border-box;
+	background-color: var(--bg-color-alt);
+	position: sticky;
+	top: 0;
+	color: var(--primary-color);
+	display: flex;
+	justify-content: space-between;
+	padding: 0px 14px;
+	align-items: center;
+	margin-bottom: 30px;
+}
+
+.title-bar > span >i{
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+.title-bar > span >i:hover{
+	font-size: 30px;
+}
+
+.dashboard-feature-container{
+	height: 100%;
+	background: var(--bg-color);
+}
+
 /* iSearch */
 .iSearch-page {
 	background-color:  var(--bg-color);
@@ -552,28 +584,7 @@
 	font-weight: bold;
 	line-height: 1.2em;
 }
-#iSearch-top {
-	display: flex;
-	align-items: center;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
-	height: 70px;
-	padding: 0px 10px;
-	background: var(--bg-color-alt);
-	color: var(--primary-color);
-}
-#iSearch-top .message-back-arrow {
-	color: var(--primary-color);
-	margin-left: 16px;
-}
-#iSearch-top p {
-	font-weight: bold;
-	font-size: 32px;
-	padding: 16px;
-	margin: 0 auto;
-	/* color: var(--primary-color); */
-}
+
 #iSearch-header {
 	font-weight: bold;
 	font-size: 20px;
@@ -673,37 +684,7 @@
 }
 
 /** iReminder **/
-.ireminder-container{
-	height: 100%;
-	/* width: 60%; */
-	background: var(--bg-color);
-}
 
-.ireminder-header{
-	display: inline-flex;
-	justify-content: space-between;
-	align-items: center;
-	background: var(--bg-color-alt);
-	color: var(--primary-color);
-	width:100%;
-	/* padding: 0px 20px; */
-}
-.ireminder-header h2 {
-	padding-left: 20px;
-}
-
-.ireminder-dropdown{
-	padding-right: 20px;
-}
-
-.ireminder-dropdown span {
-	font-size: 25px;
-	color: var(--primary-color);
-}
-
-.ireminder-dropdown > span >i:hover{
-	font-size: 30px;
-}
 
 .ireminder-button{
 	margin: 25px;
@@ -784,37 +765,6 @@
 
 
 /*SETTINGS PAGE*/
-.settings-container{
-	background-color: var(--bg-color-alt);
-	height: 100%;
-	/* width: 100%; */
-}
-
-.settings-title-bar{
-	/* position: sticky;
-	top: 0; */
-	display: flex;
-	align-items: center;
-	width: 100%;
-	justify-content: space-between;
-	color: var(--primary-color);
-	background-color: var(--bg-color-alt);
-	/* padding: 0 20px; */
-}
-
-.settings-title-bar h2 {
-	padding-left: 20px;
-}
-
-.settings-title-bar span {
-	padding-right: 20px;
-	font-size: 25px;
-	color: var(--primary-color);
-}
-
-.settings-title-bar > span >i:hover{
-	font-size: 30px;
-}
 
 .settings-main-container {
 	overflow-y: scroll;
@@ -942,40 +892,6 @@
 }
 
 /*PROFILE PAGE*/
-.profile-page{
-	background-color: var(--bg-color);
-	height: 100%;
-}
-
-.profile-title-bar{
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
-	display:flex;
-	background: var(--bg-color-alt);
-	align-items: center;
-	justify-content: space-between;
-	color: var(--primary-color);
-	/* padding: 20px; */
-}
-
-.profile-title-bar h2 {
-	padding-left: 20px;
-}
-
-.profile-title-bar span {
-	padding-right: 20px;
-	font-size: 25px; 
-	color: var(--primary-color);
-}
-
-.profile-title-bar > span >i{
-	margin-left: 10px;
-}
-
-.profile-title-bar > span >i:hover{
-	font-size: 30px;
-}
 
 #profile-image-boxer > img{
 	border-radius: 50%;
@@ -1041,34 +957,15 @@
 }
 
 
-.iDiary-container{
+/*.iDiary-container{
 	background-color:var(--bg-color);
-	/* width: 60%; */
+	 width: 60%; 
 	height: 100%;
 	width: 100%;
 	overflow-y: scroll;
-}
+}*/
 
-.title-bar{
-	box-sizing: border-box;
-	background-color: var(--bg-color-alt);
-	position: sticky;
-	top: 0;
-	color: var(--primary-color);
-	display: flex;
-	justify-content: space-between;
-	padding: 0px 14px;
-	align-items: center;
-	margin-bottom: 30px;
-}
 
-.title-bar > span >i{
-	margin-left: 10px;
-}
-
-.title-bar > span >i:hover{
-	font-size: 30px;
-}
 
 #addNew, #editNew{
 	display:none;
@@ -1251,35 +1148,6 @@ button{
 	left: 0;
 }
 
-#chatrooms-container{
-	background-color: var(--bg-color-alt);
-	/* width: 60%; */
-	/* overflow-y: scroll; */
-	height:100%;
-}
-
-.chatrooms-title-bar{
-	background-color: var(--bg-color-alt);
-	color: var(--primary-color);
-	display:flex;
-	align-items: center;
-	justify-content: space-between;
-	/* padding: 20px 20px; */
-}
-
-.chatrooms-title-bar h2 {
-	padding-left: 20px;
-}
-
-.chatrooms-title-bar span {
-	padding-right: 20px;
-	font-size:25px; 
-	color:var(--primary-color);
-}
-
-.chatrooms-title-bar span i:hover{
-	font-size: 30px;
-}
 
 .chatrooms-heading{
 	display:flex;
