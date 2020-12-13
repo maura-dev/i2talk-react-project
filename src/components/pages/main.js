@@ -31,7 +31,8 @@ class Main extends Component {
 	}
 
 	hideForm=()=>{
-        this.setState({...this.state, showSignUp: false})
+		
+		this.setState({...this.state, showSignUp: false})
 	}
 
 	render() {
