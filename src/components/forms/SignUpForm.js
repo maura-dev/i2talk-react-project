@@ -1,131 +1,112 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddUser } from '../../actions/signUpAction';
-import TextInputGroup from './TextInputGroup';
+// import TextInputGroup from './TextInputGroup';
 
+import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import * as Yup from 'yup';
 
 class SignUpForm extends Component {
-  state = {
-    fullname: '',
-    username: '',
-    email: '',
-    password: '',
-    cpassword: ''
-  };
 
-  onSubmit = (e) => {
-    e.preventDefault();
+  render () {
+    return(
+      <div className="hero-modal-form" >
+        <div className ="wrapper">
+          <div className ="title">Sign Up</div>
+          <Formik
 
-    const { fullname, username, email, password, cpassword } = this.state;
+            initialValues={{ fullName: '', username: '', email: '', password: '', cPassword: ''}}
+            validationSchema = {Yup.object({
+              fullName: Yup
+                .string()
+                .max(15, 'Must be 15 characters or less')
+                .required('Your full name is required'),
+              username: Yup
+                .string()
+                .max(20, 'Must be 20 characters or less')
+                .required('Username is required'),
+              email: Yup
+                .string()
+                .email('Invalid email address')
+                .required('Email is required'),
+              password: Yup
+                .string()
+                .required('Please enter your password')
+                .max(15, 'Please try a shorter password.')
+                .matches(
+                  /^.*(?=.{8,})((?=.*[!@#$%^&*()\-_=+{};:,<.>]){1})(?=.*\d)((?=.*[a-z]){1})((?=.*[A-Z]){1}).*$/,
+                  'Password must contain at least 8 characters, one uppercase, one number and one special case character'
+                ),
+              cPassword: Yup
+                .string()
+                .required('Please re-enter your password')
+                .test('passwords-match', 'Passwords not a match', function(value) {
+                  return this.parent.password === value;
+                }),
+            })}
 
-    this.props.PostLogin(this.state);
+            onSubmit={(values, { setSubmitting, resetForm }) => {
+              setTimeout(() => {
+                alert(JSON.stringify(values, null, 2));
+                setSubmitting(false);
+              }, 400);
+              this.props.PostLogin(JSON.stringify(values, null, 2));
+              resetForm();
+            }}
+          >
 
-    // check for errors
+            {({ isSubmitting }) => (
+              <Form>
+                <div className='field'>
+                  <Field type="fullName" name="fullName" />
+                  <label htmlFor="fullName">Full Name</label>
+                </div>
+                <ErrorMessage name="fullName" component="div" />
 
-    // if (username === ''){
-    //   this.setState({errors: { username: 'Username is required' }});
-    //   return;
-    // }
-    // if (password === ''){
-    //   this.setState({errors: { password: 'Password is required' }});
-    //   return;
-    // }
+                <div className='field'>
+                  <Field type="username" name="username" />
+                  <label htmlFor="username">Username</label>
+                </div>
+                <ErrorMessage name="username" component="div" />
 
-    // const newContact = {
-    //   username,
-    //   password
-    // }
+                <div className='field'>
+                  <Field type="email" name="email" />
+                  <label htmlFor="email">Email</label>
+                </div>
+                <ErrorMessage name="email" component="div" />
 
-    // const res = await axios.post('https://jsonplaceholder.typicode.com/users', newContact);
+                <div className='field'>
+                  <Field type="password" name="password" />
+                  <label htmlFor="password">Password</label>
+                </div>
+                <ErrorMessage name="password" component="div" />
 
-    // dispatch({ type: 'ADD_CONTACT', payload: res.data });
-    
-    this.setState({
-      fullname: '',
-      username: '',
-      email: '',
-      password: '',
-      cpassword: ''
-    });
+                <div className='field'>
+                  <Field type="password" name="cPassword" />
+                  <label htmlFor="cPassword">Confirm password</label>
+                </div>
+                <ErrorMessage name="cPassword" component="div" />
 
-    // this.props.history.push('/');
-  };
+                <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
+                  <a href="./security&privacy.html">Privacy Policy</a>. 
+                  You may receive SMS notifications from us and can opt out at any time.</small>
+                </p>
 
-  onChange = e => this.setState({[e.target.name] : e.target.value });
+                <button type="submit">
+                  Submit
+                </button>
 
-  render() {
-    const { fullname, username, email, password, cpassword } = this.state;
-
-    return (
-
-      <React.Fragment>
-        <div className="hero-modal-form">
-          <div className ="wrapper">
-            <div className ="title">Sign Up</div>
-            {/* <form onSubmit={this.onSubmit.bind
-              (this, dispatch)}> */}
-            <form>
-              <TextInputGroup 
-                label="Full Name"
-                name="fullname"
-                // placeholder="Enter Name..."
-                value={fullname}
-                onChange={this.onChange}
-                // error={errors.name}
-              />
-              <TextInputGroup 
-                label="Username"
-                name="username"
-                // placeholder="Enter Name..."
-                value={username}
-                onChange={this.onChange}
-                // error={errors.name}
-              />
-              <TextInputGroup 
-                label="Email Address"
-                name="email"
-                // placeholder="Enter Name..."
-                value={email}
-                onChange={this.onChange}
-                // error={errors.name}
-              />
-              <TextInputGroup 
-                label="Password"
-                name="password"
-                type="password"
-                // placeholder="Enter Email..."
-                value={password}
-                onChange={this.onChange}
-                // error={errors.email}
-              />
-              <TextInputGroup 
-                label="Confirm password"
-                name="cpassword"
-                type="password"
-                // placeholder="Enter Email..."
-                value={cpassword}
-                onChange={this.onChange}
-                // error={errors.email}
-              />
-
-              <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
-                <a href="./security&privacy.html">Privacy Policy</a>. 
-                You may receive SMS notifications from us and can opt out at any time.</small>
-              </p>
-              
-              <input type="submit" value ="Signup" className="login-btn" />
-
-              <p>Already have an account? <a href="./index.html">Log In</a></p>
-            </form>
-          </div>
-
-          <div className="close-icon">
-            <i onClick = {this.props.hideForm} className="fas fa-times"></i>
-          </div>
+                <p>Already have an account? <a href="./index.html">Log In</a></p>
+              </Form>
+            )}
+           
+          </Formik>
 
         </div>
-
-      </React.Fragment>
+        <div className="close-icon">
+          <i onClick = {this.props.hideForm} className="fas fa-times"></i>
+        </div>
+      </div>
     )
   }
 }
