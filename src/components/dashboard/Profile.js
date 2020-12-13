@@ -5,7 +5,7 @@ class Profile extends Component {
   render() {
     return (
       <div className= "dashboard-feature-container">
-        <Header text="My Profile" />
+        <Headers text="My Profile" />
 
         <div id="profile-image-boxer"></div>
         
