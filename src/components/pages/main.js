@@ -32,7 +32,8 @@ class Main extends Component {
 	}
 
 	hideForm=()=>{
-        this.setState({...this.state, showSignUp: false})
+		
+		this.setState({...this.state, showSignUp: false})
 	}
 
 	render() {
@@ -49,6 +50,7 @@ class Main extends Component {
 							<HeroBox showForm={this.showForm}/>
 							<LogInForm />
 						</div>
+						<FormikDemo />
 
 						{showSignUp ? <div className="signup-modal">
 							<SignUpForm hideForm={this.hideForm} />

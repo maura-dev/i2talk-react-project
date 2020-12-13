@@ -58,140 +58,74 @@ class SignUpForm extends Component {
 
     return (
 
-    <React.Fragment>
-      <div className="hero-modal-form">
-        <div className ="wrapper">
-          <div className ="title">Sign Up</div>
-          {/* <form onSubmit={this.onSubmit.bind
-            (this, dispatch)}> */}
-          <form>
-            <TextInputGroup 
-              label="Full Name"
-              name="fullname"
-              // placeholder="Enter Name..."
-              value={fullname}
-              onChange={this.onChange}
-              // error={errors.name}
-            />
-            <TextInputGroup 
-              label="Username"
-              name="username"
-              // placeholder="Enter Name..."
-              value={username}
-              onChange={this.onChange}
-              // error={errors.name}
-            />
-            <TextInputGroup 
-              label="Email Address"
-              name="email"
-              // placeholder="Enter Name..."
-              value={email}
-              onChange={this.onChange}
-              // error={errors.name}
-            />
-            <TextInputGroup 
-              label="Password"
-              name="password"
-              type="password"
-              // placeholder="Enter Email..."
-              value={password}
-              onChange={this.onChange}
-              // error={errors.email}
-            />
-            <TextInputGroup 
-              label="Confirm password"
-              name="cpassword"
-              type="cpassword"
-              // placeholder="Enter Email..."
-              value={cpassword}
-              onChange={this.onChange}
-              // error={errors.email}
-            />
+      <React.Fragment>
+        <div className="hero-modal-form">
+          <div className ="wrapper">
+            <div className ="title">Sign Up</div>
+            {/* <form onSubmit={this.onSubmit.bind
+              (this, dispatch)}> */}
+            <form>
+              <TextInputGroup 
+                label="Full Name"
+                name="fullname"
+                // placeholder="Enter Name..."
+                value={fullname}
+                onChange={this.onChange}
+                // error={errors.name}
+              />
+              <TextInputGroup 
+                label="Username"
+                name="username"
+                // placeholder="Enter Name..."
+                value={username}
+                onChange={this.onChange}
+                // error={errors.name}
+              />
+              <TextInputGroup 
+                label="Email Address"
+                name="email"
+                // placeholder="Enter Name..."
+                value={email}
+                onChange={this.onChange}
+                // error={errors.name}
+              />
+              <TextInputGroup 
+                label="Password"
+                name="password"
+                type="password"
+                // placeholder="Enter Email..."
+                value={password}
+                onChange={this.onChange}
+                // error={errors.email}
+              />
+              <TextInputGroup 
+                label="Confirm password"
+                name="cpassword"
+                type="password"
+                // placeholder="Enter Email..."
+                value={cpassword}
+                onChange={this.onChange}
+                // error={errors.email}
+              />
 
-            <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
-							<a href="./security&privacy.html">Privacy Policy</a>. 
-							You may receive SMS notifications from us and can opt out at any time.</small>
-						</p>
-						
-            <input type="submit" value ="Signup" className="login-btn" />
+              <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
+                <a href="./security&privacy.html">Privacy Policy</a>. 
+                You may receive SMS notifications from us and can opt out at any time.</small>
+              </p>
+              
+              <input type="submit" value ="Signup" className="login-btn" />
 
-            <p>Already have an account? <a href="./index.html">Log In</a></p>
-          </form>
-        </div>
+              <p>Already have an account? <a href="./index.html">Log In</a></p>
+            </form>
+          </div>
 
-        <div className="close-icon">
+          <div className="close-icon">
             <i onClick = {this.props.hideForm} className="fas fa-times"></i>
+          </div>
+
         </div>
 
-      </div>
-
-        
-
-    </React.Fragment>
-
-
-        
-// =======
-//       <div className ="wrapper">
-//         <div className ="title">Sign Up</div>
-//         {/* <form onSubmit={this.onSubmit.bind
-//           (this, dispatch)}> */}
-//         <form onSubmit={this.onSubmit}>
-//           <TextInputGroup 
-//             label="Full Name"
-//             name="fullname"
-//             // placeholder="Enter Name..."
-//             value={fullname}
-//             onChange={this.onChange}
-//             // error={errors.name}
-//           />
-//           <TextInputGroup 
-//             label="Username"
-//             name="username"
-//             // placeholder="Enter Name..."
-//             value={username}
-//             onChange={this.onChange}
-//             // error={errors.name}
-//           />
-//           <TextInputGroup 
-//             label="Email Address"
-//             name="email"
-//             // placeholder="Enter Name..."
-//             value={email}
-//             onChange={this.onChange}
-//             // error={errors.name}
-//           />
-//           <TextInputGroup 
-//             label="Password"
-//             name="password"
-//             type="password"
-//             // placeholder="Enter Email..."
-//             value={password}
-//             onChange={this.onChange}
-//             // error={errors.email}
-//           />
-//           <TextInputGroup 
-//             label="Confirm password"
-//             name="cpassword"
-//             type="password"
-//             // placeholder="Enter Email..."
-//             value={cpassword}
-//             onChange={this.onChange}
-//             // error={errors.email}
-//           />
-
-//           <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
-//             <a href="./security&privacy.html">Privacy Policy</a>. 
-//             You may receive SMS notifications from us and can opt out at any time.</small>
-//           </p>
-          
-//           <input type="submit" value ="Signup" className="login-btn" />
-
-//           <p>Already have an account? <a href="./index.html">Log In</a></p>
-//         </form>
-//       </div>
-// >>>>>>> 551b8a436ebd2cb2978249ad654b0995fcb45da6
-     
+      </React.Fragment>
     )
   }
 }
