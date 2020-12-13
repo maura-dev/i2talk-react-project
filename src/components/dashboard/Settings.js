@@ -1,25 +1,16 @@
 import React, { Component } from 'react'
+import Headers from './dashboardComponents/headers'
 
 class Settings extends Component {
   render() {
     return (
-      <div className="settings-container" id="style-2">
-
-        <nav className="settings-title-bar">
-          <a className="message-back-arrow" onclick="backToMenu('user-chat-menu', 'user-msg-container')"><i className="fas fa-long-arrow-alt-left"></i></a>
-          <h2 id="settingsTitle">Settings</h2>
-          
-          <span>
-            <i className="fas fa-ellipsis-v"></i>
-            <i className="fas fa-cog"></i>
-          </span>
-        </nav>
-  
+      <div className="dashboard-feature-container" id="style-2">
+        <Headers text="Settings" />
   
         <div className="settings-main-container scrollbar" id="settings-main">
           <div className="profile-block">
             <div id="settings-profile-box"></div>
-            <button className="button" onclick="showProfilePage()"><i className="far fa-edit">&nbsp;</i>&nbsp;Edit Profile</button>
+            <button className="button" onClick="showProfilePage()"><i className="far fa-edit">&nbsp;</i>&nbsp;Edit Profile</button>
           </div>
   
           <h2>Account</h2>

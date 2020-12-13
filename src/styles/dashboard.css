@@ -2,7 +2,7 @@
 
 .chat-container-main {
 	background: linear-gradient(180deg, var(--primary-color) 20%, var(--bg-color-alt) 20%);
-	height: 100%;
+	height: 100vh;
 	min-height: 670px;
 	max-height: 900px;
 	width: 100%;
@@ -30,9 +30,11 @@
 .chat-container {
 	display: flex;
 	margin-right: auto;
+	margin-top: 20px;
 	height: 92%;
 	width: 90%;
 	border-bottom: 3px solid var(--primary-color);
+	/*overflow-y: scroll;*/
 }
 
 /* Scrollbar Styling */
@@ -156,12 +158,13 @@
 	background-color: white;
 	width: 35%;
 	min-width: 355px;
+	border-right: 2px solid var(--primary-color);
 }
 .chat-menu-head {
 	background: var(--bg-color-alt);
-	padding: 0 10px;
-	height: 22%;
-	min-height: 150px; 
+	padding: 5px 10px;
+	height: 15%;
+	/*min-height: 150px;*/ 
 }
 .chat-menu-profile {
 	display: flex;
@@ -255,6 +258,7 @@
 	margin-right: 20px;
 	color: var(--primary-color);
 }
+
 .chat-header ul {
 	display: none;
 	position: relative;
@@ -396,7 +400,7 @@
 .chat-message .chat-header{
 	flex-wrap: wrap;
 	z-index: 3;
-	padding: 0px 10px;
+	padding: 11px;
 	border-radius: 0;
 	background: var(--bg-color-alt);
 	color: var(--primary-color)
@@ -533,6 +537,77 @@
 	border-radius: 50%;
 }
 
+
+
+/****************************************************/
+/*##############HEADERS COMPONENT####################*/
+/****************************************************/
+.title-bar{
+	box-sizing: border-box;
+	background-color: var(--bg-color-alt);
+	position: sticky;
+	top: 0;
+	color: var(--primary-color);
+	display: flex;
+	justify-content: space-between;
+	/*padding: 0px 14px;*/
+	align-items: center;
+	margin-bottom: 30px;
+	flex-wrap: wrap;
+	padding: 31.5px;
+}
+
+.title-bar > span >i{
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+.title-bar > span >i:hover{
+	font-size: 30px;
+}
+
+.dashboard-feature-container{
+	height: 100vh;
+	background: var(--bg-color);
+	
+}
+
+
+/****************************************************/
+/*##############BUTTON COMPONENTS####################*/
+/****************************************************/
+.button-one{
+	display:inline-block;
+	margin-left: 10px;
+	margin-right:10px;
+	background-color:var(--primary-color);
+	color:white;
+	padding:10px;
+	border:2px solid var(--primary-color);
+	border-radius: 10px;
+}
+
+.button-two{
+	display:inline-block;
+	margin-left: 10px;
+	margin-right:10px;
+	background-color:var(--secondary-color);
+	color:white;
+	padding:10px;
+	border:2px solid var(--secondary-color);
+	border-radius: 10px;
+}
+
+.button-one:hover,
+.button-two:hover{
+	background-color: var(--bg-color-alt);
+	color:var(--primary-color);
+	border:2px solid var(--primary-color);
+}
+
+
+
+
 /* iSearch */
 .iSearch-page {
 	background-color:  var(--bg-color);
@@ -552,28 +627,7 @@
 	font-weight: bold;
 	line-height: 1.2em;
 }
-#iSearch-top {
-	display: flex;
-	align-items: center;
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
-	height: 70px;
-	padding: 0px 10px;
-	background: var(--bg-color-alt);
-	color: var(--primary-color);
-}
-#iSearch-top .message-back-arrow {
-	color: var(--primary-color);
-	margin-left: 16px;
-}
-#iSearch-top p {
-	font-weight: bold;
-	font-size: 32px;
-	padding: 16px;
-	margin: 0 auto;
-	/* color: var(--primary-color); */
-}
+
 #iSearch-header {
 	font-weight: bold;
 	font-size: 20px;
@@ -673,37 +727,7 @@
 }
 
 /** iReminder **/
-.ireminder-container{
-	height: 100%;
-	/* width: 60%; */
-	background: var(--bg-color);
-}
 
-.ireminder-header{
-	display: inline-flex;
-	justify-content: space-between;
-	align-items: center;
-	background: var(--bg-color-alt);
-	color: var(--primary-color);
-	width:100%;
-	/* padding: 0px 20px; */
-}
-.ireminder-header h2 {
-	padding-left: 20px;
-}
-
-.ireminder-dropdown{
-	padding-right: 20px;
-}
-
-.ireminder-dropdown span {
-	font-size: 25px;
-	color: var(--primary-color);
-}
-
-.ireminder-dropdown > span >i:hover{
-	font-size: 30px;
-}
 
 .ireminder-button{
 	margin: 25px;
@@ -784,37 +808,6 @@
 
 
 /*SETTINGS PAGE*/
-.settings-container{
-	background-color: var(--bg-color-alt);
-	height: 100%;
-	/* width: 100%; */
-}
-
-.settings-title-bar{
-	/* position: sticky;
-	top: 0; */
-	display: flex;
-	align-items: center;
-	width: 100%;
-	justify-content: space-between;
-	color: var(--primary-color);
-	background-color: var(--bg-color-alt);
-	/* padding: 0 20px; */
-}
-
-.settings-title-bar h2 {
-	padding-left: 20px;
-}
-
-.settings-title-bar span {
-	padding-right: 20px;
-	font-size: 25px;
-	color: var(--primary-color);
-}
-
-.settings-title-bar > span >i:hover{
-	font-size: 30px;
-}
 
 .settings-main-container {
 	overflow-y: scroll;
@@ -942,40 +935,6 @@
 }
 
 /*PROFILE PAGE*/
-.profile-page{
-	background-color: var(--bg-color);
-	height: 100%;
-}
-
-.profile-title-bar{
-	position: -webkit-sticky;
-	position: sticky;
-	top: 0;
-	display:flex;
-	background: var(--bg-color-alt);
-	align-items: center;
-	justify-content: space-between;
-	color: var(--primary-color);
-	/* padding: 20px; */
-}
-
-.profile-title-bar h2 {
-	padding-left: 20px;
-}
-
-.profile-title-bar span {
-	padding-right: 20px;
-	font-size: 25px; 
-	color: var(--primary-color);
-}
-
-.profile-title-bar > span >i{
-	margin-left: 10px;
-}
-
-.profile-title-bar > span >i:hover{
-	font-size: 30px;
-}
 
 #profile-image-boxer > img{
 	border-radius: 50%;
@@ -1041,34 +1000,9 @@
 }
 
 
-.iDiary-container{
-	background-color:var(--bg-color);
-	/* width: 60%; */
-	height: 100%;
-	width: 100%;
-	overflow-y: scroll;
-}
-
-.title-bar{
-	box-sizing: border-box;
-	background-color: var(--bg-color-alt);
-	position: sticky;
-	top: 0;
-	color: var(--primary-color);
-	display: flex;
-	justify-content: space-between;
-	padding: 0px 14px;
-	align-items: center;
-	margin-bottom: 30px;
-}
-
-.title-bar > span >i{
-	margin-left: 10px;
-}
-
-.title-bar > span >i:hover{
-	font-size: 30px;
-}
+/****************************************************/
+/*##############IDIARY COMPONENT####################*/
+/****************************************************/
 
 #addNew, #editNew{
 	display:none;
@@ -1088,48 +1022,6 @@
 	margin:0px auto 20px auto;
 }
 
-#cancel, #addNew-btn{
-	display:inline-block;
-	margin-right:20px;
-	background-color:var(--primary-color);
-	color:white;
-	padding:10px;
-	border:2px solid var(--primary-color);
-	border-radius: 10px;
-}
-
-#submitNewMessage-btn, #editedMessage-btn{
-	margin-left:30%;
-	padding:10px 20px 10px 20px;
-}
-
-#cancel{
-	margin-left: 20px;
-	margin-right:30%;
-}
-
-#search-btn, #submitNewMessage-btn, #editedMessage-btn{
-	background-color: var(--primary-color);
-	color:white;
-	padding:10px;
-	border:2px solid var(--primary-color);
-	border-radius:10px;
-}
-
-button{
-	outline-style: none;
-}
-
-#search-btn:hover, 
-#submitNewMessage-btn:hover, 
-#editedMessage-btn:hover,
-#cancel:hover, 
-#addNew-btn:hover, 
-#back-btn:hover{
-	background-color: var(--secondary-color);
-	box-shadow: 2px 2px 2px 2px var(--primary-color);
-	color:var(--primary-color);
-}
 
 #messages{
 	width:100%;
@@ -1160,22 +1052,24 @@ button{
 }
 
 #buttons{
-	margin-left: 85%;
+	margin-left: 80%;
 	padding-bottom: 10px;
 }
 
 #buttons > span  > i{
+	padding:10px;
 	margin-right: 10px;
 }
 
 #buttons > span > i:hover{
-	font-size:25px;
+	border-radius:50%;
+	background-color: var(--bg-color-alt);
 }
 
-#top{
+.top{
 	display:block;
 	margin-top:20px;
-	margin-left:90px;
+	margin-left:50px;
 }
 
 #records{
@@ -1196,21 +1090,12 @@ button{
 	margin-top: 20px;
 }
 
- #back-btn{
-	background-color:var(--primary-color);
-	color:white;
-	border-radius: 10px;
-	padding: 10px;
-	border: 2px solid  var(--primary-color);
-	display: none;
-	margin: 20px auto 20px auto;
-}
-
-#searchInput{
+ 
+.searchInput{
 	border-radius: 10px;
 	padding:10px;
 	outline-style: none;
-	width:200px;
+	width:60%;
 	background-color: #fffffe;
 	border:2px solid var(--primary-color);
 }
@@ -1241,52 +1126,36 @@ button{
 	margin-right: 10px;
 }
 
-#overlay{
-	height: 100vh;
-	position:fixed;
-	display:none;
-	background-color:var(--light-color);
-	opacity:0.7;
-	top: 0;
-	left: 0;
-}
 
-#chatrooms-container{
-	background-color: var(--bg-color-alt);
-	/* width: 60%; */
-	/* overflow-y: scroll; */
-	height:100%;
-}
+/****************************************************/
+/*##############ADD NEW NOTE COMPONENT####################*/
+/****************************************************/
 
-.chatrooms-title-bar{
-	background-color: var(--bg-color-alt);
-	color: var(--primary-color);
-	display:flex;
-	align-items: center;
-	justify-content: space-between;
-	/* padding: 20px 20px; */
-}
 
-.chatrooms-title-bar h2 {
+.addNew{
+
+	/*width:40%;
+	height:auto;*/
 	padding-left: 20px;
+	background-color: #fffffe;
+	
 }
 
-.chatrooms-title-bar span {
-	padding-right: 20px;
-	font-size:25px; 
-	color:var(--primary-color);
-}
 
-.chatrooms-title-bar span i:hover{
-	font-size: 30px;
-}
+
+
+/****************************************************/
+/*##############CHATROOM COMPONENT####################*/
+/****************************************************/
 
 .chatrooms-heading{
+	margin-top: -30px;
 	display:flex;
 	flex-direction: row;
 	justify-content: space-between;
-	border-bottom: 2px solid var(--light-color);
+	border: 1px solid var(--primary-color);
 	cursor: pointer;
+
 }
 
 .chatrooms-heading > h3{
@@ -1297,17 +1166,20 @@ button{
 	color: var(--bg-color);
 }
 
+/*.chatrooms-container{
+	overflow-y: scroll;
+}
+*/
 #chatrooms-page{
 	display:block;
 }
 
 .chatroom-page-body{
 	overflow-y: scroll;
-	height: 81%;
 }
 .chatrooms-items{
 	background-color: #fff;
-	height: 90px;
+	height: 70px;
 	padding: 10px 20px;
 	margin-bottom:10px;
 	box-shadow:1px 1px 1px 1px var(--primary-color);
@@ -1379,10 +1251,12 @@ button{
 		padding: 0;
 		height: 100%;
 	} */
+
 	.chat-container {
 		display: flex;
 		/* flex-direction: column; */
 		background-color: var(--primary-color);
+		margin-top:0px;
 		padding: 0;
 		height: 100%;
 	}
