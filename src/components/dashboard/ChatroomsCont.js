@@ -5,7 +5,7 @@ import ChatroomItem from './dashboardComponents/ChatroomItem'
 class ChatroomsCont extends Component {
   render() {
     return (
-      <div className ="dashboard-feature-container chatrooms-container">
+      <div className ="dashboard-feature-container">
         <Headers text="Chatrooms" />
     
         <div className="chatrooms-heading">
