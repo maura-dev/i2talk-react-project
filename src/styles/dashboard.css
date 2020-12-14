@@ -545,8 +545,8 @@
 .title-bar{
 	box-sizing: border-box;
 	background-color: var(--bg-color-alt);
-	position: sticky;
-	top: 0;
+	/* position: sticky;
+	top: 0; */
 	color: var(--primary-color);
 	display: flex;
 	justify-content: space-between;
@@ -567,7 +567,7 @@
 }
 
 .dashboard-feature-container{
-	height: 100vh;
+	height: 100%;
 	background: var(--bg-color);
 	
 }
@@ -684,7 +684,7 @@
 
 .settings-main-container {
 	overflow-y: scroll;
-	height: 89%;
+	height: 84%;
 	background: var(--bg-color);
 }
 
@@ -1029,6 +1029,7 @@
 */
 #chatrooms-page{
 	display:block;
+	height: 78%;
 }
 
 .chatroom-page-body{
