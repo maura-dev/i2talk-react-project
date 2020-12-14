@@ -1,36 +1,55 @@
-import React from 'react';
+import React, {Component} from 'react';
+import Note from '../dashboardComponents/Note'
 import Button1 from '../dashboardComponents/button1'
 import Button2 from '../dashboardComponents/button2'
 import DashboardInput from '../dashboardComponents/dashboardInput'
-export default function AllNotes(){
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import {GetNotes} from '../../../actions/idiaryActions'
 
-	return (
-		<React.Fragment>
-			<div className="top">
-				<DashboardInput name="search" placeholder="Search saved notes" onChange={"#"} /*value={search}*/ />
-				<Button2 onClick={"#"} text="Search" />
-				<Button1 onClick={"#"} text="Add New Note"/> 
-			</div>
+class AllNotes extends Component{
 
-			<h3 id="top-heading">Saved Notes</h3>
+	componentDidMount(){
+		this.props.GetNotes()
+	}
 
-		  	<div id="messages">
-		  		<div id="messageContainer">
-					<sup>time</sup><br/>
-					<p>message</p>
-					<div id="buttons">
-						<span style={{fontSize:"20px", color:"var(--primary-color)"}} id="edit-icon" onClick={"#"} align="right">
-							<i className="far fa-edit"></i>
-						</span>
-
-						<span style={{fontSize:"20px", color: "var(--primary-color)"}} id="delete-icon" onClick={"#"}>
-							<i className="far fa-trash-alt"></i>
-						</span>
-					</div>
+	render(){
+		const {notes}= this.props
+		return (
+			<React.Fragment>
+				<div className="top">
+					<DashboardInput name="search" placeholder="Search saved notes" onChange={"#"} /*value={search}*/ />
+					<Link to="/dashboard/idiary/searchresults"><Button2 text="Search" /></Link>
+					<Link to="/dashboard/idiary/addnote"><Button1 text="Add New Note"/></Link>
 				</div>
-			</div>
-	  	</React.Fragment>
+
+				<h3 id="top-heading">Saved Notes</h3>
+
+				<div id="messages">
+					{notes.map(note=>(
+						<Note key={note.id} time={note.time} message={note.message}/>)
+					)}
+				</div>
+
+		  	</React.Fragment>
 
 		)
+	}
 	
 }
+
+AllNotes.propTypes={
+	notes: PropTypes.array.isRequired,
+	GetNotes: PropTypes.func.isRequired
+}
+
+const mapStateToProps=(state)=>({
+	notes:state.notes.notes
+})
+
+/*const mapDispatchToProps=(dispatch)=>({
+	GetNotes: ()=> dispatch({type:GET_NOTES})
+})*/
+
+export default connect(mapStateToProps, { GetNotes })(AllNotes)

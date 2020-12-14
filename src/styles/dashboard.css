@@ -608,164 +608,37 @@
 
 
 
-/* iSearch */
-.iSearch-page {
-	background-color:  var(--bg-color);
-	text-align: center;
-	display: flex;
-	flex-direction: column;
-	width: 100%;
-	height: 100%;
-}
-.iSearch-page img {
-	border-radius: 50%;
-	width: 290px;
-	height: 290px;
-}
-.iSearch-page h1 {
-	font-size: 40px;
-	font-weight: bold;
-	line-height: 1.2em;
-}
-
+/****************************************************/
+/*##############ISEARCH COMPONENT####################*/
+/****************************************************/
 #iSearch-header {
 	font-weight: bold;
 	font-size: 20px;
 	text-align: center;
-	padding: 20px 0;
+	margin-bottom: 30px;
+	
 }
-#iSearch-form input{
-	background: #fff;
-	color: var(--primary-color);
-	border: 2px solid var(--primary-color);
-	border-radius: 10px;
-	font-size: 14px;
-	padding: 12px;
-	margin: 10px 0 20px;
+.isearch-input{
+	display:block;
+	margin:auto;
 	transition: all 0.8s ease-in;
+	margin-bottom: 20px;
 }
-#iSearch-form input:focus {
-	outline: none;
-	border: 1px solid var(--secondary-color);
+
+.isearch-btns{
+	margin:0px 15% 0px 15%;
 }
-#iSearch-form button,
-#isearch-geolocation {
-	border-radius: 10px;
-	font-size: 16px;
-	padding: 10px;
-	margin-top: 5px 0 15px 5px;
-	background: var(--primary-color);
-	color: var(--bg-color);
-	transition: all 0.8s ease-in;
-}
-#isearch-geolocation {
-	/* width: 30%; */
-	align-self: center;
-	white-space: no-wrap;
-}
-#iSearch-form button:focus,
-#iSearch-form button:hover,
-#isearch-geolocation:focus,
-#isearch-geolocation:hover {
-	outline: none;
-	border: 2px solid var(--secondary-color);
-	color: var(--secondary-color)
-}
-.iSearchInfo {
-	padding: 10px;
-	width: 15%;
-}
-.iSearchInfo img{
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
-}
+
 #iSearch-result {
 	padding: 10px 0;
 	overflow-y: auto;
 }
-.iSearchResults{
-	display: flex;
-	background: var(--bg-color-alt);
-	margin-top: 10px;
-	padding: 6px 16px 6px 10px;
-	transition: all 0.6s ease-in-out;
-}
-.iSearchResults:hover {
-	box-shadow: 4px 2px 8px 2px var(--primary-color);
-}
-.iSearch-container {
-	padding: 6px 0px 2px 10px;
-	text-align: left;
-	width: 45%;	
-}
-.iSearch-container h2 {
-	font-size: 1rem;
-	margin: 0;
-}
-.iSearch-container p {
-	margin: 0;
-}
-.iSearchResults .btn {
-	height: 40px;
-	width: 90px;
-	margin-top: 15px;
-	border-radius: 10px;
-	color: var(--primary-color);
-	border: 2px solid var(--primary-color);
-	transition: all 0.6s ease-in-out;
-}
-.iSearchResults .pos {
-	margin-left: 50px;
-}
-.iSearchResults .btn:hover{
-	background: var(--secondary-color);
-	color: var(--primary-color);
-}
-.search-loader {
-	width: 50px;
-}
-
-/** iReminder **/
 
 
-.ireminder-button{
-	margin: 25px;
-	height: 35px;
-	width: 200px;
-	border: none;
-	font-size: 15px;
-	font-weight: bold;
-	font-style: italic;
-	background: #6277d3;
-	color: #fff;
-	border-radius: 10px;
-	text-align: center;
-}
 
-.ireminder-button:hover{
-	cursor: pointer;
-	background: var(--primary-color);
-	outline: none;
-}
-
-.ireminder-button i{
-	padding: 10px;
-}
-
-.ireminder-textarea{
-	margin: 40px;
-	background: #fff;
-	width: 80%;
-	height: 50px;
-	border: 2px solid var(--primary-color);
-	border-radius: 10px;
-	resize: none;
-	padding: 10px;
-	font-size: 15px;
-	outline-style:none;
-}
-
+/****************************************************/
+/*##############IREMINDER COMPONENT#################*/
+/****************************************************/
 .ireminder-formarea{
 	margin-left: 40px;
 	width: auto;
@@ -789,13 +662,13 @@
 }
 
 .ireminder-result{
-	height: 100px;
-	width: 80%;
+	height: 150px;
+	width: 70%;
 	background: #fff;
 	color: var(--primary-color);
 	border: 2px solid var(--primary-color);
 	border-radius: 10px;
-	margin: 20px;
+	margin:30px auto 0px auto;
 	padding: 10px;
 	font-size: 18px;
 	font-weight: normal;
@@ -1003,26 +876,6 @@
 /****************************************************/
 /*##############IDIARY COMPONENT####################*/
 /****************************************************/
-
-#addNew, #editNew{
-	display:none;
-	width:40%;
-	height:auto;
-	padding-left: 20px;
-	background-color: #fffffe;
-	position:absolute;
-	top: 50%;
-		left: 50%;
-		transform: translate(-50%,-50%);
-		-ms-transform: translate(-50%,-50%);
-	box-shadow: 4px 4px 4px 4px var(--primary-color)
-}
-
-#addNew > div, #editNew > div{
-	margin:0px auto 20px auto;
-}
-
-
 #messages{
 	width:100%;
 }
@@ -1056,12 +909,12 @@
 	padding-bottom: 10px;
 }
 
-#buttons > span  > i{
+.icon{
 	padding:10px;
 	margin-right: 10px;
 }
 
-#buttons > span > i:hover{
+.icon:hover{
 	border-radius:50%;
 	background-color: var(--bg-color-alt);
 }
@@ -1095,22 +948,11 @@
 	border-radius: 10px;
 	padding:10px;
 	outline-style: none;
-	width:60%;
+	width:55%;
 	background-color: #fffffe;
 	border:2px solid var(--primary-color);
 }
 
-#messageInput, #editMessageInput{
-	width:70%;
-	height:40%;
-	background-color: #fffffe;
-	box-shadow:2px 2px 2px 2px var(--primary-color);
-	outline-style: none;
-	border-radius: 10px;
-	margin:30px auto 20px auto;
-	display:block;
-	padding: 10px;
-}
 
 .swal-button.swal-button--confirm{
 	background-color: var(--primary-color);
@@ -1128,24 +970,39 @@
 
 
 /****************************************************/
-/*##############ADD NEW NOTE COMPONENT####################*/
+/*####ADD NEW NOTE/ EDIT NEW NOTE COMPONENT#########*/
 /****************************************************/
 
+.addNew > div, .editNew > div{
+	margin:0px 35% 0px 35%;
+}
 
-.addNew{
 
-	/*width:40%;
-	height:auto;*/
-	padding-left: 20px;
+.messageInput{
+	width:70%;
+	height:40%;
+	font-size:1rem;
 	background-color: #fffffe;
-	
+	outline-style: none;
+	border:2px solid var(--primary-color);
+	border-radius: 10px;
+	margin:30px auto 20px auto;
+	display:block;
+	padding: 10px;
+	resize: none;
+}
+
+.messageInput:focus,
+.messageInput:hover{
+	background-color: var(--bg-color-alt);
 }
 
 
 
 
+
 /****************************************************/
-/*##############CHATROOM COMPONENT####################*/
+/*##############CHATROOM COMPONENT##################*/
 /****************************************************/
 
 .chatrooms-heading{
