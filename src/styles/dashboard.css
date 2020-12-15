@@ -291,7 +291,7 @@
 	padding: 6px 8px;
 }
 .chat-contact-list {
-	height: 70%;
+	height: 85%;
 	overflow-y: scroll;
 }
 .chat-box {
@@ -552,9 +552,9 @@
 	justify-content: space-between;
 	/*padding: 0px 14px;*/
 	align-items: center;
-	margin-bottom: 30px;
+	/* margin-bottom: 10px; */
 	flex-wrap: wrap;
-	padding: 31.5px;
+	height: 15%;
 }
 
 .title-bar > span >i{
@@ -811,7 +811,7 @@
 
 .settings-main-container {
 	overflow-y: scroll;
-	height: 84%;
+	height: 85%;
 	background: var(--bg-color);
 }
 
@@ -918,7 +918,7 @@
 
 .user-profile-details {
 	overflow-y: scroll;
-	height: 54%;
+	height: 85%;
 	padding-bottom: 10px;
 }
 
@@ -1148,8 +1148,7 @@
 /*##############CHATROOM COMPONENT####################*/
 /****************************************************/
 
-.chatrooms-heading{
-	margin-top: -30px;
+.chatrooms-heading {
 	display:flex;
 	flex-direction: row;
 	justify-content: space-between;

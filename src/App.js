@@ -8,6 +8,9 @@ import ContactUs from './components/pages/ContactUs';
 import Faq from './components/pages/faq';
 import Dashboard from './components/dashboard/Dashboard';
 
+// stylesheets
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
 	return (
 		<Router basename={process.env.PUBLIC_URL}>
@@ -17,7 +20,7 @@ function App() {
 					<Route exact path="/features" component={Feature} />
 					<Route exact path="/contact" component={ContactUs} />
 					<Route exact path="/faqs" component={Faq} />
-					<Route exact path="/dashboard" component={Dashboard} />
+					<Route path="/dashboard" component={Dashboard} />
 				</Switch>
 			</div>
 		</Router>
