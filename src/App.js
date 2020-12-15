@@ -17,7 +17,7 @@ function App() {
 					<Route exact path="/features" component={Feature} />
 					<Route exact path="/contact" component={ContactUs} />
 					<Route exact path="/faqs" component={Faq} />
-					<Route exact path="/dashboard" component={Dashboard} />
+					<Route path="/dashboard" component={Dashboard} />
 				</Switch>
 			</div>
 		</Router>
