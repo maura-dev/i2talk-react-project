@@ -8,6 +8,9 @@ import ContactUs from './components/pages/ContactUs';
 import Faq from './components/pages/faq';
 import Dashboard from './components/dashboard/Dashboard';
 
+// stylesheets
+// import 'bootstrap/dist/css/bootstrap.min.css';
+
 function App() {
 	return (
 		<Router basename={process.env.PUBLIC_URL}>
