@@ -28,7 +28,7 @@ class AllNotes extends Component{
 
 				<div id="messages">
 					{notes.map(note=>(
-						<Note key={note.id} time={note.time} message={note.message}/>)
+						<Note key={note.id} note={note}/>)
 					)}
 				</div>
 

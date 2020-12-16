@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Headers from './dashboardComponents/headers'
-import AddNote from  './idiaryPages/addNote'
-import EditNote from  './idiaryPages/editNote'
+import AddNotes from  './idiaryPages/addNote'
+import EditNotes from  './idiaryPages/editNote'
 import AllNotes from './idiaryPages/allNotes'
 import SearchedNotes from './idiaryPages/searchedNotes'
 
@@ -18,8 +18,8 @@ class Idiary extends Component {
 
 				<Switch>
 	                <Route exact path="/dashboard/idiary/" component={AllNotes} />
-	                <Route exact path="/dashboard/idiary/addnote" component={AddNote} />
-	                <Route exact path="/dashboard/idiary/editnote" component={EditNote} />
+	                <Route exact path="/dashboard/idiary/addnote" component={AddNotes} />
+	                <Route exact path="/dashboard/idiary/editnote" component={EditNotes} />
 	                <Route exact path="/dashboard/idiary/searchresults" component={SearchedNotes} />               
 	            </Switch>	
 				
