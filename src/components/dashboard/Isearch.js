@@ -14,7 +14,7 @@ class Isearch extends Component {
           
           <div className="isearch-btns">
             <Button2 text="Search By Location" />
-            <Button2 style={{backgroundColor:"var(--primary-color)"}} text="Search By Username" /> 
+            <Button2 text="Search By Username" /> 
             <Button2 text="Search Nearby Users" />
           </div>
 

@@ -49,7 +49,7 @@ class AddNotes extends Component{
 		//const{newNote}
 		return (
 			<div className="addNew">
-				<p style={{color:'red', textAlign:'center'}}>{errors.message}</p>}
+				<p style={{color:'red', textAlign:'center'}}>{errors.message}</p>
 				<textarea type="text" 
 				placeholder="Enter your new note ..." 
 				name="message" 

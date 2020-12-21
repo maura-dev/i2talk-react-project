@@ -27,7 +27,6 @@ class Main extends Component {
 
 	showForm=()=>{
 		this.setState({...this.state, showSignUp: true})
-		console.log(this.state)
 	}
 
 	hideForm=()=>{

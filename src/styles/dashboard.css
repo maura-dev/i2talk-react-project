@@ -612,6 +612,7 @@
 /*##############ISEARCH COMPONENT####################*/
 /****************************************************/
 #iSearch-header {
+	margin-top:20px;
 	font-weight: bold;
 	font-size: 20px;
 	text-align: center;
@@ -712,9 +713,9 @@
 	cursor: pointer;
 }
 .button:hover{
-	background-color: var(--secondary-color);
+	background-color: var(--bg-color-alt);
 	color:var(--primary-color);
-	box-shadow: 2px 2px 2px 2px var(--primary-color);
+	
 }
 #settings-profile-box{
 	display: flex;
@@ -922,7 +923,7 @@
 .top{
 	display:block;
 	margin-top:20px;
-	margin-left:50px;
+	margin-left:10%;
 }
 
 #records{
@@ -1163,6 +1164,16 @@
 ===============================================*/
 
 @media screen and (max-width: 576px) {
+
+	.chatrooms-items{
+		height:120px;
+	}
+	.chatrooms-items > span{
+		margin-right:40px;
+	}
+	.ireminder-formarea{
+		margin-left: 0px;
+	}
 	#iSearch-top {
 		width: 100%;	
 	}
