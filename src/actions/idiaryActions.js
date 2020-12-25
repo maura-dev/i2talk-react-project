@@ -13,11 +13,11 @@ export const DeleteNote = (id) => {
 }
 
 export const AddNote = (newNote) => {
-  return {type: 'ADD_NOTE', payload: newNote}
+  return {type: ADD_NOTE, payload: newNote}
 }
 
-export const EditNote = (newNote) => {
-  return {type: 'EDIT_NOTE', payload:newNote }
+export const EditNote = (updNote) => {
+  return {type: EDIT_NOTE, payload:updNote }
 }
 
 /*export const SearchedNotes = (data) => {

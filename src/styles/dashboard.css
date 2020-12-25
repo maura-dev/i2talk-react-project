@@ -507,6 +507,8 @@
 }
 .chat-form form textarea {
 	width: 100%;
+	font-family: 'Roboto', Tahoma, 'Geneva', Verdana, sans-serif;
+	max-height: 30vh;
 	resize: none;
 	padding: 10px;
 	font-size: 1rem;
@@ -518,7 +520,7 @@
 .chat-form form textarea:focus,
 .chat-form form textarea:hover {
 	outline: none;
-	background-color: var(--light-color);
+	background-color: var(--bg-color-alt);
 }
 .chat-form form button:hover,
 .chat-form form button:focus {
@@ -945,7 +947,7 @@
 }
 
  
-.searchInput{
+#searchInput{
 	border-radius: 10px;
 	padding:10px;
 	outline-style: none;
@@ -954,6 +956,9 @@
 	border:2px solid var(--primary-color);
 }
 
+#error{
+	display: none;
+}
 
 .swal-button.swal-button--confirm{
 	background-color: var(--primary-color);

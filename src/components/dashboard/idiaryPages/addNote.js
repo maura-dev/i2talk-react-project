@@ -18,6 +18,7 @@ class AddNotes extends Component{
 			this.setState({
 				errors:{message: "Input a valid note or click cancel"} 
 			});
+			document.getElementById("error").style.display="inline-block"
 			return;
 		}
 
@@ -40,8 +41,10 @@ class AddNotes extends Component{
 
 	onChange=(e)=>{
 		this.setState({
-			[e.target.name]: e.target.value
+			[e.target.name]: e.target.value,
+			errors:{}
 		});
+		document.getElementById("error").style.display="none"
 	}
 
 	render(){
@@ -49,7 +52,7 @@ class AddNotes extends Component{
 		//const{newNote}
 		return (
 			<div className="addNew">
-				<p style={{color:'red', textAlign:'center'}}>{errors.message}</p>
+				<p style={{color:'red', textAlign:'center'}}><i id="error" className="fas fa-exclamation-circle"></i> &nbsp;{errors.message}</p>
 				<textarea type="text" 
 				placeholder="Enter your new note ..." 
 				name="message" 
