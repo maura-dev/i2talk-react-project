@@ -1,19 +1,12 @@
 import { applyMiddleware, compose, combineReducers, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import citiesReducer from './cityReducer';
-import loginReducer from './loginReducer';
-import modalReducer from './modalReducer';
-import demoReducer from './demoReducer';
+import usersReducer from './usersReducer';
 
 // const initialState = {};
 
 // const middleware = {thunk};
 const rootReducer = combineReducers({
-  Cities: citiesReducer,
-  Users: loginReducer,
-  UserLogin: loginReducer,
-  modalView: modalReducer,
-  demo: demoReducer
+  Users: usersReducer
 })
 
 const store = createStore (rootReducer, compose(applyMiddleware(thunk),

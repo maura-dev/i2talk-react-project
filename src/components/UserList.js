@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import users from '../reducers/loginReducer';
+import users from '../reducers/usersReducer';
 
 class UserList extends Component {
   render() {

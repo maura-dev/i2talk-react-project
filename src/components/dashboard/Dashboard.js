@@ -15,6 +15,8 @@ import Isearch from '../dashboard/Isearch';
 import Profile from '../dashboard/Profile';
 import Settings from '../dashboard/Settings';
 
+import RecipeSearch from '../dashboard/recipeSearch';
+
 // import page styling
 import '../../styles/dashboard.css'
 
@@ -41,6 +43,7 @@ class Dashboard extends Component {
                 <Route exact path="/dashboard/isearch" component={Isearch} />
                 <Route exact path="/dashboard/profile" component={Profile} />
                 <Route exact path="/dashboard/settings" component={Settings} />
+                <Route exact path="/dashboard/recipe-search" component={RecipeSearch} />
               </Switch>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddLogin } from '../../actions/loginAction';
-import TextInputGroup from './TextInputGroup';
+import { addUser } from '../../actions/usersAction';
+// import TextInputGroup from './TextInputGroup';
 
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
@@ -73,7 +73,7 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    PostLogin: (data) => dispatch(AddLogin(data))
+    PostLogin: (data) => dispatch(addUser(data))
   }
 }
 
