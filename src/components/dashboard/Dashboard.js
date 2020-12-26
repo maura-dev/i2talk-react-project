@@ -34,7 +34,7 @@ class Dashboard extends Component {
             <div className="chat-message-container" id="user-msg-container">
               <Switch>
                 <Route exact path="/dashboard/" component={DirectMsg} />
-                <Route exact path="/dashboard/chatroomscont" component={ChatroomsCont} />
+                <Route path="/dashboard/chatroomscont" component={ChatroomsCont} />
                 <Route path="/dashboard/idiary" component={Idiary} />
                 <Route exact path="/dashboard/ischedule" component={Ischedule} />
                 <Route exact path="/dashboard/ireminder" component={Ireminder} />

@@ -1,34 +1,22 @@
 import React from 'react';
 
 export default function TextInput({ placeholder, name, className, id, value, rows, onChange }){
-
-	/*onChange=(e)=>{
-		this.setState({
-			[e.target.name]: e.target.value,
-			errors:{}
-		});
-		document.getElementById("error").style.display="none"
-
-		var autoExpand = function (field) {
-
-		// Reset field height
-		field.style.height = 'inherit';
-
-		// Calculate the height
-		var height = field.scrollHeight - 19
-		             
-		field.style.height = height + 'px';
-
-		};
-
-		document.addEventListener('input', function (event) {
-			if (event.target.tagName.toLowerCase() !== 'textarea') return;
-			autoExpand(event.target);
-		}, false);
-	}*/
+	const TextInputStyle={
+		
+		fontFamily: " 'Roboto', Tahoma, 'Geneva', Verdana, sans-serif",
+		maxHeight: "30vh",
+		resize: "none",
+		padding: "10px",
+		fontSize: "1rem",
+		background: "#fff",
+		border: "2px solid var(--primary-color)",
+		borderRadius: "20px",
+		transition: "background 0.8s ease-in"
+		
+	}
 	
 	return (
-		<textarea type="text" 
+		<textarea style={TextInputStyle} type="text" 
 			placeholder={placeholder}
 			name={name} 
 			className={className}

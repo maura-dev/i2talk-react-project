@@ -38,6 +38,19 @@
 }
 
 /* Scrollbar Styling */
+
+.textScrollbar::-webkit-scrollbar-track{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 20px;
+	background-color: #fff;
+}
+
+.textScrollbar::-webkit-scrollbar{
+	width: 8px;
+	background-color:#fff;
+}
+
+
 #user-side-bar::-webkit-scrollbar-track,
 #user-chat-menu::-webkit-scrollbar-track,
 #iSearch-result::-webkit-scrollbar-track,
@@ -48,6 +61,7 @@
 	border-radius: 10px;
 	background-color: #fff;
 }
+
 #user-side-bar::-webkit-scrollbar,
 #user-chat-menu::-webkit-scrollbar,
 #iSearch-result::-webkit-scrollbar,
@@ -57,6 +71,9 @@
 	width: 12px;
 	background-color:#fff;
 }
+
+
+.textScrollbar::-webkit-scrollbar-thumb,
 #user-side-bar::-webkit-scrollbar-thumb,
 #user-chat-menu::-webkit-scrollbar-thumb,
 #iSearch-result::-webkit-scrollbar-thumb,
@@ -260,14 +277,14 @@
 }
 
 .chat-header ul {
-	display: none;
+	display: block;
 	position: relative;
 	top: 0;
 	z-index: 2;
 	padding: 10px 0;
 	width: 190px;
 	margin-left: auto;
-	background-color: var(--primary-color);
+	background-color: var(--bg-color-alt);
 	list-style: none;
 	border-radius: 0 0 0 10px;
 	/* text-align: ; */
@@ -507,15 +524,6 @@
 }
 .chat-form form textarea {
 	width: 100%;
-	font-family: 'Roboto', Tahoma, 'Geneva', Verdana, sans-serif;
-	max-height: 30vh;
-	resize: none;
-	padding: 10px;
-	font-size: 1rem;
-	background: #fff;
-	border: 2px solid var(--primary-color);
-	border-radius: 20px;
-	transition: background 0.8s ease-in;
 }
 .chat-form form textarea:focus,
 .chat-form form textarea:hover {
@@ -578,27 +586,6 @@
 /****************************************************/
 /*##############BUTTON COMPONENTS####################*/
 /****************************************************/
-.button-one{
-	display:inline-block;
-	margin-left: 10px;
-	margin-right:10px;
-	background-color:var(--primary-color);
-	color:white;
-	padding:10px;
-	border:2px solid var(--primary-color);
-	border-radius: 10px;
-}
-
-.button-two{
-	display:inline-block;
-	margin-left: 10px;
-	margin-right:10px;
-	background-color:var(--secondary-color);
-	color:white;
-	padding:10px;
-	border:2px solid var(--secondary-color);
-	border-radius: 10px;
-}
 
 .button-one:hover,
 .button-two:hover{
@@ -606,8 +593,6 @@
 	color:var(--primary-color);
 	border:2px solid var(--primary-color);
 }
-
-
 
 
 /****************************************************/
@@ -1010,6 +995,10 @@
 /****************************************************/
 /*##############CHATROOM COMPONENT##################*/
 /****************************************************/
+
+#chatroom{
+	display: flex;
+}
 
 .chatrooms-heading {
 	display:flex;

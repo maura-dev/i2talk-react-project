@@ -61,7 +61,7 @@ class DirectMsg extends Component {
         <div className="chat-form">
 
           <form id="pmessageForm">
-            <TextInput id="pmsg-input" placeholder="Type message here ..." rows="1" onChange={this.onChange}/>
+            <TextInput id="pmsg-input" placeholder="Type message here ..." rows="1" onChange={this.onChange} className="textScrollbar"/>
             {/*<textarea id="pmsg-input" autoCapitalize= "sentences" autoComplete="on" placeholder="Type message here ..." rows="1" required></textarea>*/}
             <button className="pmsg-btn"><i className="far fa-paper-plane"></i></button>
             <button className="pmsg-btn"><i className="far fa-clock"></i></button>
