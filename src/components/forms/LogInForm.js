@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+<<<<<<< HEAD
 import { addUser } from '../../actions/usersAction';
 // import TextInputGroup from './TextInputGroup';
+=======
+import { AddLogin } from '../../actions/loginAction';
+//import TextInputGroup from './TextInputGroup';
+>>>>>>> e43d8ad6928fead241038699502d7cdea0ec0fdb
 
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
@@ -53,7 +58,7 @@ class LogInForm extends Component {
                 <div className="content">
                   <div className="checkbox">
                     <Field type="checkbox" name="checkbox" />
-                    <label htmlFor="checkbox">Remember Me</label>
+                    <label htmlFor="checkbox"> &nbsp;Remember Me</label>
                   </div>
                   <div className="pass-link"><a href="./lost_password.html">Forgot password?</a></div>
                 </div>

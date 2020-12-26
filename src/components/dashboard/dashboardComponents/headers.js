@@ -1,10 +1,9 @@
 import React from 'react'
 //import './././styles/dashboard.css'
 
-export default function Headers({text}){
-	{
+export default function Headers({text, id}){
 		return (
-			<nav className="title-bar">
+			<nav className="title-bar" id={id}>
 				<a className="message-back-arrow" onClick="backToMenu('user-chat-menu', 'user-msg-container')">
 				<i className="fas fa-long-arrow-alt-left"></i>
 				</a>
@@ -16,6 +15,5 @@ export default function Headers({text}){
 				</span>
 					
 			</nav>
-			)
-	}
+		)
 }

@@ -222,6 +222,11 @@ form {
   cursor: pointer;
 }
 
+/*.close-icon i{
+  margin-top: 50px;
+  display: block;
+}*/
+
 .close-icon:hover{
   color:var(--secondary-color);
 }
@@ -320,4 +325,10 @@ portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phon
     margin-bottom: 2rem;
   }
 
+}
+
+@media all and (max-width: 600px) {
+  .hero_text-box {
+    margin-bottom: 20px;
+    }
 }

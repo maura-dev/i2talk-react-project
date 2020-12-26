@@ -1,7 +1,7 @@
 /* Navbar Styling */
 nav {
   background: var(--primary-color);
-  padding: 10px 15px;
+  padding: 20px 15px;
 }
 
 .menu {  
@@ -52,39 +52,58 @@ nav {
 }
 
 /** MOBILE MENU NAVBAR **/
-.menu {
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
+  @media all and (max-width: 600px) {
+  .menu {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .menu li a{
+    display: block;
+    padding: 10px 5px;
+  }
+  .toggle {
+    order: 1;
+    font-size: 20px;
+  }
+  .toggle i {
+    color: var(--bg-color);
+  }
+  .toggle i:hover {
+    color: var(--secondary-color);
+  }
+  .item {
+    order: 2;
+    width: 100%;
+    text-align: center;
+    display: none;
+    padding: 10px;
+    transition: all 0.6s ease-in;
+  }
+
+  .nav-button {
+    margin-left: 0px;
+    background-color:var(--primary-color);
+    cursor: pointer;
+    transition: all 0.6s ease-in;
+  }
+
+  .nav-button a{
+    color: var(--bg-color);
+  }
+
+  .nav-button:hover{
+  background-color: var(--primary-color);
 }
-.menu li a:not(.nav-button) {
-  display: block;
-  padding: 15px 5px;
-}
-.toggle {
-  order: 1;
-  font-size: 20px;
-}
-.toggle i {
-  color: var(--bg-color);
-}
-.toggle i:hover {
+
+.nav-button a:hover {
   color: var(--secondary-color);
 }
-.item {
-  order: 2;
-  width: 100%;
-  text-align: center;
-  display: none;
-  padding: 10px;
-  transition: all 0.6s ease-in;
-}
-.item.nav-button {
-  text-align: center;
-  order: 3;
-}
-.active .item {
-  display: block;
+
+
+  .active .item {
+    display: block;
+  }
 }
 
 @media all and (min-width: 600px) {

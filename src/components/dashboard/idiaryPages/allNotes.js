@@ -1,36 +1,98 @@
-import React from 'react';
+import React, {Component} from 'react';
+import Note from '../dashboardComponents/Note'
 import Button1 from '../dashboardComponents/button1'
 import Button2 from '../dashboardComponents/button2'
-import DashboardInput from '../dashboardComponents/dashboardInput'
-export default function AllNotes(){
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types'
+import {GetNotes} from '../../../actions/idiaryActions'
 
-	return (
-		<React.Fragment>
-			<div className="top">
-				<DashboardInput name="search" placeholder="Search saved notes" onChange={"#"} /*value={search}*/ />
-				<Button2 onClick={"#"} text="Search" />
-				<Button1 onClick={"#"} text="Add New Note"/> 
-			</div>
+class AllNotes extends Component{
 
-			<h3 id="top-heading">Saved Notes</h3>
+	state={
+		isSearching: false
+	}
 
-		  	<div id="messages">
-		  		<div id="messageContainer">
-					<sup>time</sup><br/>
-					<p>message</p>
-					<div id="buttons">
-						<span style={{fontSize:"20px", color:"var(--primary-color)"}} id="edit-icon" onClick={"#"} align="right">
-							<i className="far fa-edit"></i>
-						</span>
+	componentDidMount(){
+		this.props.GetNotes()
+	}
 
-						<span style={{fontSize:"20px", color: "var(--primary-color)"}} id="delete-icon" onClick={"#"}>
-							<i className="far fa-trash-alt"></i>
-						</span>
-					</div>
+	onChange=()=>{
+		this.setState({
+			isSearching: true
+		});
+
+		/*input= document.getElementById("searchInput").value
+	
+		input=input.toLowerCase()//CONVERTS THE SEARCH INPUT TO LOWER CASE
+			//allMessagez = iDairy.filter(x=>x.message.toLowerCase().includes(input))
+			document.getElementById("records").style.display="block"
+			document.getElementById("back-btn").style.display="block"
+			document.getElementById("top").style.display="none"
+			document.getElementById("top-heading").style.display="none"
+		
+			if(allMessagez==null||allMessagez==undefined){
+				document.getElementById("records").innerHTML=`<b> No notes found</b>`
+			}
+			
+			else{
+				displaySearchedMessages()
+				
+				if(allMessagez.length==1){
+				document.getElementById("records").innerHTML=`<b> 1 note found</b>`
+				}
+				else{
+				document.getElementById("records").innerHTML=`<b>${allMessagez.length} notes found</b>`
+				}
+			}
+				
+			})
+			});*/
+	}
+
+	render(){
+		//const {isSearching}= this.state
+		const {notes}= this.props
+		return (
+			<React.Fragment>
+				<div className="top">
+					<input type="text" 
+					name="search" 
+					placeholder="Search saved notes" 
+					onChange={this.onChange} 
+					id="searchInput"
+					className="searchInput" 
+					/*value={search}*//>
+					<Link to="/dashboard/idiary/searchresults"><Button2 text="Search" /></Link>
+					<Link to="/dashboard/idiary/addnote"><Button1 text="Add New Note"/></Link>
 				</div>
-			</div>
-	  	</React.Fragment>
+
+				<h3 id="top-heading">Saved Notes</h3>
+
+				<div id="messages">
+					{notes.map(note=>(
+						<Note key={note.id} note={note}/>)
+					)}
+				</div>
+
+		  	</React.Fragment>
 
 		)
+	}
 	
 }
+
+AllNotes.propTypes={
+	notes: PropTypes.array.isRequired,
+	GetNotes: PropTypes.func.isRequired
+}
+
+const mapStateToProps=(state)=>({
+	notes:state.notes.notes
+})
+
+/*const mapDispatchToProps=(dispatch)=>({
+	GetNotes: ()=> dispatch({type:GET_NOTES})
+})*/
+
+export default connect(mapStateToProps, { GetNotes })(AllNotes)

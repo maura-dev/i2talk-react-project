@@ -1,39 +1,30 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Headers from './dashboardComponents/headers'
-import AddNote from  './idiaryPages/addNote'
-import EditNote from  './idiaryPages/editNote'
+import AddNotes from  './idiaryPages/addNote'
+import EditNotes from  './idiaryPages/editNote'
 import AllNotes from './idiaryPages/allNotes'
 import SearchedNotes from './idiaryPages/searchedNotes'
 
 class Idiary extends Component {
 
-	state={
-		notes:{time: new Date().toLocaleString(),
-				message:"My name is Maureen, I live in Lagos"
-			},
-		showAddNewForm : false,
-		showEditForm: false,
-		showSearchedNotes: false,
-		showAllMessages:true
-	}
-
   render() {
-  	const{ time,message }= this.state.notes
-  	const{ showSearchedNotes,showEditForm, showAddNewForm, showAllMessages}= this.state
+  	
     return (
-      	<div className="dashboard-feature-container">
+    	<Router>
+	      	<div className="dashboard-feature-container">
 
-			<Headers text="iDiary" />
+				<Headers text="iDiary" />
 
-			{showAllMessages ? <AllNotes />: null}
-
-			{showAddNewForm ? <AddNote /> : null}
-
-			{showEditForm ? <EditNote /> : null}
-
-			{showSearchedNotes ? <SearchedNotes />: null}		
-			
-		</div>
+				<Switch>
+	                <Route exact path="/dashboard/idiary/" component={AllNotes} />
+	                <Route exact path="/dashboard/idiary/addnote" component={AddNotes} />
+	                <Route exact path="/dashboard/idiary/editnote/:id" component={EditNotes} />
+	                <Route exact path="/dashboard/idiary/searchresults" component={SearchedNotes} />               
+	            </Switch>	
+				
+			</div>
+		</Router>
     )
   }
 }

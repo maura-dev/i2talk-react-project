@@ -1,6 +1,27 @@
 import React, { Component } from 'react';
+import TextInput from './dashboardComponents/textArea';
 
 class DirectMsg extends Component {
+
+  onChange=(e)=>{
+    var autoExpand = function (field) {
+
+    // Reset field height
+    field.style.height = 'inherit';
+
+    // Calculate the height
+    var height = field.scrollHeight + 5
+                 
+    field.style.height = height + 'px';
+
+    };
+
+    document.addEventListener('input', function (event) {
+      if (event.target.tagName.toLowerCase() !== 'textarea') return;
+      autoExpand(event.target);
+    }, false);
+  }
+
   render() {
     return (
       <div className="chat-message" id="user-direct-chat">
@@ -40,8 +61,10 @@ class DirectMsg extends Component {
         <div className="chat-form">
 
           <form id="pmessageForm">
-            <textarea id="pmsg-input" autoCapitalize= "sentences" autoComplete="on" placeholder="Type message here ..." rows="1" required></textarea>
-            <button id="pmsg-btn"><i className="far fa-paper-plane"></i></button>
+            <TextInput id="pmsg-input" placeholder="Type message here ..." rows="1" onChange={this.onChange} className="textScrollbar"/>
+            {/*<textarea id="pmsg-input" autoCapitalize= "sentences" autoComplete="on" placeholder="Type message here ..." rows="1" required></textarea>*/}
+            <button className="pmsg-btn"><i className="far fa-paper-plane"></i></button>
+            <button className="pmsg-btn"><i className="far fa-clock"></i></button>
           </form>
 
         </div>
