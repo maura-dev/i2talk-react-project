@@ -8,7 +8,7 @@ import idiaryReducer from './idiaryReducer'
 
 const rootReducer = combineReducers({
   Cities: citiesReducer,
-  Users: loginReducer,
+  user: loginReducer,
   UserLogin: loginReducer,
   modalView: modalReducer,
   demo: demoReducer,

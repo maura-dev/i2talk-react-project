@@ -1,17 +1,17 @@
 const initialState = {
-  users: []
+  user: []
 }
 
-const users = (state=initialState, action) => {
+const user = (state=initialState, action) => {
   switch (action.type){
     case 'ADD':
       return {
         ...state,
-        users: [...state.users, action.payload]
+        user: [...state.user, action.payload],
       };
     default:
       return initialState;
   }
 }
 
-export default users;
+export default user;
