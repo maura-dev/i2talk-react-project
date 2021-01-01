@@ -50,16 +50,7 @@ class LogInForm extends Component {
               this.props.PostLogin(userDetails);
 
               this.setState({ redirect: true })
-              swal("Good job!", "You have logged in successfully!", "success");
-
-              /*swal(
-                <div>
-                  <h1>Good job!</h1>
-                  <p>
-                    You have logged in successfully!
-                  </p>
-                </div>
-              )*/
+              swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
 
               })
 

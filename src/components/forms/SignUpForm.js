@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddUser } from '../../actions/signUpAction';
-// import TextInputGroup from './TextInputGroup';
-
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import LocationInput from './LocationInput';
+import PhoneInputField from './phone';
+import SexInput from './sexInput';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { formatPhoneNumber } from 'react-phone-number-input'
 import * as Yup from 'yup';
 
 class SignUpForm extends Component {
@@ -15,7 +17,7 @@ class SignUpForm extends Component {
           <div className ="title">Sign Up</div>
           <Formik
 
-            initialValues={{ fullName: '', username: '', email: '', password: '', cPassword: ''}}
+            initialValues={{ fullName: '', username: '', email: '', tel: '', location:'', sex:'', password: '', cPassword: ''}}
             validationSchema = {Yup.object({
               fullName: Yup
                 .string()
@@ -46,8 +48,11 @@ class SignUpForm extends Component {
             })}
 
             onSubmit={(values, { setSubmitting, resetForm }) => {
+              const phone= values.tel
+              const national= phone && formatPhoneNumber(phone)
+              const newValues={...values, tel:national, countryCode:"+234"}
               setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
+                alert(JSON.stringify(newValues, null, 2));
                 setSubmitting(false);
               }, 400);
               this.props.PostLogin(JSON.stringify(values, null, 2));
@@ -72,6 +77,26 @@ class SignUpForm extends Component {
                 <div className='field'>
                   <Field type="email" name="email" />
                   <label htmlFor="email">Email</label>
+                </div>
+                <ErrorMessage name="email" component="div" />
+
+                <div className="field">
+                  <Field
+                  type="tel"
+                  name="tel"
+                  component={PhoneInputField}
+                  />
+                </div>
+
+                <div className="field">
+                  <LocationInput />
+                  <label htmlFor="location">Location</label>
+                </div>
+                <ErrorMessage name="location" component="div" />
+
+                <div className='field'>
+                  <SexInput/>
+                  <label htmlFor="sex">Sex</label>
                 </div>
                 <ErrorMessage name="email" component="div" />
 
