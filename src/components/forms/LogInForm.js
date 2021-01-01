@@ -1,37 +1,71 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addUser } from '../../actions/usersAction';
-// import TextInputGroup from './TextInputGroup';
-
+import { AddLogin } from '../../actions/loginAction';
+//import TextInputGroup from './TextInputGroup';
+import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
-
+import { Redirect } from 'react-router-dom';
+//import swal from 'sweetalert';
+import swal from '@sweetalert/with-react';
 class LogInForm extends Component {
+
+  constructor() {
+        super();
+        this.state = {
+            redirect: false
+        }
+    }
+
   render () {
+
+    if (this.state.redirect) {
+            return <Redirect to='/dashboard' />
+        }
+
     return(
       <div className="hero_form" >
         <div className ="wrapper">
           <div className ="title">Login</div>
           <Formik
 
-            initialValues={{ email: '', password: '' }}
+            initialValues={{ login: '', password: '' }}
 
             validationSchema = {Yup.object({
-              email: Yup
+              login: Yup
                 .string()
-                .email('Invalid email address')
-                .required('Please enter your email address'),
+                .required('Please enter your Username, Email or Phone number'),
               password: Yup
                 .string()
                 .required('Please enter your password'),
             })}
 
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
-              this.props.PostLogin(JSON.stringify(values, null, 2));
+            onSubmit={async(values, { setSubmitting, resetForm }) => {
+              
+              await axios.post('login', values)
+              .then((response)=> {
+              
+              localStorage.setItem("userDetails", JSON.stringify(response.data))
+              const userDetails= response.data 
+              this.props.PostLogin(userDetails);
+
+              this.setState({ redirect: true })
+              swal("Good job!", "You have logged in successfully!", "success");
+
+              /*swal(
+                <div>
+                  <h1>Good job!</h1>
+                  <p>
+                    You have logged in successfully!
+                  </p>
+                </div>
+              )*/
+
+              })
+
+              .catch((error)=> {
+                alert(error);
+              });
               resetForm();
             }}
           >
@@ -39,10 +73,10 @@ class LogInForm extends Component {
             {({ isSubmitting }) => (
               <Form>
                 <div className='field'>
-                  <Field type="email" name="email" />
-                  <label htmlFor="email">Email</label>
+                  <Field type="login" name="login" />
+                  <label htmlFor="login">Username, Email or Phone</label>
                 </div>
-                <ErrorMessage name="email" component="div" />
+                <ErrorMessage name="login" component="div" />
 
                 <div className='field'>
                   <Field type="password" name="password" />
@@ -58,7 +92,7 @@ class LogInForm extends Component {
                   <div className="pass-link"><a href="./lost_password.html">Forgot password?</a></div>
                 </div>
 
-                <button type="submit">
+                <button type="submit" style={{marginBottom: "20px"}}>
                   Submit
                 </button>
               </Form>
@@ -73,7 +107,7 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    PostLogin: (data) => dispatch(addUser(data))
+    PostLogin: (userDetails) => dispatch(AddLogin(userDetails))
   }
 }
 

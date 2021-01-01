@@ -6,6 +6,8 @@ import idiaryReducer from './idiaryReducer';
 
 const rootReducer = combineReducers({
   Users: usersReducer,
+  user: loginReducer,
+  UserLogin: loginReducer,
   notes: idiaryReducer
 })
 

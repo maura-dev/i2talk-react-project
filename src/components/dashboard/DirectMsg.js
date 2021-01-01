@@ -42,17 +42,14 @@ class DirectMsg extends Component {
                 <span id="Chatsheader"></span>
               </div>
 
-              <div className="chat-head-menu">
-                <a onClick="reveal('chat-menu-list')"><i className="fas fa-ellipsis-v"></i></a>
-              </div>
-
-              <ul className="" id="chat-menu-list">
-                <li>View Members</li>
-                <li>Mute notifications</li>
-                <li>Search</li>
-                <li>Report</li>
-              </ul>
-            </div>
+          {/*<ul className="" id="chat-menu-list">
+            <li>View Members</li>
+            <li>Mute notifications</li>
+            <li>Search</li>
+            <li>Report</li>
+          </ul>
+*/}
+        </div>
 
             <div className="chat-body scrollbar" id="style-2">
               

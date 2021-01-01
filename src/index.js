@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
 import store from './store';
-
+import axios from 'axios';
 // STORE -> GLOBALIZED STATE
 // ACTION - INCREMENT
 // REDUCER MODIFIES STORE BASED ON THE ACTIONS
 // DISPATCH -> SENDS ACTION TO THE REDUCER
-
+axios.defaults.baseURL = "https://i2talk.live/api/"
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
