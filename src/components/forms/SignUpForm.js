@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { AddUser } from '../../actions/signUpAction';
+//import { AddUser } from '../../actions/signUpAction';
 import LocationInput from './LocationInput';
 import PhoneInputField from './phone';
 import SexInput from './sexInput';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { formatPhoneNumber } from 'react-phone-number-input'
+import { addUser } from '../../actions/usersAction';
+import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 
 class SignUpForm extends Component {
@@ -55,7 +58,10 @@ class SignUpForm extends Component {
                 alert(JSON.stringify(newValues, null, 2));
                 setSubmitting(false);
               }, 400);
-              this.props.PostLogin(JSON.stringify(values, null, 2));
+
+              const newUser = JSON.stringify(values, null, 2);
+
+              this.props.addUser(newUser);
               resetForm();
             }}
           >
@@ -136,10 +142,8 @@ class SignUpForm extends Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    PostLogin: (data) => dispatch(AddUser(data))
-  }
+SignUpForm.propTypes = {
+  addUser: PropTypes.func.isRequired
 }
 
-export default connect(null, mapDispatchToProps)(SignUpForm);
+export default connect(null, addUser)(SignUpForm);

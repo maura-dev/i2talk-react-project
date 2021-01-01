@@ -1,17 +1,13 @@
-import { combineReducers } from 'redux';
-import citiesReducer from './cityReducer';
-import loginReducer from './loginReducer';
-import modalReducer from './modalReducer';
-import demoReducer from './demoReducer';
-import idiaryReducer from './idiaryReducer'
+import { applyMiddleware, compose, combineReducers, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import usersReducer from './usersReducer';
+import idiaryReducer from './idiaryReducer';
 
 
 const rootReducer = combineReducers({
-  Cities: citiesReducer,
+  Users: usersReducer,
   user: loginReducer,
   UserLogin: loginReducer,
-  modalView: modalReducer,
-  demo: demoReducer,
   notes: idiaryReducer
 })
 

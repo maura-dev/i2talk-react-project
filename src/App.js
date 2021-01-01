@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 // import Footer from './components/layout/footer';
 // import Header from './components/layout/header';
 import Main from './components/pages/main';
 import Feature from './components/pages/features';
 import ContactUs from './components/pages/ContactUs';
 import Faq from './components/pages/faq';
+import Exercise from './components/pages/Exercise';
 import Dashboard from './components/dashboard/Dashboard';
 
 // stylesheets
