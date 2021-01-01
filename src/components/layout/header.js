@@ -18,7 +18,7 @@ class Header extends Component {
 		var x = document.getElementsByClassName("item");
 		var i;
 		for (i = 0; i < x.length; i++) {
-  			x[i].style.display = "block";
+  		x[i].style.display = "block";
 		}
 	}
 
@@ -30,7 +30,7 @@ class Header extends Component {
 		var x = document.getElementsByClassName("item");
 		var i;
 		for (i = 0; i < x.length; i++) {
-  			x[i].style.display = "none";
+  		x[i].style.display = "none";
 		}
 	}
 	

@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
 import store from './store';
-import axios from'axios';
+import axios from 'axios';
 // STORE -> GLOBALIZED STATE
 // ACTION - INCREMENT
 // REDUCER MODIFIES STORE BASED ON THE ACTIONS
