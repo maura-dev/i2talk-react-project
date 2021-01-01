@@ -6,7 +6,7 @@ export default class LocationInput extends Component{
 	
 	render(){
 		return(
-			<Field name="location" as="select">
+			<Field name="state" as="select">
                                     <option value="none" disabled>--Select State--</option>
                                     <option value="Abia">Abia</option>
                                     <option value="Adamawa">Adamawa</option>

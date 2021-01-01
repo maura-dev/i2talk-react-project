@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddLogin } from '../../actions/loginAction';
-//import TextInputGroup from './TextInputGroup';
 import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';

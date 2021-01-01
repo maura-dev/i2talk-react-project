@@ -1,8 +1,10 @@
+import { ADD_USER } from '../actions/types'
+
 const initialState = {
   user: []
 }
+export default function(state = initialState, action) {
 
-const user = (state=initialState, action) => {
   switch (action.type){
     case 'ADD':
       return {
@@ -13,5 +15,3 @@ const user = (state=initialState, action) => {
       return initialState;
   }
 }
-
-export default user;

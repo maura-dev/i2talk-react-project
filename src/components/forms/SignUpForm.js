@@ -8,19 +8,33 @@ import SexInput from './sexInput';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { formatPhoneNumber } from 'react-phone-number-input'
 import { addUser } from '../../actions/usersAction';
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import swal from '@sweetalert/with-react';
 import * as Yup from 'yup';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios'
 
 class SignUpForm extends Component {
 
+  constructor() {
+        super();
+        this.state = {
+            redirect: false
+        }
+    }
+
   render () {
+
+    if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
+
     return(
       <div className="hero-modal-form" >
         <div className ="wrapper">
           <div className ="title">Sign Up</div>
           <Formik
 
-            initialValues={{ fullName: '', username: '', email: '', tel: '', location:'', sex:'', password: '', cPassword: ''}}
+            initialValues={{ fullName: '', username: '', email: '', phone: '', state:'', sex:'', password: '', cPassword: ''}}
             validationSchema = {Yup.object({
               fullName: Yup
                 .string()
@@ -50,18 +64,38 @@ class SignUpForm extends Component {
                 }),
             })}
 
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              const phone= values.tel
-              const national= phone && formatPhoneNumber(phone)
-              const newValues={...values, tel:national, countryCode:"+234"}
-              setTimeout(() => {
-                alert(JSON.stringify(newValues, null, 2));
-                setSubmitting(false);
-              }, 400);
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+              const tel= values.phone
+              //const national= phone && formatPhoneNumber(phone)
+             // const newValues={...values, tel:national, countryCode:"234"}
+              const newValues={
+                fullName: values.fullName, 
+                username: values.username, 
+                email: values.email, 
+                phone: tel && formatPhoneNumber(tel), 
+                state:values.state, 
+                sex:values.sex, 
+                password: values.password,
+                countryCode:"234"
+              }
+              //delete newValues.cPassword
+               await axios.post('signup', newValues)
+              .then((response)=> {
+              
+              localStorage.setItem("newUserDetails", JSON.stringify(response.data))
+              const newUserDetails= response.data 
+              this.props.addUser(newUserDetails);
 
-              const newUser = JSON.stringify(values, null, 2);
+              this.setState({ redirect: true })
+              swal(`Congrats ${newUserDetails.data.username}!`, "You successfully created an account!\n Proceed to login", "success");
 
-              this.props.addUser(newUser);
+              })
+
+              .catch((error)=> {
+                alert(error);
+              });
+
+              
               resetForm();
             }}
           >
@@ -88,17 +122,17 @@ class SignUpForm extends Component {
 
                 <div className="field">
                   <Field
-                  type="tel"
-                  name="tel"
+                  type="phone"
+                  name="phone"
                   component={PhoneInputField}
                   />
                 </div>
 
                 <div className="field">
                   <LocationInput />
-                  <label htmlFor="location">Location</label>
+                  <label htmlFor="state">Location</label>
                 </div>
-                <ErrorMessage name="location" component="div" />
+                <ErrorMessage name="state" component="div" />
 
                 <div className='field'>
                   <SexInput/>
