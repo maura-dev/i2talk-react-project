@@ -83,6 +83,20 @@ form {
   margin: 20px auto;
   position: relative;
 }
+
+select{
+  height:100%;
+  width: 45%;
+  margin-right:4%;
+  display: inline;
+  outline: none;
+  font-size: 12px;
+  padding-left: 20px;
+  border: 1px solid lightgrey;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
 .field input{
   height: 100%;
   width: 100%;
@@ -94,7 +108,9 @@ form {
   transition: all 0.3s ease;
 }
 .field input:focus,
-.field input:valid{
+.field input:valid,
+select:focus,
+select:valid{
   border-color: var(--secondary-color);
 }
 .field label{

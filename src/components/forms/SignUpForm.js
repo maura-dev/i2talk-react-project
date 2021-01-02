@@ -66,35 +66,37 @@ class SignUpForm extends Component {
 
             onSubmit={async (values, { setSubmitting, resetForm }) => {
               const tel= values.phone
-              //const national= phone && formatPhoneNumber(phone)
+              const national= tel && formatPhoneNumber(tel)
+              const newPhone= national.split(" ").join("")
              // const newValues={...values, tel:national, countryCode:"234"}
               const newValues={
-                fullName: values.fullName, 
-                username: values.username, 
-                email: values.email, 
-                phone: tel && formatPhoneNumber(tel), 
-                state:values.state, 
-                sex:values.sex, 
-                password: values.password,
-                countryCode:"234"
+                "fullName": values.fullName, 
+                "username": values.username, 
+                "password": values.password,
+                "email": values.email,
+                "countryCode": 234, 
+                "phone": newPhone.slice(1), 
+                "sex":values.sex,
+                "state":values.state    
               }
-              //delete newValues.cPassword
+
+              //alert(JSON.stringify(newValues))
+              
                await axios.post('signup', newValues)
               .then((response)=> {
-              
+              //console.log(response)
               localStorage.setItem("newUserDetails", JSON.stringify(response.data))
               const newUserDetails= response.data 
-              this.props.addUser(newUserDetails);
+              //this.props.addUser(newUserDetails);
 
               this.setState({ redirect: true })
-              swal(`Congrats ${newUserDetails.data.username}!`, "You successfully created an account!\n Proceed to login", "success");
+              swal(`Congrats ${newUserDetails.data.username}!`, "You successfully created an account!\n Proceed to authenticate your account", "success");
 
               })
 
               .catch((error)=> {
-                alert(error);
+                alert(error.message);
               });
-
               
               resetForm();
             }}
@@ -129,16 +131,9 @@ class SignUpForm extends Component {
                 </div>
 
                 <div className="field">
-                  <LocationInput />
-                  <label htmlFor="state">Location</label>
+                  <LocationInput />  <SexInput/>                 
                 </div>
                 <ErrorMessage name="state" component="div" />
-
-                <div className='field'>
-                  <SexInput/>
-                  <label htmlFor="sex">Sex</label>
-                </div>
-                <ErrorMessage name="email" component="div" />
 
                 <div className='field'>
                   <Field type="password" name="password" />
