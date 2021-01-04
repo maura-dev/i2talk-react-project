@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddLogin } from '../../actions/loginAction';
-//import TextInputGroup from './TextInputGroup';
 import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom';
 //import swal from 'sweetalert';
-import swal from '@sweetalert/with-react';
+import swal from 'sweetalert';
 class LogInForm extends Component {
 
   constructor() {
@@ -45,26 +44,28 @@ class LogInForm extends Component {
               await axios.post('login', values)
               .then((response)=> {
               
-              localStorage.setItem("userDetails", JSON.stringify(response.data))
-              const userDetails= response.data 
-              this.props.PostLogin(userDetails);
+                localStorage.setItem("userDetails", JSON.stringify(response.data))
+                const userDetails= response.data 
+                this.props.PostLogin(userDetails);
 
-              this.setState({ redirect: true })
-              swal("Good job!", "You have logged in successfully!", "success");
+                this.setState({ redirect: true })
+                swal("Good job!", "You have logged in successfully!", "success");
 
-              /*swal(
-                <div>
-                  <h1>Good job!</h1>
-                  <p>
-                    You have logged in successfully!
-                  </p>
-                </div>
-              )*/
+                /*swal(
+                  <div>
+                    <h1>Good job!</h1>
+                    <p>
+                      You have logged in successfully!
+                    </p>
+                  </div>
+                )*/
 
               })
 
               .catch((error)=> {
-                alert(error);
+                console.log(error);
+                error.status === 401 ? alert("Please signup first..."): alert (error);
+                // alert(error);
               });
               resetForm();
             }}

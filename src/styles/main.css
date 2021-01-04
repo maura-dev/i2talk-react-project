@@ -77,24 +77,40 @@
 form {
   text-align: center;
 }
+.sex-input-field {
+  font-size: 12px;
+  display: flex;
+  width: 35%;
+  margin: 0 auto;
+  justify-content: space-between;
+  cursor : pointer;
+}
+.country-select {
+  display: flex;
+}
 .field{
-  height: 40px;
+  /* height: 35px; */
   width: 80%;
-  margin: 20px auto;
+  margin: 14px auto;
   position: relative;
 }
-.field input{
+
+.field input,
+.field select {
   height: 100%;
   width: 100%;
   outline: none;
   font-size: 12px;
-  padding-left: 20px;
+  padding: 9px;
   border: 1px solid lightgrey;
   border-radius: 25px;
   transition: all 0.3s ease;
 }
+
 .field input:focus,
-.field input:valid{
+.field input:valid,
+.field select:focus,
+.field select:valid  {
   border-color: var(--secondary-color);
 }
 .field label{

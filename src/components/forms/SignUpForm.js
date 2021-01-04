@@ -2,25 +2,27 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addUser } from '../../actions/usersAction';
-// import TextInputGroup from './TextInputGroup';
-
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import { RegionDropdown, CountryDropdown } from 'react-country-region-selector';
+import PhoneInputCountry from './PhoneInputCountry'
 import * as Yup from 'yup';
 
 class SignUpForm extends Component {
 
   render () {
+
     return(
       <div className="hero-modal-form" >
         <div className ="wrapper">
           <div className ="title">Sign Up</div>
           <Formik
 
-            initialValues={{ fullName: '', username: '', email: '', password: '', cPassword: ''}}
+            initialValues={{ fullName: '', username: '', email: '', sex:'', country:'Nigeria', state:'', phone:'', password: ''}}
+            
             validationSchema = {Yup.object({
               fullName: Yup
                 .string()
-                .max(15, 'Must be 15 characters or less')
+                .max(25, 'Must be 25 characters or less')
                 .required('Your full name is required'),
               username: Yup
                 .string()
@@ -59,44 +61,76 @@ class SignUpForm extends Component {
             }}
           >
 
-            {({ isSubmitting }) => (
+            {({
+              isSubmitting, values, handleChange, handleBlur
+            }) => (
               <Form>
                 <div className='field'>
-                  <Field type="fullName" name="fullName" />
+                  <Field type="text" name="fullName" />
                   <label htmlFor="fullName">Full Name</label>
                 </div>
-                <ErrorMessage name="fullName" component="div" />
+                <ErrorMessage name="fullName" component="p" />
 
                 <div className='field'>
-                  <Field type="username" name="username" />
+                  <Field type="text" name="username" />
                   <label htmlFor="username">Username</label>
                 </div>
-                <ErrorMessage name="username" component="div" />
+                <ErrorMessage name="username" component="p" />
 
                 <div className='field'>
                   <Field type="email" name="email" />
                   <label htmlFor="email">Email</label>
                 </div>
-                <ErrorMessage name="email" component="div" />
+                <ErrorMessage name="email" component="p" />
 
+                <div className='sex-input-field'>
+                  <div className="label"> Sex: </div>
+                  <label>
+                    <Field type="checkbox" name="sex" value="female" />
+                    <span> Female</span>
+                  </label>
+                  <label>
+                    <Field type="checkbox" name="sex" value="male" />
+                    <span> Male</span>
+                  </label> 
+                  <ErrorMessage name="sex" component="p" />
+                </div>
+
+                <div className='field'>
+                  <Field
+                    type="tel" component= { PhoneInputCountry } name="phone" value=""
+                  />
+                </div>
+                <ErrorMessage name="phone" component="p" />
+
+                <div className='field country-select'>
+                  <CountryDropdown name="country" value={values.country}
+	                  onChange={(_, e) => handleChange(e)} onBlur={handleBlur} 
+                  />
+                  <RegionDropdown name="state" country={values.country} value={values.state}
+	                  onChange={(_, e) => handleChange(e)} onBlur={handleBlur} 
+                  />
+                </div>
+                <ErrorMessage name="state" component="p" />
+                
                 <div className='field'>
                   <Field type="password" name="password" />
                   <label htmlFor="password">Password</label>
                 </div>
-                <ErrorMessage name="password" component="div" />
+                <ErrorMessage name="password" component="p" />
 
                 <div className='field'>
                   <Field type="password" name="cPassword" />
                   <label htmlFor="cPassword">Confirm password</label>
                 </div>
-                <ErrorMessage name="cPassword" component="div" />
+                <ErrorMessage name="cPassword" component="p" />
 
                 <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
                   <a href="./security&privacy.html">Privacy Policy</a>. 
                   You may receive SMS notifications from us and can opt out at any time.</small>
                 </p>
 
-                <button type="submit">
+                <button type="submit" disabled={isSubmitting}>
                   Submit
                 </button>
 

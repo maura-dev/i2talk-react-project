@@ -1,7 +1,7 @@
 import React from 'react';
 // import page component
-import Header from '../layout/header'
-import Footer from '../layout/footer'
+import Header from '../layout/header';
+import Footer from '../layout/footer';
 import Card2 from '../layout/card2';
 // import link
 import {Link} from 'react-router-dom';
