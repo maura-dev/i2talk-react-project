@@ -1,15 +1,34 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+//import { AddUser } from '../../actions/signUpAction';
+import LocationInput from './LocationInput';
+import PhoneInputField from './phone';
+import SexInput from './sexInput';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { formatPhoneNumber } from 'react-phone-number-input'
 import { addUser } from '../../actions/usersAction';
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
-import { RegionDropdown, CountryDropdown } from 'react-country-region-selector';
-import PhoneInputCountry from './PhoneInputCountry'
+// import { RegionDropdown, CountryDropdown } from 'react-country-region-selector';
+// import PhoneInputCountry from './PhoneInputCountry'
+import swal from '@sweetalert/with-react';
 import * as Yup from 'yup';
+import { Redirect } from 'react-router-dom';
+import axios from 'axios'
 
 class SignUpForm extends Component {
 
+  constructor() {
+        super();
+        this.state = {
+            redirect: false
+        }
+    }
+
   render () {
+
+    if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
 
     return(
       <div className="hero-modal-form" >
@@ -48,15 +67,40 @@ class SignUpForm extends Component {
                 }),
             })}
 
-            onSubmit={(values, { setSubmitting, resetForm }) => {
-              setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-              }, 400);
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+              const tel= values.phone
+              const national= tel && formatPhoneNumber(tel)
+              const newPhone= national.split(" ").join("")
+             // const newValues={...values, tel:national, countryCode:"234"}
+              const newValues={
+                "fullName": values.fullName, 
+                "username": values.username, 
+                "password": values.password,
+                "email": values.email,
+                "countryCode": 234, 
+                "phone": newPhone.slice(1), 
+                "sex":values.sex,
+                "state":values.state    
+              }
 
-              const newUser = JSON.stringify(values, null, 2);
+              //alert(JSON.stringify(newValues))
+              
+              await axios.post('signup', newValues)
+              .then((response)=> {
+                //console.log(response)
+                localStorage.setItem("newUserDetails", JSON.stringify(response.data))
+                const newUserDetails= response.data 
+                //this.props.addUser(newUserDetails);
 
-              this.props.addUser(newUser);
+                this.setState({ redirect: true })
+                swal(`Congrats ${newUserDetails.data.username}!`, "You successfully created an account!\n Proceed to authenticate your account", "success");
+
+              })
+
+              .catch((error)=> {
+                alert(error.message);
+              });
+              
               resetForm();
             }}
           >
@@ -83,7 +127,7 @@ class SignUpForm extends Component {
                 </div>
                 <ErrorMessage name="email" component="p" />
 
-                <div className='sex-input-field'>
+                {/* <div className='sex-input-field'>
                   <div className="label"> Sex: </div>
                   <label>
                     <Field type="checkbox" name="sex" value="female" />
@@ -94,9 +138,22 @@ class SignUpForm extends Component {
                     <span> Male</span>
                   </label> 
                   <ErrorMessage name="sex" component="p" />
+                </div> */}
+
+                <div className="field">
+                  <Field
+                  type="phone"
+                  name="phone"
+                  component={PhoneInputField}
+                  />
                 </div>
 
-                <div className='field'>
+                <div className="field">
+                  <LocationInput />  <SexInput/>                 
+                </div>
+                <ErrorMessage name="state" component="div" />
+
+                {/* <div className='field'>
                   <Field
                     type="tel" component= { PhoneInputCountry } name="phone" value=""
                   />
@@ -111,7 +168,7 @@ class SignUpForm extends Component {
 	                  onChange={(_, e) => handleChange(e)} onBlur={handleBlur} 
                   />
                 </div>
-                <ErrorMessage name="state" component="p" />
+                <ErrorMessage name="state" component="p" /> */}
                 
                 <div className='field'>
                   <Field type="password" name="password" />

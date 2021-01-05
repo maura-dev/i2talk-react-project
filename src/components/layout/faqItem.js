@@ -5,25 +5,30 @@ import PropTypes from 'prop-types';
 import '../../styles/faq.css'
 
 class FaqItem extends Component {
-  state = {
+  constructor(props){
+    super(props)
+
+    this.state = {
     showFaqBody: false
-  };
+    };
+  }
+  
 
   render() {
-    const { title, body } = this.props.faqDetail;
+    const { question, answer } = this.props.faqDetail;
     const { showFaqBody } = this.state;
 
     return (
       <div className="faq-box">
         <div className="question-heading">
           <h4>
-            {title} 
+            {question} 
           </h4>
           <i onClick = {()=>
             this.setState({ showFaqBody: !this.state.showFaqBody })
           } className="fas fa-plus"></i>
         </div>
-        {showFaqBody ? (<div className="answer"><p>{body}</p></div>) : null}
+        {showFaqBody ? (<div className="answer"><p>{answer}</p></div>) : null}
       </div>
     )
   }
