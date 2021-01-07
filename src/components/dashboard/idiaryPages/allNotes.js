@@ -4,8 +4,8 @@ import Button1 from '../dashboardComponents/button1'
 import Button2 from '../dashboardComponents/button2'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types'
-import {GetNotes} from '../../../actions/idiaryActions'
+import PropTypes from 'prop-types';
+import {GetNotes} from '../../../actions/idiaryActions';
 
 class AllNotes extends Component{
 
@@ -95,4 +95,4 @@ const mapStateToProps=(state)=>({
 	GetNotes: ()=> dispatch({type:GET_NOTES})
 })*/
 
-export default connect(mapStateToProps, { GetNotes })(AllNotes)
+export default connect(mapStateToProps, { GetNotes })(AllNotes);

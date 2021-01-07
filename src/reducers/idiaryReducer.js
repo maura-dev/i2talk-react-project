@@ -1,4 +1,4 @@
-import { GET_NOTES, DELETE_NOTE, ADD_NOTE, EDIT_NOTE} from '../actions/types'
+import { GET_NOTES, DELETE_NOTE, ADD_NOTE, EDIT_NOTE} from '../actions/types';
 
 const initialState={
 

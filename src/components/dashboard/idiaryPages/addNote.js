@@ -90,4 +90,4 @@ class AddNotes extends Component{
 	
 }
 
-export default connect(null, { AddNote })(AddNotes)
+export default connect(null, { AddNote })(AddNotes);

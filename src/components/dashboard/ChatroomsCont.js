@@ -10,12 +10,16 @@ import AllChatrooms from './chatroomPages/allChatrooms';
 import Chatroom from './chatroomPages/Chatroom';
 
 class ChatroomsCont extends Component {
-  render() {
-    return (
 
+
+  render() {
+    
+    return (
+      
       <Router>
         <div className="chat-container">
           <ChatMenu />
+
 
           <div className="chat-message-container" id="user-msg-container">
             <div className ="dashboard-feature-container" >

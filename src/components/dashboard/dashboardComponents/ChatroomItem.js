@@ -1,21 +1,34 @@
-import React from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 //import Chatroom from '../chatroomPages/Chatroom'
 
-export default function ChatroomItem({name,chatname,text}){	
-	return (
-		<Link to={`/dashboard/chatroomscont/chatroom/${chatname}`}>
-      <div className="chatrooms-items">
-      	<span>
-        		<i className={name}></i>
-      	</span>
-      	<div>
-        		<h3 id={chatname}>{chatname}</h3>
-       		 <p>{text}</p>
-     		 </div>
-    	</div>
-    </Link>
-
-	)
-
+class ChatroomItem extends Component {
+  render() {
+    const { 
+			ID,
+			chatRoomName,
+			chatRoomDesc 
+		} = this.props.chatroomsListItem;
+	
+		return (
+			<Link to={`/dashboard/chatroomscont/chatroom/${ID}`}>
+				<div className="chatrooms-items">
+					<span>
+						<i className=" "></i>
+					</span>
+					<div>
+						<h3 id={chatRoomName}>{chatRoomName}</h3>
+						<p>{chatRoomDesc}</p>
+					</div>
+				</div>
+			</Link>
+		)
+	}
 }
+
+ChatroomItem.propTypes = {
+	chatroomsListItem: PropTypes.object.isRequired
+};
+
+export default ChatroomItem;

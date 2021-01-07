@@ -24,6 +24,7 @@ class App extends Component {
 						<Route exact path="/features" component={Feature} />
 						<Route exact path="/contact" component={ContactUs} />
 						<Route exact path="/faqs" component={Faq} />
+						<Route exact path="/exercise" component={Exercise} />
 						<Route path="/dashboard" component={Dashboard} />
 						
 					</Switch>

@@ -15,7 +15,7 @@ class Note extends Component{
 	const{ id, time, message}= this.props.note	
 		return( 
 
-	  		<div id="messageContainer">
+	  	<div id="messageContainer">
 				<sup>{time}</sup><br/>
 				<p>{message}{/* <i className="fas fa-ellipsis-h"></i>*/}</p>
 				<div id="buttons">
