@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-//import PropTypes from 'prop-types';
 import { Formik, Form, Field } from 'formik';
 import Header from '../layout/header'
 import Footer from '../layout/footer'
@@ -13,16 +12,19 @@ export default class Auth extends Component{
 
 	state = {
     otp: '',
-    isAuthenticated: false
+    isAuthenticated: false,
+    loading: false
   };
 
   handleChange = otp => this.setState({ otp });
 
   onClick=()=>{
+  	this.setState({
+  		...this.state,
+  		loading:true 
+  	});
   	const passcode =this.state.otp
   	const token= localStorage.getItem('token')
-	  //alert(token)                			
-  	//const token= localStorage.getItem("token")
   	var data = {
     	"onetimepass" :Number(passcode)
   	}
@@ -40,12 +42,19 @@ export default class Auth extends Component{
 	.then(async (response)=> {
 	  await swal(`${response.data}`, "Yay!!!", "success");;
 	  localStorage.removeItem("verificationDetails");
+	  localStorage.removeItem("token")
 	   this.setState({
-	   	isAuthenticated:true 
+	   	...this.state,
+	   	isAuthenticated:true,
+	   	loading:false
 	   });
 
 	})
 	.catch(function (error) {
+		this.setState({
+			...this.state,
+			loading:false 
+		});
 	  alert(error);
 	});
   }
@@ -56,6 +65,8 @@ export default class Auth extends Component{
               <Redirect to='/' />
             )
         }
+
+        const { loading }= this.state
 		
 		return(
 			<React.Fragment>
@@ -70,13 +81,17 @@ export default class Auth extends Component{
 						
 			                  <Formik
 			                  	initialValues={{ auth:''}}
-			                  	onSubmit={async (values, { setSubmitting, resetForm }) => {
+			                  	onSubmit={ (values, { setSubmitting, resetForm }) =>{
 			                  		
 			                  		if(values.auth==="none"){
 			                  			document.getElementById("authError").style.display="block"
 			                  			resetForm()
 			                  		}
 			                  		else{
+			                  			this.setState({
+			                  				...this.state,
+			                  				loading:true 
+			                  			});
 			                  			const verificationDeets= localStorage.getItem('verificationDetails')
 
 			                  			
@@ -86,8 +101,6 @@ export default class Auth extends Component{
 										   
 										}
 
-										//alert(JSON.stringify(data))
-										//alert(verificationDeets.accessToken)
 										var config = {
 										  method: 'post',
 										  url: 'https://i2talk.live/api/activation',
@@ -99,14 +112,20 @@ export default class Auth extends Component{
 
 										axios(config)
 										.then( async (response)=> {
-											//alert(JSON.stringify(response))
-
+											this.setState({
+												...this.state,
+												loading: false 
+											});
+											
 											localStorage.setItem('token', response.data.token)
 											await swal("Activation code sent!", "You are one step closer", "success");
-										  	//alert("Activation Code Sent!")
 										
 										})
 										.catch( (error)=> {
+											this.setState({
+												...this.state,
+												loading: false 
+											});
 										  alert(error);
 										});
 				                  		resetForm()
@@ -127,7 +146,7 @@ export default class Auth extends Component{
 										</div>
 
 										<button type="submit">
-						                  Submit
+						                  {loading ? (<i className="fa fa-spinner fa-spin"></i>) : "Submit"}
 						                </button>
 						                <br/>
 									</Form>
@@ -149,7 +168,9 @@ export default class Auth extends Component{
 					          focusStyle="focus-style"
 					          value={this.state.otp}
 					        />
-					        <button className="otp-auth-button" onClick={this.onClick}>Submit</button>
+					        <button className="otp-auth-button" onClick={this.onClick}>
+					        	{loading ? (<i className="fa fa-spinner fa-spin"></i>) : "Submit"}
+					        </button>
 				    </div>
 				</div>
 			</div>

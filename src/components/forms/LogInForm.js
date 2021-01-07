@@ -5,14 +5,14 @@ import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom';
-//import swal from 'sweetalert';
 import swal from 'sweetalert';
 class LogInForm extends Component {
 
   constructor() {
         super();
         this.state = {
-            redirect: false
+            redirect: false,
+            loading:false
         }
     }
 
@@ -21,6 +21,8 @@ class LogInForm extends Component {
     if (this.state.redirect) {
             return <Redirect to='/dashboard' />
         }
+
+    const { loading }= this.state
 
     return(
       <div className="hero_form" >
@@ -40,11 +42,20 @@ class LogInForm extends Component {
             })}
 
             onSubmit={async(values, { setSubmitting, resetForm }) => {
+              this.setState({
+                ...this.state,
+                loading: true 
+              });
               
               await axios.post('login', values)
               .then((response)=> {
+                this.setState({
+                  ...this.state,
+                  loading:false 
+                });
 
-                //removes previous logged users details
+
+              //removes previous logged users details
               localStorage.removeItem("userId")
               localStorage.removeItem("bearerToken")
               localStorage.removeItem("loggedUserDetails")
@@ -67,11 +78,15 @@ class LogInForm extends Component {
 
               swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
 
-              this.setState({ redirect: true })
+              this.setState({...this.state, redirect: true })
 
               })
 
               .catch((error)=> {
+                this.setState({
+                  ...this.state,
+                  loading: false 
+                });
                 console.log(error);
                 error.status === 401 ? alert("Please signup first..."): alert (error);
                 // alert(error);
@@ -86,13 +101,13 @@ class LogInForm extends Component {
                   <Field type="login" name="login" />
                   <label htmlFor="login">Username, Email or Phone</label>
                 </div>
-                <ErrorMessage name="login" component="div" />
+                <ErrorMessage name="login" component="p" className="form-errors"/>
 
                 <div className='field'>
                   <Field type="password" name="password" />
                   <label htmlFor="password">Password</label>
                 </div>
-                <ErrorMessage name="password" component="div" />
+                <ErrorMessage name="password" component="p" className="form-errors"/>
 
                 <div className="content">
                   <div className="checkbox">
@@ -103,7 +118,7 @@ class LogInForm extends Component {
                 </div>
 
                 <button type="submit" style={{marginBottom: "20px"}}>
-                  Submit
+                  {loading ? (<i className="fa fa-spinner fa-spin"></i>) : "Submit"}
                 </button>
               </Form>
             )}
