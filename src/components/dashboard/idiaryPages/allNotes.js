@@ -79,4 +79,4 @@ const mapStateToProps=(state)=>({
 	GetNotes: ()=> dispatch({type:GET_NOTES})
 })*/
 
-export default connect(mapStateToProps, { GetNotes })(AllNotes)
+export default connect(mapStateToProps, { GetNotes })(AllNotes);

@@ -6,6 +6,7 @@ import FaqItem from '../layout/faqItem';
 // import page image
 import FaqImage from '../../img/faq.svg';
 import axios from 'axios'
+
 class Faq extends Component {
   state={
     faqDetails:[]

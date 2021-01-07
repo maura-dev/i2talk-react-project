@@ -43,31 +43,38 @@ class LogInForm extends Component {
               
               await axios.post('login', values)
               .then((response)=> {
+              
+                localStorage.setItem("userDetails", JSON.stringify(response.data))
+                const userDetails= response.data;
+                this.props.PostLogin(userDetails);
 
-                //removes previous logged users details
-              localStorage.removeItem("userId")
-              localStorage.removeItem("bearerToken")
-              localStorage.removeItem("loggedUserDetails")
-              localStorage.removeItem("loggedUserDiary")
-              const userDetails= response.data 
-              //alert(JSON.stringify(userDetails))
+                this.setState({ redirect: true })
+                swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
 
-              //data to be sent to the user actions reducer
-              const userData={
-                user: userDetails.data,
-                isLoggedIn: true
-              }
+                  //removes previous logged users details
+                localStorage.removeItem("userId")
+                localStorage.removeItem("bearerToken")
+                localStorage.removeItem("loggedUserDetails")
+                localStorage.removeItem("loggedUserDiary")
+                const userDetails= response.data 
+                //alert(JSON.stringify(userDetails))
 
-               //stores logged user id in the local storage
-              localStorage.setItem("userId", userDetails.data.userID)
-              localStorage.setItem("bearerToken", userDetails.accessToken)
-        
-              //sends the user details to the user reducer
-              this.props.PostLogin(userData);
+                //data to be sent to the user actions reducer
+                const userData={
+                  user: userDetails.data,
+                  isLoggedIn: true
+                }
 
-              swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
+                //stores logged user id in the local storage
+                localStorage.setItem("userId", userDetails.data.userID)
+                localStorage.setItem("bearerToken", userDetails.accessToken)
+          
+                //sends the user details to the user reducer
+                this.props.PostLogin(userData);
 
-              this.setState({ redirect: true })
+                swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
+
+                this.setState({ redirect: true })
 
               })
 

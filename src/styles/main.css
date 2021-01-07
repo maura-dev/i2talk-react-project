@@ -1,4 +1,10 @@
+.show{
+  display:block;
+}
 
+.hide{
+  display:none;
+}
 /*main index page styling*/
 .hero {
   width: 80%;
