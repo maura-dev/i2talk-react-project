@@ -3,7 +3,26 @@ import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';
 
 class Profile extends Component {
+
+  componentDidMount(){
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+
+    if(loggedUserDetails.bio===""){
+      loggedUserDetails.bio= "Hi, I'm new to the i2talk chatting platform"
+    }
+
+    document.getElementById("profile-image-boxer").innerHTML=`<img src="${loggedUserDetails.img}">`
+    document.getElementById("profile-username-input").value=`${loggedUserDetails.username}`
+    document.getElementById("profile-bio-input").value=`${loggedUserDetails.bio}`
+    document.getElementById("profile-sex-input").value=`${loggedUserDetails.sex}`
+    document.getElementById("profile-number-input").value=`${loggedUserDetails.phone}`
+    document.getElementById("profile-location-input").value=`${loggedUserDetails.state}`
+
+    
+  }
   render() {
+    //const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+    
     return (
       <div className="chat-container">
         <ChatMenu />

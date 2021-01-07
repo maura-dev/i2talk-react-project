@@ -3,29 +3,31 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { DeleteNote } from '../../../actions/idiaryActions';
 import EditNotes from  '../idiaryPages/editNote'
+import axios from 'axios'
 
 class Note extends Component{
 
-	deleteNote= (id) =>{
-		this.props.DeleteNote(id)
+	deleteNote= (ID) =>{
+		
+		this.props.DeleteNote(ID)
 	}
 
 	render(){
 	
-	const{ id, time, message}= this.props.note	
+	const{ ID, timeCreated, message}= this.props.note	
 		return( 
 
-	  	<div id="messageContainer">
-				<sup>{time}</sup><br/>
+	  		<div id="messageContainer">
+				<sup>{timeCreated}</sup><br/>
 				<p>{message}{/* <i className="fas fa-ellipsis-h"></i>*/}</p>
 				<div id="buttons">
-					<Link to={`/idiary/editNote/${id}`}>
+					<Link to={`/idiary/editNote/${ID}`}>
 						<span style={{fontSize:"20px", color:"var(--primary-color)"}} align="right">
 							<i className="far fa-edit icon"></i>
 						</span>
 					</Link>
 					
-					<span style={{fontSize:"20px", color: "var(--primary-color)"}} onClick={this.deleteNote.bind(this,id)}>
+					<span style={{fontSize:"20px", color: "var(--primary-color)"}} onClick={this.deleteNote.bind(this,ID)}>
 						<i className="far fa-trash-alt icon"></i>
 					</span>
 				</div>

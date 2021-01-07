@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { AddLogin } from '../../actions/loginAction';
+import { AddLogin } from '../../actions/allUserActions';
 import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
@@ -51,6 +51,31 @@ class LogInForm extends Component {
                 this.setState({ redirect: true })
                 swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
 
+                  //removes previous logged users details
+                localStorage.removeItem("userId")
+                localStorage.removeItem("bearerToken")
+                localStorage.removeItem("loggedUserDetails")
+                localStorage.removeItem("loggedUserDiary")
+                const userDetails= response.data 
+                //alert(JSON.stringify(userDetails))
+
+                //data to be sent to the user actions reducer
+                const userData={
+                  user: userDetails.data,
+                  isLoggedIn: true
+                }
+
+                //stores logged user id in the local storage
+                localStorage.setItem("userId", userDetails.data.userID)
+                localStorage.setItem("bearerToken", userDetails.accessToken)
+          
+                //sends the user details to the user reducer
+                this.props.PostLogin(userData);
+
+                swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
+
+                this.setState({ redirect: true })
+
               })
 
               .catch((error)=> {
@@ -99,7 +124,7 @@ class LogInForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    PostLogin: (userDetails) => dispatch(AddLogin(userDetails))
+    PostLogin: (userData) => dispatch(AddLogin(userData))
   }
 }
 

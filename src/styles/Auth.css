@@ -1,0 +1,22 @@
+.otp-container{
+	width:100%;
+	padding:2% 35% 2% 35%;
+	/*box-shadow: 2px 2px 2px 2px black;
+	width:60%;
+	height:40%;*/
+}
+
+.input-style{
+	height:50px;
+	font-size: 30px;
+	color:var(--primary-color);
+}
+
+.focus-style{
+	background-color: var(--bg-color-alt)
+}
+
+.otp-auth-button{
+	margin:20px auto 20px auto;
+	display: block;
+}

@@ -48,7 +48,7 @@ class Main extends Component {
 							<LogInForm />
 						</div>
 
-						{showSignUp ? <div className="signup-modal">
+						{showSignUp ? <div className="signup-modal" id="signup-modal">
 							<SignUpForm hideForm={this.hideForm} />
 							</div> : null}
 

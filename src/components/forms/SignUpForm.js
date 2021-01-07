@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-//import { AddUser } from '../../actions/signUpAction';
+//import Auth from '../pages/Auth'
 import LocationInput from './LocationInput';
 import PhoneInputField from './phone';
 import SexInput from './sexInput';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { formatPhoneNumber } from 'react-phone-number-input'
 import { addUser } from '../../actions/usersAction';
+
+//import swal from '@sweetalert/with-react';
 // import { RegionDropdown, CountryDropdown } from 'react-country-region-selector';
 // import PhoneInputCountry from './PhoneInputCountry'
 import swal from '@sweetalert/with-react';
+
 import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
@@ -27,7 +30,9 @@ class SignUpForm extends Component {
   render () {
 
     if (this.state.redirect) {
-            return <Redirect to='/' />
+            return (
+              <Redirect to='/auth' />
+            )
         }
 
     return(
@@ -68,39 +73,39 @@ class SignUpForm extends Component {
             })}
 
             onSubmit={async (values, { setSubmitting, resetForm }) => {
+              localStorage.removeItem("verificationDetails")
+
               const tel= values.phone
               const national= tel && formatPhoneNumber(tel)
               const newPhone= national.split(" ").join("")
-             // const newValues={...values, tel:national, countryCode:"234"}
-              const newValues={
-                "fullName": values.fullName, 
-                "username": values.username, 
-                "password": values.password,
-                "email": values.email,
-                "countryCode": 234, 
-                "phone": newPhone.slice(1), 
-                "sex":values.sex,
-                "state":values.state    
-              }
+               const newValues={
+                 "fullName": values.fullName, 
+                 "username": values.username, 
+                 "password": values.password,
+                 "email": values.email,
+                 "countryCode": "234", 
+                 "phone": newPhone, 
+                 "sex":values.sex,
+                 "state":values.state    
+               }
+                 
+              var config = {
+                method: 'post',
+                url: 'https://i2talk.live/api/signup',
+                headers: { },
+                data : newValues
+              };
 
-              //alert(JSON.stringify(newValues))
-              
-              await axios.post('signup', newValues)
-              .then((response)=> {
-                //console.log(response)
-                localStorage.setItem("newUserDetails", JSON.stringify(response.data))
+              axios(config)
+              .then( (response)=> {
+                localStorage.setItem("verificationDetails", response.data.accessToken)
                 const newUserDetails= response.data 
-                //this.props.addUser(newUserDetails);
-
-                this.setState({ redirect: true })
                 swal(`Congrats ${newUserDetails.data.username}!`, "You successfully created an account!\n Proceed to authenticate your account", "success");
-
+                this.setState({ redirect: true })
               })
-
-              .catch((error)=> {
+              .catch( (error)=> {
                 alert(error.message);
               });
-              
               resetForm();
             }}
           >

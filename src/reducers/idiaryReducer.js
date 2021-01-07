@@ -2,20 +2,7 @@ import { GET_NOTES, DELETE_NOTE, ADD_NOTE, EDIT_NOTE} from '../actions/types';
 
 const initialState={
 
-	notes:[
-			{
-			id: 1,
-			time: new Date().toDateString(),
-			message:"My name is Maureen, I live in Lagos"
-			},
-
-			{
-			id:2,
-			time: new Date().toDateString(),
-			message:"We have a presentation today"
-			}
-
-		]
+	notes: []
 }
 
 export default function(state=initialState, action){
@@ -26,7 +13,7 @@ export default function(state=initialState, action){
     case DELETE_NOTE:
       return {
       	...state,
-      	notes: state.notes.filter(note=> note.id!==action.payload)
+      	notes: state.notes.filter(note=> note.ID!==action.payload)
       }
 
       case ADD_NOTE:

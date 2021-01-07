@@ -7,7 +7,6 @@ export default function TextInput({ placeholder, name, className, id, value, row
 		maxHeight: "30vh",
 		resize: "none",
 		padding: "10px",
-		fontSize: "1rem",
 		background: "#fff",
 		border: "2px solid var(--primary-color)",
 		borderRadius: "20px",

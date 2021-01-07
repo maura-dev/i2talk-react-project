@@ -1,15 +1,21 @@
 import { ADD_USER } from '../actions/types'
 
 const initialState = {
-  user: []
+  userData:{
+    user: [],
+  isLoggedIn: false
+}
 }
 export default function(state = initialState, action) {
 
   switch (action.type){
-    case 'ADD':
+    case ADD_USER:
       return {
         ...state,
-        user: [...state.user, action.payload],
+        userData:{
+        user: [...state.userData.user, action.payload.user],
+        isLoggedIn:action.payload.isLoggedIn
+       }
       };
     default:
       return initialState;
