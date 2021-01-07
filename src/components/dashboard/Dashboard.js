@@ -15,7 +15,7 @@ import Isearch from '../dashboard/Isearch';
 import Profile from '../dashboard/Profile';
 import Settings from '../dashboard/Settings';
 import AdminPanel from '../dashboard/adminPages/AdminPanel';
-
+//import axios from 'axios'
 import RecipeSearch from '../dashboard/recipeSearch';
 
 // import page styling
@@ -23,7 +23,29 @@ import '../../styles/dashboard.css'
 
 import axios from'axios'
 class Dashboard extends Component {
+    componentDidMount(){
+      var loggedUserId= localStorage.getItem("userId")
+      var bearerToken= localStorage.getItem("bearerToken")
+      //alert(loggedUserId)
 
+        var config = {
+          method: 'get',
+          url: `https://i2talk.live/api/users/${loggedUserId}`,
+          headers: {
+            'Authorization': `Bearer ${bearerToken}` 
+           }
+        };
+
+        axios(config)
+        .then( async (response)=> {
+          await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
+          //alert(response.data)
+        })
+        .catch(function (error) {
+          alert(error);
+        });
+     
+    }
 
   render() {
     return (

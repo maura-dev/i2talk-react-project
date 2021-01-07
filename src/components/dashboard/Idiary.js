@@ -10,6 +10,7 @@ import SearchedNotes from './idiaryPages/searchedNotes';
 class Idiary extends Component {
 
   render() {
+
   	
     return (
     	<Router>

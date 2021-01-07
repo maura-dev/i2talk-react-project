@@ -8,14 +8,14 @@ import ContactUs from './components/pages/ContactUs';
 import Faq from './components/pages/faq';
 import Exercise from './components/pages/Exercise';
 import Dashboard from './components/dashboard/Dashboard';
-
+import Auth from './components/pages/Auth'
 // stylesheets
 // import 'bootstrap/dist/css/bootstrap.min.css';
 //import ProtectedRoute from './protectedRoute'
 class App extends Component {
 	
 	render(){
-
+		
 		return (
 			<Router basename={process.env.PUBLIC_URL}>
 				<div className="App">
@@ -25,7 +25,7 @@ class App extends Component {
 						<Route exact path="/contact" component={ContactUs} />
 						<Route exact path="/faqs" component={Faq} />
 						<Route path="/dashboard" component={Dashboard} />
-						
+						<Route exact path="/auth" component={Auth} />
 					</Switch>
 				</div>
 			</Router>

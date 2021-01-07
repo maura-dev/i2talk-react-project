@@ -34,7 +34,7 @@ function Footer () {
 						</ul>
 				</div>
 			</div>		
-			<div className="footer-bar"><p>i2talk &copy; 2020, All Rights Reserved.</p></div>
+			<div className="footer-bar"><p>i2talk &copy; 2021, All Rights Reserved.</p></div>
 		</footer>
 
 	)

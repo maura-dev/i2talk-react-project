@@ -6,48 +6,32 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import {GetNotes} from '../../../actions/idiaryActions'
+import axios from 'axios'
 
 class AllNotes extends Component{
 
-	state={
-		isSearching: false
-	}
-
 	componentDidMount(){
-		this.props.GetNotes()
-	}
+      	this.props.GetNotes()
+      	var bearerToken= localStorage.getItem("bearerToken")
 
-	onChange=()=>{
-		this.setState({
-			isSearching: true
+        var config = {
+		  method: 'get',
+		  url: 'https://i2talk.live/api/idairy',
+		  headers: { 
+		  	'Authorization': `Bearer ${bearerToken}` 
+		  }
+		};
+
+		axios(config)
+		.then(async (response)=>{
+		  await this.setState({
+		  	notes: response.data
+		  });
+		  localStorage.setItem("loggedUserDiary", JSON.stringify(response.data));
+		})
+		.catch(function (error) {
+		  console.log(error);
 		});
-
-		/*input= document.getElementById("searchInput").value
-	
-		input=input.toLowerCase()//CONVERTS THE SEARCH INPUT TO LOWER CASE
-			//allMessagez = iDairy.filter(x=>x.message.toLowerCase().includes(input))
-			document.getElementById("records").style.display="block"
-			document.getElementById("back-btn").style.display="block"
-			document.getElementById("top").style.display="none"
-			document.getElementById("top-heading").style.display="none"
-		
-			if(allMessagez==null||allMessagez==undefined){
-				document.getElementById("records").innerHTML=`<b> No notes found</b>`
-			}
-			
-			else{
-				displaySearchedMessages()
-				
-				if(allMessagez.length==1){
-				document.getElementById("records").innerHTML=`<b> 1 note found</b>`
-				}
-				else{
-				document.getElementById("records").innerHTML=`<b>${allMessagez.length} notes found</b>`
-				}
-			}
-				
-			})
-			});*/
 	}
 
 	render(){
@@ -71,7 +55,7 @@ class AllNotes extends Component{
 
 				<div id="messages">
 					{notes.map(note=>(
-						<Note key={note.id} note={note}/>)
+						<Note key={note.ID} note={note}/>)
 					)}
 				</div>
 

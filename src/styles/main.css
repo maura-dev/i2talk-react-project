@@ -57,6 +57,10 @@
   border: 1px solid var(--secondary-color);
   margin-right:10px;
 }
+
+#signup-modal{
+  display:block;
+}
 .hero_form {
   width: 80%;
   margin: 0 auto;

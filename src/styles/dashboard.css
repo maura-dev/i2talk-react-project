@@ -17,6 +17,7 @@
 .sidebar-icons-list {
 	list-style: none;
 	padding: 0 20px;
+	margin-top:40px;
 }
 
 .sidebar-icons-list li a i {

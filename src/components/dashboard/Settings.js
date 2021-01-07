@@ -4,6 +4,10 @@ import Headers from './dashboardComponents/headers';
 
 class Settings extends Component {
   render() {
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+    if(loggedUserDetails.bio===""){
+      loggedUserDetails.bio= "Hi, I'm new to the i2talk chatting platform"
+    }
     return (
       <div className="chat-container">
         <ChatMenu />
@@ -23,18 +27,18 @@ class Settings extends Component {
       
               <div className="settings-item">
                 <h3>Bio</h3>
-                <p id="profile-bio-details"></p>
+                <p id="profile-bio-details">{loggedUserDetails.bio}</p>
                 
               </div>
       
               <div className="settings-item">
                 <h3>Phone Number</h3>
-                <p id="profile-phone-number"></p>
+                <p id="profile-phone-number">{loggedUserDetails.phone}</p>
               </div>
       
               <div className="settings-item">
                 <h3>Location</h3>
-                <p id="profile-location"></p>
+                <p id="profile-location">{loggedUserDetails.state}, Nigeria</p>
               </div>
       
               <h2>Settings</h2>
