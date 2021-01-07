@@ -6,7 +6,7 @@ import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom';
 //import swal from 'sweetalert';
-import swal from '@sweetalert/with-react';
+import swal from 'sweetalert';
 class LogInForm extends Component {
 
   constructor() {
@@ -72,7 +72,9 @@ class LogInForm extends Component {
               })
 
               .catch((error)=> {
-                alert(error);
+                console.log(error);
+                error.status === 401 ? alert("Please signup first..."): alert (error);
+                // alert(error);
               });
               resetForm();
             }}

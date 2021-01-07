@@ -13,10 +13,10 @@ class Faq extends Component {
 
   componentDidMount(){
     axios.get('faq').then(
-      res=> this.setState({
+      res => this.setState({
         faqDetails: res.data.data
       }),
-      )
+    )
   }
   
 
