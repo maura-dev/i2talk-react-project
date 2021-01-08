@@ -1,90 +1,67 @@
 import React, {Component } from 'react';
 import ChatroomItem from '../dashboardComponents/ChatroomItem';
+import axios from 'axios';
 
 export default class AllChatrooms extends Component {
-    render(){
-      return(
-        <React.Fragment>
-          <div className="chatrooms-heading">
-            <h3 id="chatrooms-btn" onClick="showChatroomsPage()">Chat Rooms</h3>
-            <h3 id="active-btn" onClick="showActivePage()">Active (3)</h3>
-          </div>
-      
-          <div className="chatroom-page-body scrollbar" id="chatrooms-page">
+  
+  state= {
+    chatroomsList: []
+  }
 
+  componentDidMount(){
+    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    console.log(userDetails.data)
+
+    const accessToken = userDetails.data.accessToken;
+    console.log(accessToken);
+
+    var config = {
+      method: 'get',
+      url: 'https://i2talk.live/api/chatrooms',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      }
+    };
+    axios(config).then(
+      response =>
+        this.setState({
+          chatroomsList: response.data.data
+        }),
+    )
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
+  render(){
+    const { chatroomsList } = this.state;
+    console.log(chatroomsList)
+
+    return(
+      <React.Fragment>
+        <div className="chatrooms-heading">
+          <h3 id="chatrooms-btn" onClick="showChatroomsPage()">Chat Rooms</h3>
+          <h3 id="active-btn" onClick="showActivePage()">Active (3)</h3>
+        </div>
+    
+        <div className="chatroom-page-body scrollbar" id="chatrooms-page">
+          {console.log(chatroomsList)}
+          {chatroomsList.map (chatroomsListItem => 
             <ChatroomItem
-              name="fas fa-hashtag"
-              chatname="Trending"
-              text="Discussions about the latest, new and trending topics e.g #EndSars" 
+              key = {chatroomsListItem.ID}
+              chatroomsListItem = {chatroomsListItem}
             />
+          )}
 
-            <ChatroomItem
-              name="fas fa-praying-hands"
-              chatname="Faith"
-              text="Discussions on issues about religion e.g christianity, islam, etc." 
-            />
-            
-            <ChatroomItem
-              name="fas fa-futbol"
-              chatname="Sports"
-              text="Discussions on sports issues e.g football, basketball, olympics etc." 
-            />  
+        </div>
+    
+        <div id="active-page">
+          
 
-            <ChatroomItem
-              name="fas fa-icons"
-              chatname="Entertainment"
-              text="Discussions on entertainment issues e.g movies, music etc." 
-            />  
+        </div>
+      </React.Fragment>
 
-            <ChatroomItem
-              name="fas fa-tshirt"
-              chatname="Fashion"
-              text="Discussions on the latest fashion trends e.g alte fashion" 
-            />  
-
-            <ChatroomItem
-              name="fas fa-user-graduate"
-              chatname="Education"
-              text="Discussions on the latest school gist and scholarship opportunities" 
-            />  
-
-            <ChatroomItem
-              name="fas fa-laptop-code"
-              chatname="Technology"
-              text="Discussions on the latest technologies" 
-            />  
-
-            <ChatroomItem
-              name="fas fa-hand-holding-heart"
-              chatname="Advice"
-              text="Discussions on matters of the heart and heart-to-heart conversations" 
-            />  
-
-          </div>
-      
-          <div id="active-page">
-            <ChatroomItem
-              name="fas fa-hashtag"
-              chatname="Trending"
-              text="Discussions about the latest, new and trending topics e.g #EndSars" 
-            />
-
-            <ChatroomItem
-              name="fas fa-tshirt"
-              chatname="Fashion"
-              text="Discussions on the latest fashion trends e.g alte fashion" 
-            />
-
-            <ChatroomItem
-              name="fas fa-hand-holding-heart"
-              chatname="Advice"
-              text="Discussions on matters of the heart and heart-to-heart conversations" 
-            />    
-
-          </div>
-        </React.Fragment>
-
-      )
-    }
+    )
+  }
     
 }

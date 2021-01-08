@@ -41,7 +41,7 @@ class LogInForm extends Component {
                 .required('Please enter your password'),
             })}
 
-            onSubmit={async(values, { setSubmitting, resetForm }) => {
+            onSubmit={(values, { setSubmitting, resetForm }) => {
               this.setState({
                 ...this.state,
                 loading: true 

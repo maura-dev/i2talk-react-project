@@ -10,7 +10,7 @@ import DirectMsg from '../dashboard/DirectMsg';
 import ChatroomsCont from '../dashboard/ChatroomsCont';
 import Idiary from '../dashboard/Idiary';
 import Ischedule from '../dashboard/Ischedule';
-import Ireminder from '../dashboard/Ireminder';
+import Ireminder from '../dashboard/IreminderPages/Ireminder';
 import Isearch from '../dashboard/Isearch';
 import Profile from '../dashboard/Profile';
 import Settings from '../dashboard/Settings';
