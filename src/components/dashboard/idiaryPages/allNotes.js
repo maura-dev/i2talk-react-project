@@ -9,34 +9,39 @@ import {GetNotes} from '../../../actions/idiaryActions'
 import axios from 'axios'
 
 class AllNotes extends Component{
+	/*state={
+		notes:[]
+	}*/
 
 	componentDidMount(){
-      	this.props.GetNotes()
-      	var bearerToken= localStorage.getItem("bearerToken")
+      	//this.props.GetNotes()
+      	//alert(this.props)
+      	const accessToken=localStorage.getItem("bearerToken")
+      	//alert(accessToken)
 
         var config = {
 		  method: 'get',
 		  url: 'https://i2talk.live/api/idairy',
 		  headers: { 
-		  	'Authorization': `Bearer ${bearerToken}` 
+		  	'Authorization': `Bearer ${accessToken}` 
 		  }
 		};
-
+		//alert(JSON.stringify(config))
 		axios(config)
 		.then(async (response)=>{
-		  await this.setState({
-		  	notes: response.data
-		  });
-		  localStorage.setItem("loggedUserDiary", JSON.stringify(response.data));
+			await this.props.dispatch(GetNotes(response.data.data))
+
+		 
+		  localStorage.setItem("loggedUserDiary", JSON.stringify(response.data.data));
 		})
 		.catch(function (error) {
-		  console.log(error);
+		 	alert(error);
 		});
+		
 	}
 
 	render(){
-		//const {isSearching}= this.state
-		const {notes}= this.props
+		
 		return (
 			<React.Fragment>
 				<div className="top">
@@ -48,13 +53,18 @@ class AllNotes extends Component{
 					className="searchInput" 
 					/*value={search}*//>
 					<Link to="/dashboard/idiary/searchresults"><Button2 text="Search" /></Link>
-					<Link to="/dashboard/idiary/addnote"><Button1 text="Add New Note"/></Link>
+					{/*<Link to="/dashboard/idiary/addnote"><Button1 text="Add New Note"/></Link>*/}
 				</div>
+				<br />
+				<hr />
 
+				<Link to="/dashboard/idiary/addnote"><button className="shake" id="add-btn">
+                  <i className="fas fa-plus-circle"></i>
+                </button></Link>
 				<h3 id="top-heading">Saved Notes</h3>
 
-				<div id="messages">
-					{notes.map(note=>(
+				<div id="messages" className="scrollbar">
+					{this.props.notes.map(note=>(
 						<Note key={note.ID} note={note}/>)
 					)}
 				</div>
@@ -72,11 +82,7 @@ AllNotes.propTypes={
 }
 
 const mapStateToProps=(state)=>({
-	notes:state.notes.notes
+	notes:state.notes
 })
 
-/*const mapDispatchToProps=(dispatch)=>({
-	GetNotes: ()=> dispatch({type:GET_NOTES})
-})*/
-
-export default connect(mapStateToProps, { GetNotes })(AllNotes);
+export default connect(mapStateToProps)(AllNotes);

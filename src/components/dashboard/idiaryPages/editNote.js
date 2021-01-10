@@ -4,23 +4,42 @@ import Button2 from '../dashboardComponents/button2'
 import { EditNote } from '../../../actions/idiaryActions';
 //import {GetNotes} from '../../../actions/idiaryActions'
 import { connect } from 'react-redux';
+import axios from 'axios'
+import swal from '@sweetalert/with-react';
 
 class EditNotes extends Component{
 
 	state={
-		time: "",
-		message: "",
+		message:"" ,
 		errors:{}
 	}
 
 	componentDidMount(){
-		//console.log(this.props.editDetails)
+		const accessToken=localStorage.getItem("bearerToken")
+		const {ID} = this.props.match.params
+		var config = {
+		  method: 'get',
+		  url: `https://i2talk.live/api/idairy/${ID}`,
+		  headers: {
+		  	'Authorization': `Bearer ${accessToken}`
+		   }
+		};
 
-		 /*this.setState({
-	 		message: message,
-		 	errors:{} 
-		 });*/
-	}	
+		axios(config)
+		.then(async (response)=> {
+		  await console.log(response.data.data)
+		  //localStorage.setItem("currentDiary", response.data.data)
+		  const currentDiary=response.data.data;
+		  this.setState({
+		  	...this.state,
+		  	message: currentDiary[0].message,
+		  	errors:{}
+		  });
+		})
+		.catch(function (error) {
+		  alert(error);
+		});
+	}		
 
 	onChange=(e)=>{
 		this.setState({
@@ -30,9 +49,8 @@ class EditNotes extends Component{
 		document.getElementById("error").style.display="none"
 	}
 
-
-	submitNote=()=>{
-
+	editNote=()=>{
+		const accessToken=localStorage.getItem("bearerToken")
 		const { message }= this.state
 		//ERROR CHECKING
 		if(message===""){
@@ -43,23 +61,33 @@ class EditNotes extends Component{
 			return;
 		}
 
-		const {id} = this.props.match.params
-
+		const {ID} = this.props.match.params
 		const updNote={
-			id,
-			message,
-			time:"Last edited on " + new Date.toDateString() + "."
+			"message":message
 		}
 
-		
-		this.props.EditNote(updNote)
+		var config = {
+		  method: 'put',
+		  url: `https://i2talk.live/api/idairy/edit/${ID}`,
+		  headers: { 
+		  	'Authorization': `Bearer ${accessToken}` 
+		  },
+		  data : updNote
+		};
 
-		//CLEAR DETAILS IN THE FORM INPUT
-		this.setState({
-			message:"",
-			errors:{} 
+		axios(config)
+		.then(async (response)=> {
+			//const editedDiary=localStorage.getItem("currentDiary")
+			const updtNote= response.data.data
+			const editedNote= updtNote[0]
+			this.props.EditNote(editedNote)
+			this.props.history.push('/dashboard/idiary')
+			await swal("Yay!", "Your note has successfully been edited.", "success");
+		})
+		.catch(function (error) {
+		  alert(error);
 		});
-		this.props.history.push('/dashboard/idiary')
+
 	}
 
 	

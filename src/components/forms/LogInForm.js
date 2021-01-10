@@ -28,6 +28,7 @@ class LogInForm extends Component {
       <div className="hero_form" >
         <div className ="wrapper">
           <div className ="title">Login</div>
+          <br />
           <Formik
 
             initialValues={{ login: '', password: '' }}
@@ -41,7 +42,15 @@ class LogInForm extends Component {
                 .required('Please enter your password'),
             })}
 
-            onSubmit={(values, { setSubmitting, resetForm }) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+
+              //removes previous logged users details
+              /*localStorage.removeItem("userId")
+              localStorage.removeItem("bearerToken")
+              localStorage.removeItem("loggedUserDetails")
+              localStorage.removeItem("loggedUserDiary")*/
+              localStorage.clear()
+
               this.setState({
                 ...this.state,
                 loading: true 
@@ -54,12 +63,6 @@ class LogInForm extends Component {
                   loading:false 
                 });
 
-
-              //removes previous logged users details
-              localStorage.removeItem("userId")
-              localStorage.removeItem("bearerToken")
-              localStorage.removeItem("loggedUserDetails")
-              localStorage.removeItem("loggedUserDiary")
               const userDetails= response.data 
               //alert(JSON.stringify(userDetails))
 
@@ -72,6 +75,7 @@ class LogInForm extends Component {
                //stores logged user id in the local storage
               localStorage.setItem("userId", userDetails.data.userID)
               localStorage.setItem("bearerToken", userDetails.accessToken)
+              localStorage.setItem("isLoggedIn", userData.isLoggedIn)
         
               //sends the user details to the user reducer
               this.props.PostLogin(userData);

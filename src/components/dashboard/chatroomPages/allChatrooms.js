@@ -9,11 +9,12 @@ export default class AllChatrooms extends Component {
   }
 
   componentDidMount(){
-    const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-    console.log(userDetails.data)
+    //const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    //console.log(userDetails.data)
 
-    const accessToken = userDetails.data.accessToken;
-    console.log(accessToken);
+    //const accessToken = userDetails.data.accessToken;
+   // console.log(accessToken);
+   const accessToken=localStorage.getItem("bearerToken")//i changed the user details in the local storage to bearer token in the login form
 
     var config = {
       method: 'get',

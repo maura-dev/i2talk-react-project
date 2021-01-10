@@ -4,6 +4,8 @@ import Button2 from '../dashboardComponents/button2';
 import { AddNote } from '../../../actions/idiaryActions';
 import { connect } from 'react-redux';
 import TextArea from "../dashboardComponents/textArea"; 
+import swal from '@sweetalert/with-react';
+import axios from 'axios';
 
 class AddNotes extends Component{
 	state={
@@ -12,6 +14,7 @@ class AddNotes extends Component{
 	}
 
 	submitNote=(newNote)=>{
+		const accessToken=localStorage.getItem("bearerToken")
 		const { message }= this.state
 		//ERROR CHECKING
 		if(message===""){
@@ -24,19 +27,39 @@ class AddNotes extends Component{
 
 		//NEW NOTE OBJECT
 		newNote={
-			id: new Date(),
-			message: message,
-			time: new Date().toLocaleString()
+			"message": message
 		}
 
-		this.props.AddNote(newNote)
+		var config = {
+		  method: 'post',
+		  url: 'https://i2talk.live/api/idairy/add',
+		  headers: {
+		  	'Authorization': `Bearer ${accessToken}` 
+		  },
+		  data : newNote
+		};
 
-		//CLEAR DETAILS IN THE FORM INPUT
-		this.setState({
-			message:"",
-			errors:{} 
+		axios(config)
+		.then(async(response) => {
+			this.props.AddNote(newNote)
+
+			//CLEAR DETAILS IN THE FORM INPUT
+			this.setState({
+				message:"",
+				errors:{} 
+			});
+			await swal("Yay!", "Your new note is noted.", "success");
+			this.props.history.push('/dashboard/idiary')
+		  	console.log(JSON.stringify(response.data));
+		})
+		.catch((error) => {
+			if(error.status==="404"){
+		  		alert("your diary is empty")
+		  	}else{
+		  		alert(error);
+		 	}
+
 		});
-		this.props.history.push('/dashboard/idiary')
 	}
 
 	onChange=(e)=>{

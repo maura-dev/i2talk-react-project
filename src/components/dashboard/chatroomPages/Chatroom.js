@@ -60,15 +60,11 @@ const Chatroom = (props) => {
 
 				<div className="chat-head-menu">
 					<a>
-					<i className="fas fa-ellipsis-v" onClick={()=>{
-						this.setState({
-						viewMenu: true
-						})
-					}}>
+					<i className="fas fa-ellipsis-v">
 					</i></a>
 				</div>
 
-				{viewMenu ? (<ul className="" id="chat-menu-list">
+				<ul className="" id="chat-menu-list">
 					<li onClick={()=>{
 						this.props.history.goBack();
 						document.getElementById("chatroom").style.display="flex"
@@ -77,7 +73,7 @@ const Chatroom = (props) => {
 					<li>Mute notifications</li>
 					<li>Search</li>
 					<li>Report</li>
-				</ul>) : null}
+				</ul>
 
 			</div>
 

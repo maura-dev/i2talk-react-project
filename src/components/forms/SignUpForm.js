@@ -73,7 +73,7 @@ class SignUpForm extends Component {
                   }),
               })}
 
-              onSubmit={ (values, { setSubmitting, resetForm }) => {
+              onSubmit={ async(values, { setSubmitting, resetForm }) => {
                 localStorage.removeItem("verificationDetails")
                 this.setState({
                   ...this.state,
@@ -101,7 +101,7 @@ class SignUpForm extends Component {
                   data : newValues
                 };
 
-                axios(config)
+                await axios(config)
                 .then( (response)=> {
                   //changes the loader state to false
                   this.setState({
