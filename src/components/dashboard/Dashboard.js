@@ -22,29 +22,30 @@ import '../../styles/dashboard.css'
 
 import axios from'axios'
 class Dashboard extends Component {
-    componentDidMount(){
-      var loggedUserId= localStorage.getItem("userId")
-      var bearerToken= localStorage.getItem("bearerToken")
-      //alert(loggedUserId)
+  
+  componentDidMount(){
+    var loggedUserId= localStorage.getItem("userId")
+    var bearerToken= localStorage.getItem("bearerToken")
+    //alert(loggedUserId)
 
-        var config = {
-          method: 'get',
-          url: `https://i2talk.live/api/users/${loggedUserId}`,
-          headers: {
-            'Authorization': `Bearer ${bearerToken}` 
-           }
-        };
+    var config = {
+      method: 'get',
+      url: `https://i2talk.live/api/users/${loggedUserId}`,
+      headers: {
+        'Authorization': `Bearer ${bearerToken}` 
+      }
+    };
 
-        axios(config)
-        .then( async (response)=> {
-          await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
-          //alert(response.data)
-        })
-        .catch(function (error) {
-          alert(error);
-        });
-     
-    }
+    axios(config)
+    .then( async (response)=> {
+      await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
+      //alert(response.data)
+    })
+    .catch(function (error) {
+      alert(error);
+    });
+    
+  }
 
   render() {
     return (
@@ -54,6 +55,9 @@ class Dashboard extends Component {
           <SideBar />
           <Switch>
             <Route exact path="/dashboard/" component={DirectMsg} />
+            {/* <Route exact path="/dashboard/" render={(props) => (
+              <DirectMsg {...props} menu={menu} toggleMenu={this.toggleMenu} />)} 
+            /> */}
             <Route path="/dashboard/chatroomscont" component={ChatroomsCont} />
             <Route path="/dashboard/idiary" component={Idiary} />
             <Route exact path="/dashboard/ischedule" component={Ischedule} />

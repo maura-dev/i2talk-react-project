@@ -19,7 +19,16 @@ class Idiary extends Component {
 
           <div className="chat-message-container" id="user-msg-container">
 						<div className="dashboard-feature-container">
-							<Headers text="iDiary" />
+							<Headers 
+								text="iDiary"
+								img = {null}
+								display = "hide"
+								leave = {null} 
+								view = {null}
+								mute = {null} 
+								search = {null}
+								report = {null}
+							/>
 							
 							<Switch>
 								<Route exact path="/dashboard/idiary/" component={AllNotes} />

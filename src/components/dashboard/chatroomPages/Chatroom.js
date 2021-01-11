@@ -1,9 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
+import Headers from '../dashboardComponents/headers';
 import TextInput from '../dashboardComponents/textArea';
-import useChatroom from "./useChatroom";
+import axios from 'axios';
+import qs from 'qs';
+// import io from 'socket.io-client';
+import { socket } from '../socket'
+import { Formik, Form, Field } from 'formik';
+import * as Yup from 'yup';
 
-const Chatroom = (props) => {
-	// state={
+class Chatroom extends Component {
+	state = {
+		chatroomMsgs: [],
+		chatroomBot: []
+	}
+
+	// state = {
 	// 	viewMenu: false
 	// }
 
@@ -28,89 +39,163 @@ const Chatroom = (props) => {
   //     if (event.target.tagName.toLowerCase() !== 'textarea') return;
   //     autoExpand(event.target);
   //   }, false);
-  // }
+	// }
+	componentDidMount () {
+		// get user details from local storage
+		const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+		const accessToken = userDetails.accessToken;
+		const username = userDetails.data.username;
+		const userId = userDetails.data.userID;
+		
+		// get room ID from react router params
+		const roomId = this.props.match.params.chatroomid;
+		// get room name form current room object
+		const roomName = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).room;
 
-	const { chatroomId } = props.match.params;
-	const { messages, sendMessage } = useChatroom(chatroomId); // Creates a websocket and manages messaging
-	const [newMessage, setNewMessage] = React.useState(""); // Message to be sent
-	// const { viewMenu }= this.state	
-
-	const handleNewMessageChange = (event) => {
-    setNewMessage(event.target.value);
-  };
-
-  const handleSendMessage = () => {
-    sendMessage(newMessage);
-    setNewMessage("");
-	};
+		// declare configuration variable for getting chatroom messages
+		var config = {
+			method: 'get',
+			url: `https://i2talk.live/api/chatrooms/messages/${roomId}`,
+			headers: { 
+				'Authorization': `Bearer ${accessToken}`
+			}
+		};
+		// get chatroom messages and set state
+		axios(config).then(response => {
+			this.setState({chatroomMsgs: response.data.data})
+		})
+		.catch(function (error) {
+			console.log(error);
+		});	
+		// declare socket connection variable
+		// const socket = io("https://i2talk.live"
+		// , {
+		// 		withCredentials: true,
+		// 		extraHeaders: {
+		// 			"my-custom-header": "abcd"
+		// 		}
+		// 	}
+		// );
+		
+		// emit joinroom method
+		socket.emit ('joinRoom', {username, userId, roomName, roomId});
+		// activate welcome bot message
+		// socket.on('message', message => {
+		// 	console.log(message);
+		// 	this.setState({...this.state, chatroomBot: message})
+		// })
+	}
 	
-	return (
-		<div className="chat-message" id="user-direct-chat">
-			<div className="chat-header">
+	render () {
+		const { chatroomMsgs,  chatroomBot } = this.state;
 
-				<a className="message-back-arrow" onClick="showSideBar('user-chat-menu', 'user-direct-chat')"><i className="fas fa-long-arrow-alt-left"></i></a>
-				
-				<div className="chat-head-img">
-					<img src="/users/deven.jpg" />
-				</div>
+		// user details
+		const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+		const username = userDetails.data.username;
+		const userId = userDetails.data.userID;
 
-				<div className="chat-head-username">
-					<span id="Chatsheader"><h3>{chatroomId}</h3></span>
-				</div>
+		// chatroom details
+		const roomName = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).room;		;
 
-				<div className="chat-head-menu">
-					<a>
-					<i className="fas fa-ellipsis-v">
-					</i></a>
-				</div>
+		// activate welcome bot message
+		socket.on('message', message => {
+			console.log(message);
+			// this.setState({...this.state, chatroomBot: message})
+		})
 
-				<ul className="" id="chat-menu-list">
-					<li onClick={()=>{
-						this.props.history.goBack();
-						document.getElementById("chatroom").style.display="flex"
-					}}>Leave Room</li>
-					<li>View Members</li>
-					<li>Mute notifications</li>
-					<li>Search</li>
-					<li>Report</li>
-				</ul>
+		return (
+			<div className="chat-message" id="user-direct-chat">
+				<Headers
+					text =	{roomName}
+					img = "../../../img/dummy-profile.jpg"
+					display = "show"
+					leave = "Leave room" 
+					view = "View details" 
+					mute = {null} 
+					search = "Search messages"
+					report = {null}
+				/>
 
-			</div>
-
-			<div className="chat-body scrollbar" id="style-2">
-				<div className="messages-container">
-					<ol className="messages-list">
-						{messages.map((message, i) => (
-							<li
-								key={i}
-								className={`message-item ${
-									message.ownedByCurrentUser ? "my-message" : "received-message"
-								}`}
-							>
-								{message.body}
+				<div className="chat-body scrollbar" id="style-2">
+					<div className="messages-container">
+						<ol className="messages-list">
+							{chatroomMsgs.map(chatroomMsg => (
+								<li
+									key={chatroomMsg.ID}
+									className = {`chat-new ${chatroomMsg.userID === userId ? "mchat-msg-self" : "mchat-msg-other"}`}
+								>
+									{chatroomMsg.message}
+								</li>
+							)) }
+							<li>
+								{chatroomBot.text}
 							</li>
-						))}
-					</ol>
+						</ol>
+					</div>
+
 				</div>
-				{/* <div id="pmessages"></div>
 
-				<div id="messs"></div> */}
+				<div className="chat-form">
 
+					<Formik
+
+						initialValues={{ msg: '' }}
+
+						validationSchema = {Yup.object({
+							msg: Yup
+								.string()
+								.required()
+						})}
+
+						onSubmit = {(values, { setSubmitting, resetForm }) => {
+							setTimeout(() => {
+								alert(JSON.stringify(values, null, 2));
+								setSubmitting(false);
+							}, 400);
+							const message = values.msg;
+							console.log(message);
+							socket.emit ('chatMessage', message);
+
+							resetForm();
+						}}
+						>
+
+						{({ isSubmitting }) => (
+							<Form>
+								
+								<Field type="textarea" name="msg" as="textarea" className= "textScrollbar"/>
+
+								<button type="submit" disabled={isSubmitting} className="pmsg-btn">
+									<i className="far fa-paper-plane"></i>
+								</button>
+							</Form>
+						)}
+
+						</Formik>
+
+						{/* <TextInput 
+						value=""
+						// value={newMessage} 
+						id="pmsg-input" 
+						placeholder="Type message here ..." 
+						rows="1" 
+						// onChange={handleNewMessageChange} 
+						onChange 
+						className="textScrollbar"/>
+						
+						{/*<textarea id="pmsg-input" autoCapitalize= "sentences" autoComplete="on" placeholder="Type message here ..." rows="1" required></textarea>*/}
+						
+						{/* <button 
+						// onClick={handleSendMessage} 
+						onClick 
+						><i className="far fa-paper-plane"></i></button> */}
+
+				</div>
 			</div>
-
-			<div className="chat-form">
-
-				<form id="pmessageForm">
-					<TextInput value={newMessage} id="pmsg-input" placeholder="Type message here ..." rows="1" onChange={handleNewMessageChange} className="textScrollbar"/>
-					
-					{/*<textarea id="pmsg-input" autoCapitalize= "sentences" autoComplete="on" placeholder="Type message here ..." rows="1" required></textarea>*/}
-					
-					<button onChlick={handleSendMessage} className="pmsg-btn"><i className="far fa-paper-plane"></i></button>
-				</form>
-
-			</div>
-		</div>
-	)
+		)
+	}
+	
+	
 }
 
 export default Chatroom;
