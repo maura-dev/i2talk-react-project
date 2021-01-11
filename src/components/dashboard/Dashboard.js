@@ -39,7 +39,7 @@ class Dashboard extends Component {
     axios(config)
     .then( async (response)=> {
       await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
-      //alert(response.data)
+      //alert(JSON.stringify(response.data))
     })
     .catch(function (error) {
       alert(error);

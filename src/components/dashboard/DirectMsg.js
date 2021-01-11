@@ -4,6 +4,10 @@ import TextInput from './dashboardComponents/textArea';
 import Headers from './dashboardComponents/headers';
 
 class DirectMsg extends Component {
+
+  componentDidMount(){
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+  }
   
   onChange=(e)=>{
     var autoExpand = function (field) {
@@ -25,10 +29,11 @@ class DirectMsg extends Component {
   }
 
   render() {
-    console.log(this.props);
-    const userDetails= JSON.parse(localStorage.getItem("userDetails"));
-    console.log(userDetails.data);
-    const loggedUserDetails = userDetails.data;
+    //console.log(this.props);
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+    //alert(JSON.stringify(loggedUserDetails))
+    //console.log(userDetails.data);
+    //const loggedUserDetails = userDetails.data;
 
     return (
       <div className="chat-container">
@@ -37,8 +42,7 @@ class DirectMsg extends Component {
         <div className="chat-message-container" id="user-msg-container">
           <div className="chat-message" id="user-direct-chat">
             <Headers
-              text = {loggedUserDetails.username}
-              img = {loggedUserDetails.dp}
+              
               display = "show"
               leave = {null} 
               view="View profile details" 
