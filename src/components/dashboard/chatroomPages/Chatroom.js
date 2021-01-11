@@ -188,7 +188,7 @@ class Chatroom extends Component {
 						{/* <button 
 						// onClick={handleSendMessage} 
 						onClick 
-						><i className="far fa-paper-plane"></i></button> */} */}
+						><i className="far fa-paper-plane"></i></button> */}
 
 				</div>
 			</div>

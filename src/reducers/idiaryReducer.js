@@ -1,26 +1,17 @@
 import { GET_NOTES, DELETE_NOTE, ADD_NOTE, EDIT_NOTE} from '../actions/types';
 
-const initialState={
+//const initialState={}
 
-	notes: []
-}
-
-export default function(state=initialState, action){
+export default function (state=[], action){
 	switch (action.type){
     case GET_NOTES:
-      return {...state};
+      return action.notes;
 
     case DELETE_NOTE:
-      return {
-      	...state,
-      	notes: state.notes.filter(note=> note.ID!==action.payload)
-      }
+      return state.filter(note=>note.ID!==action.payload)
 
       case ADD_NOTE:
-      return {
-      	...state,
-  		notes:[action.payload, ...state.notes]
-      }
+      return [action.payload, ...state ]
 
       /*case SEARCHED_NOTES:
       return {
@@ -29,12 +20,10 @@ export default function(state=initialState, action){
       }*/
 
       case EDIT_NOTE:
-      return {
-        ...state,
-        notes: state.notes.map(note=>
-           note.id===action.payload.id ? (note=action.payload) : note 
+      return state.map(note=>
+           note.ID===action.payload.ID ? (note=action.payload) : note 
           )
-      }
+    
     default:
       return state;
   }

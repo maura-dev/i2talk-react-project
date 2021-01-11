@@ -5,41 +5,9 @@ import axios from 'axios';
 // import ReactDOM from "react-dom";
 
 export default class AllChatrooms extends Component {
-  
-  // state= {
-  //   chatroomsList: []
-  // }
-
-  // componentDidMount(){
-  //   // const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-
-  //   // const accessToken = userDetails.data.accessToken;
-  //   // console.log(accessToken);
-
-  //   var config = {
-  //     method: 'get',
-  //     url: 'https://i2talk.live/api/chatrooms',
-  //     // headers: {
-  //     //   'Authorization': `Bearer ${accessToken}`
-  //     // }
-  //   };
-  //   axios(config)
-  //   .then((response) =>{
-  //     this.setState({chatroomsList: response.data.data})
-  //   })
-
-  //   .catch((error) => {
-  //     console.log(error);
-  //   });
-
-  // }
 
   render(){
     const { chatroomsList } = this.props;
-    // console.log(chatroomsList);
-    // chatroomsList.map (chatroomsListItem =>
-    //   localStorage.setItem("chatroomDetails", JSON.stringify(chatroomsListItem))
-    // )
 
     return(
       <React.Fragment>

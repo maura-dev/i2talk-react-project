@@ -5,14 +5,14 @@ import axios from 'axios'
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom';
-//import swal from 'sweetalert';
 import swal from 'sweetalert';
 class LogInForm extends Component {
 
   constructor() {
     super();
     this.state = {
-      redirect: false
+        redirect: false,
+        loading:false
     }
   }
 
@@ -22,10 +22,13 @@ class LogInForm extends Component {
             return <Redirect to='/dashboard' />
         }
 
+    const { loading }= this.state
+
     return(
       <div className="hero_form" >
         <div className ="wrapper">
           <div className ="title">Login</div>
+          <br />
           <Formik
 
             initialValues={{ login: '', password: '' }}
@@ -39,46 +42,55 @@ class LogInForm extends Component {
                 .required('Please enter your password'),
             })}
 
-            onSubmit={async(values, { setSubmitting, resetForm }) => {
+            onSubmit={async (values, { setSubmitting, resetForm }) => {
+
+              //removes previous logged users details
+              /*localStorage.removeItem("userId")
+              localStorage.removeItem("bearerToken")
+              localStorage.removeItem("loggedUserDetails")
+              localStorage.removeItem("loggedUserDiary")*/
+              localStorage.clear()
+
+              this.setState({
+                ...this.state,
+                loading: true 
+              });
               
               await axios.post('login', values)
               .then((response)=> {
-              
-                localStorage.setItem("userDetails", JSON.stringify(response.data))
-                const userDetails= response.data;
-                this.props.PostLogin(userDetails);
+                this.setState({
+                  ...this.state,
+                  loading:false 
+                });
 
-                this.setState({ redirect: true })
-                swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
+              const userDetails= response.data 
+              //alert(JSON.stringify(userDetails))
 
-                  //removes previous logged users details
-                localStorage.removeItem("userId")
-                localStorage.removeItem("bearerToken")
-                localStorage.removeItem("loggedUserDetails")
-                localStorage.removeItem("loggedUserDiary")
-                // const userDetails= response.data 
-                //alert(JSON.stringify(userDetails))
+              //data to be sent to the user actions reducer
+              const userData={
+                user: userDetails.data,
+                isLoggedIn: true
+              }
 
-                //data to be sent to the user actions reducer
-                const userData={
-                  user: userDetails.data,
-                  isLoggedIn: true
-                }
+               //stores logged user id in the local storage
+              localStorage.setItem("userId", userDetails.data.userID)
+              localStorage.setItem("bearerToken", userDetails.accessToken)
+              localStorage.setItem("isLoggedIn", userData.isLoggedIn)
+        
+              //sends the user details to the user reducer
+              this.props.PostLogin(userData);
 
-                //stores logged user id in the local storage
-                localStorage.setItem("userId", userDetails.data.userID)
-                localStorage.setItem("bearerToken", userDetails.accessToken)
-          
-                //sends the user details to the user reducer
-                this.props.PostLogin(userData);
+              swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
 
-                swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
-
-                this.setState({ redirect: true })
+              this.setState({...this.state, redirect: true })
 
               })
 
               .catch((error)=> {
+                this.setState({
+                  ...this.state,
+                  loading: false 
+                });
                 console.log(error);
                 error.status === 401 ? alert("Please signup first..."): alert (error);
                 // alert(error);
@@ -93,13 +105,13 @@ class LogInForm extends Component {
                   <Field type="login" name="login" />
                   <label htmlFor="login">Username, Email or Phone</label>
                 </div>
-                <ErrorMessage name="login" component="div" />
+                <ErrorMessage name="login" component="p" className="form-errors"/>
 
                 <div className='field'>
                   <Field type="password" name="password" />
                   <label htmlFor="password">Password</label>
                 </div>
-                <ErrorMessage name="password" component="div" />
+                <ErrorMessage name="password" component="p" className="form-errors"/>
 
                 <div className="content">
                   <div className="checkbox">
@@ -110,7 +122,7 @@ class LogInForm extends Component {
                 </div>
 
                 <button type="submit" style={{marginBottom: "20px"}}>
-                  Submit
+                  {loading ? (<i className="fa fa-spinner fa-spin"></i>) : "Submit"}
                 </button>
               </Form>
             )}

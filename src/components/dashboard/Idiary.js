@@ -33,7 +33,7 @@ class Idiary extends Component {
 							<Switch>
 								<Route exact path="/dashboard/idiary/" component={AllNotes} />
 								<Route exact path="/dashboard/idiary/addnote" component={AddNotes} />
-								<Route exact path="/dashboard/idiary/editnote/:id" component={EditNotes} />
+								<Route exact path="/dashboard/idiary/editnote/:ID" component={EditNotes} />
 								<Route exact path="/dashboard/idiary/searchresults" component={SearchedNotes} />               
 							</Switch>	
 						
