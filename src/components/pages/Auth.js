@@ -99,7 +99,7 @@ export default class Auth extends Component{
 				                  			"accessToken" : verificationDeets,
 				                  			"type": values.auth
 										   
-										}
+														}
 
 										var config = {
 										  method: 'post',

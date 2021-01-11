@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
 import ChatMenu from './ChatMenu';
-import Headers from './dashboardComponents/headers';
+import Headers from './dashboardComponents/headers';// import component images
+import DummyDp from '../../img/users/male.png';
 
 class Settings extends Component {
   render() {
-    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
-    if(loggedUserDetails.bio===""){
-      loggedUserDetails.bio= "Hi, I'm new to the i2talk chatting platform"
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+
+    if (loggedUserDetails.bio === "") {
+      loggedUserDetails.bio = "Hi, I'm new to the i2talk chatting platform"
     }
+
     return (
       <div className="chat-container">
         <ChatMenu />
@@ -15,11 +18,22 @@ class Settings extends Component {
         <div className="chat-message-container" id="user-msg-container">
         
           <div className="dashboard-feature-container" id="style-2">
-            <Headers text="Settings" />
+            <Headers 
+              text="Settings"
+              img = {null}
+              display = "hide"
+              leave = {null} 
+              view = {null}
+              mute = {null} 
+              search = {null}
+              report = {null} 
+            />
       
             <div className="settings-main-container scrollbar" id="settings-main">
               <div className="profile-block">
-                <div id="settings-profile-box"></div>
+                <div id="settings-profile-box">
+                  <img src={DummyDp} alt="Profile"/>
+                </div>
                 <button className="button" onClick="showProfilePage()"><i className="far fa-edit">&nbsp;</i>&nbsp;Edit Profile</button>
               </div>
       

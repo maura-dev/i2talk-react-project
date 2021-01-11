@@ -9,12 +9,12 @@ import swal from 'sweetalert';
 class LogInForm extends Component {
 
   constructor() {
-        super();
-        this.state = {
-            redirect: false,
-            loading:false
-        }
+    super();
+    this.state = {
+        redirect: false,
+        loading:false
     }
+  }
 
   render () {
 

@@ -3,17 +3,20 @@ import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { addReminder } from '../../../actions/ireminderActions';
-import { v4 as uuid } from 'uuid';
+// import { editReminder } from '../../../actions/ireminderActions';
 
-class IreminderForm extends Component {
+class EditForm extends Component {
+
   render() {
+
     const today = new Date(Date.now());
+    const { remindNote, time } = this.state;
+
     return (
       <div>
         <Formik
 
-          initialValues={{ remindNote: '', time: '' }}
+          initialValues = {{ remindNote: {remindNote}, time: {time} }}
           
           validationSchema = {Yup.object({
             remindNote: Yup
@@ -30,13 +33,14 @@ class IreminderForm extends Component {
             (values, { resetForm }) => {
               const correctTime = values.time;
               correctTime.slice(-6, -5);
-              const newReminder = {
-                id: uuid(),
+              const updReminder = {
                 remindNote: values.remindNote,
                 time: correctTime
               };
 
-              this.props.addReminder(newReminder);
+              const { id } = this.props.match.params;
+
+              // this.props.editReminder(updReminder);
               resetForm();
             }
           }
@@ -66,8 +70,9 @@ class IreminderForm extends Component {
   }
 }
 
-IreminderForm.propTypes = {
-  addReminder: PropTypes.func.isRequired
-}
+// EditForm.propTypes = {
+//   editReminder: PropTypes.func.isRequired
+// }
 
-export default connect(null, { addReminder })( IreminderForm);
+// export default connect(null, { editReminder })( IreminderForm);
+export default  EditForm;

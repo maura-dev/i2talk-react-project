@@ -10,9 +10,9 @@ class ChatroomItem extends Component {
 			chatRoomName,
 			chatRoomDesc 
 		} = this.props.chatroomsListItem;
-	
+		
 		return (
-			<Link to={`/dashboard/chatroomscont/chatroom/${ID}`}>
+			<Link to={`/dashboard/chatroomscont/chatroom/${ID}?room=${chatRoomName}`}>
 				<div className="chatrooms-items">
 					<span>
 						<i className=" "></i>
