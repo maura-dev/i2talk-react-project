@@ -21,9 +21,8 @@ class IreminderBody extends Component{
 			<React.Fragment>
 				<div className="ireminder-body">
 					<h3>Reminder List</h3>
-					{console.log(reminders)}
 					{reminders.map(reminder =>
-						<Reminder key={reminder.id} reminder={reminder} />
+						<Reminder key={reminder.id} reminder={reminder} showEdit={this.props.showEdit}/>
 					)}
 		  	</div>
 			</React.Fragment>

@@ -12,7 +12,7 @@ class Reminder extends Component{
       <div className="ireminder-item">
         <div className="ireminder-head">
           <p>{time}</p>
-          <i className="far fa-pen edit"></i>
+          <i className="far fa-pen edit" onClick={this.props.showEdit}></i>
           <i className="far fa-trash-alt delete"></i>
         </div>
         <div className="ireminder-msg">

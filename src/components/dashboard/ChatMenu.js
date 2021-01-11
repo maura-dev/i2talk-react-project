@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 // import react router link 
 import { Link } from 'react-router-dom';
-
+// import component images
+import DummyDp from '../../img/users/male.png';
 class ChatMenu extends Component {
   render() {
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+    
     return (
       <div className="chat-menu">
 
         <div className="chat-menu-head">
           <div className="chat-menu-profile">
             <div className="chat-menu-open side-bar-profile"> 
-              <Link to="/dashboard/profile" id="menu-profile"> </Link>
+              <Link to="/dashboard/profile">
+                <img src={DummyDp} alt=""/>
+              </Link>
             </div>
             
-            <Link to="/dashboard/isearch" className="tooltip"><i className="fas fa-search fa-1x"></i><span className="tooltiptext">iSearch</span></Link>
+            <Link to="/dashboard/isearch" className="tooltip">
+              <i className="fas fa-search fa-1x"></i>
+              <span className="tooltiptext">iSearch</span>
+            </Link>
             
             <div className="tooltip">
               <Link to="#"><i className="far fa-comment-dots"></i></Link>

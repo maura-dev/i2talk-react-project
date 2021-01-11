@@ -3,8 +3,8 @@ import { ADD_USER } from '../actions/types'
 const initialState = {
   userData:{
     user: [],
-  isLoggedIn: false
-}
+    isLoggedIn: false
+  }
 }
 export default function(state = initialState, action) {
 

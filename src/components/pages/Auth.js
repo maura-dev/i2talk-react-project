@@ -84,7 +84,7 @@ export default class Auth extends Component{
 				                  			"accessToken" : verificationDeets,
 				                  			"type": values.auth
 										   
-										}
+														}
 
 										//alert(JSON.stringify(data))
 										//alert(verificationDeets.accessToken)

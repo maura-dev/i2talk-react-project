@@ -26,6 +26,16 @@
 	margin: 1rem 0;
 }
 
+/* Ellipsis Menu */
+
+.show{
+  display:block;
+}
+
+.hide{
+  display:none;
+}
+
 /* Chat Dashboard Container */
 
 .chat-container {
@@ -109,11 +119,9 @@
 	display: none;
 }
 .side-bar-profile {
-	/* background: var(--bg-color); */
+	padding: 4px 10px 2px;
+	font-size: 10px;
 	color: var(--primary-color);
-	padding: 14px 10px 6px 10px;
-	text-align: center;
-	font-size: 12px;
 }
 .side-menu {
 	margin-top: auto;
@@ -181,7 +189,7 @@
 }
 .chat-menu-head {
 	background: var(--bg-color-alt);
-	padding: 5px 10px;
+	padding: 3px 10px;
 	height: 15%;
 	/*min-height: 150px;*/ 
 }
@@ -197,21 +205,20 @@
 	margin: 0;
 }
 
-
 .chat-menu-open p:hover {
 	text-decoration: underline;
 	margin: 0;
 }
 .chat-menu-open {
 	cursor: pointer;
-	box-sizing: content-box;
 	width: 25%;
 }
-.chat-menu-profile a {
-	color: var(--primary-color);
+.chat-menu-open a{
+	width: 50%;
 }
-.chat-menu-profile a:last-of-type {
-	margin-right: 10px;
+.chat-menu-open a img{
+	width: 70%;
+	border-radius: 50%;
 }
 .tooltip {
 	position: relative;
@@ -256,7 +263,6 @@
 .chat-head-img {
 	height: 70px;
 	width: 70px;
-	display: flex;
 	align-items: center;
 	margin-left: 20px;
 }
@@ -279,7 +285,7 @@
 }
 
 .chat-header ul {
-	display: block;
+	/* display: block; */
 	position: relative;
 	top: 0;
 	z-index: 2;
@@ -289,7 +295,6 @@
 	background-color: var(--bg-color-alt);
 	list-style: none;
 	border-radius: 0 0 0 10px;
-	/* text-align: ; */
 }
 .chat-header ul li {
 	position: relative;
@@ -436,28 +441,31 @@
 	font-size: 0.8rem;
 }
 
-#chat-new {
-	display: inline-block;
-	position: relative;
-	max-width: 50%;
-	background-color:var(--secondary-color);
-	color: white;
+.chat-new {
+	display: block;
 	padding: 10px 14px;
 	margin: 10px;
-	z-index: 0;
-	border-radius: 1em 1em 0 1em;
 }
-#chat-new p {
-	margin: 2px;
-}
+
 .mchat-msg-self {
 	text-align: right;
+	/* background-color: #eff2fd; */
+	background-color: #bbc8f6;
+	color: var(--primary-color);
 	list-style-type: none;
+	max-width: 50%;
+	margin-left: auto;
+	border-radius: 1em 1em 0 1em;
 }
 
 .mchat-msg-other {
 	text-align: left;
+	background-color:var(--secondary-color);
+	color: white;
 	list-style-type: none;
+	max-width: 50%;
+	margin-right: auto;
+	border-radius: 1em 1em 1em 0;
 }
 
 .chat-box-msg p {
@@ -666,12 +674,22 @@
 	width: 70%;
 	margin: 10px auto 0;
 	border: 2px solid var(--primary-color);
+	/* border: none; */
 	border-radius: 6px 6px 0 0;
 	padding: 10px;
+	overflow: auto;
+	outline: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	resize: none;
+  /* box-shadow: 0px 15px 20px rgba(0,0,0,0.1); */
 }
- 
+
+.ireminder-input input:focus,
 .ireminder-input textarea:focus {
 	border: none;
+	box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
 }
 .ireminder-input input {
 	width: 70%;
@@ -679,11 +697,12 @@
 	border-radius: 0 0 6px 6px;
 	color: var(--primary-color);
 	padding: 2px 8px;
+	outline: none;
 }
-::-webkit-calendar-picker-indicator {
+/* ::-webkit-calendar-picker-indicator {
   cursor: pointer;
   filter: invert(1);
-}
+} */
 
 form p {
 	font-size: 12px;
@@ -727,20 +746,24 @@ form p {
 }
 
 .ireminder-item {
-	border: 1px solid var(--primary-color);
+	/* border: 1px solid var(--primary-color); */
 	width: 70%;
 	margin: 20px auto;
 	border-radius: 10px;
-	-webkit-box-shadow: 0px 6px 30px -22px rgba(3,4,94,1);
+	box-shadow: 0px 15px 20px rgba(0,0,0,0.1);
+	/* -webkit-box-shadow: 0px 6px 30px -22px rgba(3,4,94,1);
 	-moz-box-shadow: 0px 6px 30px -22px rgba(3,4,94,1);
-	box-shadow: 0px 6px 30px -22px rgba(3,4,94,1);
+	box-shadow: 0px 6px 30px -22px rgba(3,4,94,1); */
 }
 
 .ireminder-head {
 	display: flex;
 	font-size: 10px;
 	justify-content: space-around;
-	border-bottom: 2px solid var(--primary-color);
+	border: 2px solid var(--primary-color);
+	border-radius: 6px 6px 0 0;
+	background-color: var(--primary-color);
+	color: var(--bg-color);
 }
 
 .ireminder-head p {
@@ -757,7 +780,7 @@ form p {
 	color: #fff;
 }
 .edit:hover {
-	background-color: var(--primary-color);
+	background-color: var(--secondary-color);
 	color: #fff;
 }
 

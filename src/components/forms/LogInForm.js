@@ -10,11 +10,11 @@ import swal from 'sweetalert';
 class LogInForm extends Component {
 
   constructor() {
-        super();
-        this.state = {
-            redirect: false
-        }
+    super();
+    this.state = {
+      redirect: false
     }
+  }
 
   render () {
 
@@ -56,7 +56,7 @@ class LogInForm extends Component {
                 localStorage.removeItem("bearerToken")
                 localStorage.removeItem("loggedUserDetails")
                 localStorage.removeItem("loggedUserDiary")
-                const userDetails= response.data 
+                // const userDetails= response.data 
                 //alert(JSON.stringify(userDetails))
 
                 //data to be sent to the user actions reducer

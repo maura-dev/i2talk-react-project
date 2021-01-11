@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import ChatMenu from './ChatMenu';
 import TextInput from './dashboardComponents/textArea';
+import Headers from './dashboardComponents/headers';
 
 class DirectMsg extends Component {
-
+  
   onChange=(e)=>{
     var autoExpand = function (field) {
 
@@ -24,37 +25,31 @@ class DirectMsg extends Component {
   }
 
   render() {
+    console.log(this.props);
+    const userDetails= JSON.parse(localStorage.getItem("userDetails"));
+    console.log(userDetails.data);
+    const loggedUserDetails = userDetails.data;
+
     return (
       <div className="chat-container">
         <ChatMenu />
 
         <div className="chat-message-container" id="user-msg-container">
           <div className="chat-message" id="user-direct-chat">
-            <div className="chat-header">
-
-              <a className="message-back-arrow" onClick="showSideBar('user-chat-menu', 'user-direct-chat')"><i className="fas fa-long-arrow-alt-left"></i></a>
-              
-              <div className="chat-head-img">
-                <img src="/users/deven.jpg" />
-              </div>
-
-              <div className="chat-head-username">
-                <span id="Chatsheader"></span>
-              </div>
-
-          {/*<ul className="" id="chat-menu-list">
-            <li>View Members</li>
-            <li>Mute notifications</li>
-            <li>Search</li>
-            <li>Report</li>
-          </ul>
-*/}
-        </div>
+            <Headers
+              text = {loggedUserDetails.username}
+              img = {loggedUserDetails.dp}
+              display = "show"
+              leave = {null} 
+              view="View profile details" 
+              mute={null} 
+              search={null} 
+              report="report user"
+            />
 
             <div className="chat-body scrollbar" id="style-2">
               
               <div id="pmessages"></div>
-
               <div id="messs"></div>
 
             </div>
@@ -71,7 +66,6 @@ class DirectMsg extends Component {
             </div>
           </div>
         </div>
-      
       </div>
     )
   }

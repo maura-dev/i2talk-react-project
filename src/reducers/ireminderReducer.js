@@ -1,4 +1,4 @@
-import { GET_REMINDER, ADD_REMINDER } from '../actions/types';
+import { GET_REMINDER, ADD_REMINDER, EDIT_REMINDER } from '../actions/types';
 
 const initialState = {
 	reminders:[
@@ -21,13 +21,13 @@ export default function (state = initialState, action){
         reminders:[action.payload, ...state.reminders]
       }
 
-      // case EDIT_REMINDER:
-      // return {
-      //   ...state,
-      //   reminders: state.reminders.map(reminder=>
-      //     reminder.id === action.payload.id ? (reminder = action.payload ) : reminder
-      //   )
-      // }
+    case EDIT_REMINDER:
+      return {
+        ...state,
+        reminders: state.reminders.map(reminder =>
+          reminder.id === action.payload.id ? (reminder = action.payload ) : reminder
+        )
+      }
     default:
       return state;
   }
