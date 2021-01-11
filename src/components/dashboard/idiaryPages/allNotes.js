@@ -1,23 +1,22 @@
 import React, {Component} from 'react';
 import Note from '../dashboardComponents/Note'
 import Button1 from '../dashboardComponents/button1'
-import Button2 from '../dashboardComponents/button2'
-import { Link } from 'react-router-dom';
+///import { Redirect } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types'
 import {GetNotes} from '../../../actions/idiaryActions'
 import axios from 'axios'
 
 class AllNotes extends Component{
-	/*state={
-		notes:[]
-	}*/
+	state={
+		isLoading:true,
+		isSearching: false,
+		search:""
+	}
 
 	componentDidMount(){
-      	//this.props.GetNotes()
-      	//alert(this.props)
       	const accessToken=localStorage.getItem("bearerToken")
-      	//alert(accessToken)
 
         var config = {
 		  method: 'get',
@@ -26,10 +25,13 @@ class AllNotes extends Component{
 		  	'Authorization': `Bearer ${accessToken}` 
 		  }
 		};
-		//alert(JSON.stringify(config))
+
 		axios(config)
 		.then(async (response)=>{
 			await this.props.dispatch(GetNotes(response.data.data))
+			this.setState({
+				isLoading: false
+			});
 
 		 
 		  localStorage.setItem("loggedUserDiary", JSON.stringify(response.data.data));
@@ -40,10 +42,28 @@ class AllNotes extends Component{
 		
 	}
 
-	render(){
+	onChange=(e)=>{
 		
+		this.setState({
+			[e.target.name]: e.target.value,
+		});
+	}
+
+	handleClick=()=>{
+		this.setState({
+			isSearching: true
+		});
+	}
+
+	render(){
+			const { isLoading,search } = this.state
+
+			if (this.state.isSearching) {
+            return <Redirect to={`/dashboard/idiary/searchresults/${search}`} />
+        }
 		return (
 			<React.Fragment>
+
 				<div className="top">
 					<input type="text" 
 					name="search" 
@@ -51,26 +71,26 @@ class AllNotes extends Component{
 					onChange={this.onChange} 
 					id="searchInput"
 					className="searchInput" 
-					/*value={search}*//>
-					<Link to="/dashboard/idiary/searchresults"><Button2 text="Search" /></Link>
-					{/*<Link to="/dashboard/idiary/addnote"><Button1 text="Add New Note"/></Link>*/}
+					value={search}/>
+					<Button1 text="Search" onClick={this.handleClick}/>
+
 				</div>
 				<br />
 				<hr />
-
 				<Link to="/dashboard/idiary/addnote"><button className="shake" id="add-btn">
-                  <i className="fas fa-plus-circle"></i>
-                </button></Link>
-				<h3 id="top-heading">Saved Notes</h3>
+	                  <i className="fas fa-plus-circle"></i>
+	                </button>
+	            </Link>
+	                
+	            <h3 id="top-heading">Saved Notes</h3>
 
-				<div id="messages" className="scrollbar">
+				{isLoading ?  (<i className="fa fa-spinner fa-spin" style={{fontSize:"50px",margin:"20% 30% 20% 45%", color:"var(--primary-color)"}}></i>) :
+				(<div id="messages" className="scrollbar">
 					{this.props.notes.map(note=>(
 						<Note key={note.ID} note={note}/>)
 					)}
-				</div>
-
-		  	</React.Fragment>
-
+				</div>)}
+			</React.Fragment>
 		)
 	}
 	
