@@ -6,7 +6,7 @@ import allUserReducers from './allUserReducers';
 import usersReducer from './usersReducer';
 import idiaryReducer from './idiaryReducer';
 import ireminderReducer from './ireminderReducer';
-import menuReducer from './menuReducer'
+import menuReducer from './menuReducer';
 
 const rootReducer = combineReducers({
   Users: usersReducer,

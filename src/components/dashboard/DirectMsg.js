@@ -27,6 +27,7 @@ class DirectMsg extends Component {
   render() {
     console.log(this.props);
     const userDetails= JSON.parse(localStorage.getItem("userDetails"));
+    
     console.log(userDetails.data);
     const loggedUserDetails = userDetails.data;
 
