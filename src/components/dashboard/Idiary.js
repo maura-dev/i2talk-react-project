@@ -5,7 +5,7 @@ import ChatMenu from './ChatMenu';
 import AddNotes from  './idiaryPages/addNote';
 import EditNotes from  './idiaryPages/editNote';
 import AllNotes from './idiaryPages/allNotes';
-import SearchedNotes from './idiaryPages/searchedNotes';
+import SearchedNotes from './idiaryPages/searchedNotes'
 
 class Idiary extends Component {
 
@@ -25,7 +25,7 @@ class Idiary extends Component {
 								<Route exact path="/dashboard/idiary/" component={AllNotes} />
 								<Route exact path="/dashboard/idiary/addnote" component={AddNotes} />
 								<Route exact path="/dashboard/idiary/editnote/:ID" component={EditNotes} />
-								<Route exact path="/dashboard/idiary/searchresults" component={SearchedNotes} />               
+								<Route exact path="/dashboard/idiary/searchresults/:search" component={SearchedNotes} />              
 							</Switch>	
 						
 						</div>

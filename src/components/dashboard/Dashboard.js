@@ -15,7 +15,6 @@ import Isearch from '../dashboard/Isearch';
 import Profile from '../dashboard/Profile';
 import Settings from '../dashboard/Settings';
 import AdminPanel from '../dashboard/adminPages/AdminPanel';
-//import axios from 'axios'
 import RecipeSearch from '../dashboard/recipeSearch';
 
 // import page styling

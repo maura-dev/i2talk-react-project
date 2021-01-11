@@ -5,7 +5,8 @@ import axios from 'axios';
 export default class AllChatrooms extends Component {
   
   state= {
-    chatroomsList: []
+    chatroomsList: [],
+    isLoading:true
   }
 
   componentDidMount(){
@@ -26,7 +27,8 @@ export default class AllChatrooms extends Component {
     axios(config).then(
       response =>
         this.setState({
-          chatroomsList: response.data.data
+          chatroomsList: response.data.data,
+          isLoading:false
         }),
     )
     .catch(function (error) {
@@ -35,7 +37,7 @@ export default class AllChatrooms extends Component {
   }
 
   render(){
-    const { chatroomsList } = this.state;
+    const { chatroomsList, isLoading } = this.state;
     console.log(chatroomsList)
 
     return(
@@ -45,7 +47,8 @@ export default class AllChatrooms extends Component {
           <h3 id="active-btn" onClick="showActivePage()">Active (3)</h3>
         </div>
     
-        <div className="chatroom-page-body scrollbar" id="chatrooms-page">
+        {isLoading ?  (<i className="fa fa-spinner fa-spin" style={{fontSize:"50px",margin:"20% 30% 20% 45%", color:"var(--primary-color)"}}></i>) : 
+        (<div className="chatroom-page-body scrollbar" id="chatrooms-page">
           {console.log(chatroomsList)}
           {chatroomsList.map (chatroomsListItem => 
             <ChatroomItem
@@ -54,7 +57,7 @@ export default class AllChatrooms extends Component {
             />
           )}
 
-        </div>
+        </div>)}
     
         <div id="active-page">
           
