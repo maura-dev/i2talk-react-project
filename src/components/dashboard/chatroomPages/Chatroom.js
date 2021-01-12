@@ -42,8 +42,7 @@ class Chatroom extends Component {
 	// }
 	componentDidMount () {
 		// get user details from local storage
-		const userDetails = JSON.parse(localStorage.getItem("userDetails"));
-		const accessToken = userDetails.accessToken;
+		const accessToken=localStorage.getItem("bearerToken")
 		const username = userDetails.data.username;
 		const userId = userDetails.data.userID;
 		
@@ -67,41 +66,27 @@ class Chatroom extends Component {
 		.catch(function (error) {
 			console.log(error);
 		});	
-		// declare socket connection variable
-		// const socket = io("https://i2talk.live"
-		// , {
-		// 		withCredentials: true,
-		// 		extraHeaders: {
-		// 			"my-custom-header": "abcd"
-		// 		}
-		// 	}
-		// );
 		
+		// activate welcome bot message
+		socket.on('message', message => {
+			console.log(message);
+			// this.setState({...this.state, chatroomBot: message})
+		})
 		// emit joinroom method
 		socket.emit ('joinRoom', {username, userId, roomName, roomId});
-		// activate welcome bot message
-		// socket.on('message', message => {
-		// 	console.log(message);
-		// 	this.setState({...this.state, chatroomBot: message})
-		// })
+		
 	}
 	
 	render () {
 		const { chatroomMsgs,  chatroomBot } = this.state;
 
 		// user details
-		const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+		const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
 		const username = userDetails.data.username;
 		const userId = userDetails.data.userID;
 
 		// chatroom details
-		const roomName = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).room;		;
-
-		// activate welcome bot message
-		socket.on('message', message => {
-			console.log(message);
-			// this.setState({...this.state, chatroomBot: message})
-		})
+		const roomName = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).room;
 
 		return (
 			<div className="chat-message" id="user-direct-chat">
@@ -111,7 +96,7 @@ class Chatroom extends Component {
 					display = "show"
 					leave = "Leave room" 
 					view = "View details" 
-					mute = {null} 
+					mute = {null}
 					search = "Search messages"
 					report = {null}
 				/>

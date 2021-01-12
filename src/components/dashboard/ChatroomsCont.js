@@ -14,7 +14,7 @@ class ChatroomsCont extends Component {
     chatroomsList: []
   }
   componentDidMount(){
-    // const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    // const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
 
     // const accessToken = userDetails.data.accessToken;
     // console.log(accessToken);
