@@ -42,9 +42,10 @@ class Chatroom extends Component {
 	// }
 	componentDidMount () {
 		// get user details from local storage
-		const accessToken=localStorage.getItem("bearerToken")
-		const username = userDetails.data.username;
-		const userId = userDetails.data.userID;
+		const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
+		const accessToken = localStorage.getItem("bearerToken")
+		const username = userDetails.username;
+		const userId = userDetails.userID;
 		
 		// get room ID from react router params
 		const roomId = this.props.match.params.chatroomid;
@@ -82,8 +83,9 @@ class Chatroom extends Component {
 
 		// user details
 		const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
-		const username = userDetails.data.username;
-		const userId = userDetails.data.userID;
+		//const accessToken = localStorage.getItem("bearerToken")
+		const username = userDetails.username;
+		const userId = userDetails.userID;
 
 		// chatroom details
 		const roomName = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).room;
@@ -148,7 +150,7 @@ class Chatroom extends Component {
 						{({ isSubmitting }) => (
 							<Form>
 								
-								<Field type="textarea" name="msg" as="textarea" className= "textScrollbar"/>
+								<Field type="textarea" name="msg" as="textarea" className= "textScrollbar" id="chatroom-textarea"/>
 
 								<button type="submit" disabled={isSubmitting} className="pmsg-btn">
 									<i className="far fa-paper-plane"></i>

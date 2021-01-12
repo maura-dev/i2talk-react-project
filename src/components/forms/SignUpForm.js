@@ -111,8 +111,9 @@ class SignUpForm extends Component {
 
                   //saves accesstoken to be used for authentication
                   localStorage.setItem("verificationDetails", response.data.accessToken)
-                  const newUserDetails= response.data 
-                  swal(`Congrats ${newUserDetails.data.username}!`, "You successfully created an account!\n Proceed to authenticate your account", "success");
+                  //const newUserDetails= response.data 
+                  //alert(JSON.stringify(response.data))
+                  swal("Signup successful!", "Proceed to authenticate your account", "success");
                   this.setState({...this.state, redirect: true })
                 })
                 .catch( (error)=> {

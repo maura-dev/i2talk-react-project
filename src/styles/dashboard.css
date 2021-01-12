@@ -538,11 +538,14 @@
 	justify-content: center;
 	align-items: center;
 }
-.chat-form form textarea {
+.chat-form form textarea,
+#chatroom-textarea {
 	width: 100%;
 }
 .chat-form form textarea:focus,
-.chat-form form textarea:hover {
+.chat-form form textarea:hover,
+#chatroom-textarea:focus,
+#chatroom-textarea:hover {
 	outline: none;
 	background-color: var(--bg-color-alt);
 }

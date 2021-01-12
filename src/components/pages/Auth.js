@@ -13,7 +13,8 @@ export default class Auth extends Component{
 	state = {
     otp: '',
     isAuthenticated: false,
-    loading: false
+    loading:false,
+    otploading: false
   };
 
   handleChange = otp => this.setState({ otp });
@@ -21,7 +22,7 @@ export default class Auth extends Component{
   onClick=()=>{
   	this.setState({
   		...this.state,
-  		loading:true 
+  		otploading:true 
   	});
   	const passcode =this.state.otp
   	const token= localStorage.getItem('token')
@@ -46,14 +47,14 @@ export default class Auth extends Component{
 	   this.setState({
 	   	...this.state,
 	   	isAuthenticated:true,
-	   	loading:false
+	   	otploading:false
 	   });
 
 	})
-	.catch(function (error) {
-		this.setState({
+	.catch(async (error)=> {
+		await this.setState({
 			...this.state,
-			loading:false 
+			otploading:false 
 		});
 	  alert(error);
 	});
@@ -66,7 +67,7 @@ export default class Auth extends Component{
             )
         }
 
-        const { loading }= this.state
+        const { loading, otploading }= this.state
 		
 		return(
 			<React.Fragment>
@@ -136,8 +137,8 @@ export default class Auth extends Component{
 			                  	 {({ isSubmitting }) => (
 			              			<Form>
 			                			<div className='field'>
-						                  <Field name="auth" as="select">
-						                  	<option value="none">--Select Authentication Option--</option>
+						                  <Field name="auth" as="select" id="auth-select">
+						                  	<option value="none">----Select Authentication Option----</option>
 										   <option value="sms">SMS</option>
 										   <option value="call">Call</option>
 										   <option value="email">Email</option>  
@@ -169,7 +170,7 @@ export default class Auth extends Component{
 					          value={this.state.otp}
 					        />
 					        <button className="otp-auth-button" onClick={this.onClick}>
-					        	{loading ? (<i className="fa fa-spinner fa-spin"></i>) : "Submit"}
+					        	{otploading ? (<i className="fa fa-spinner fa-spin"></i>) : "Submit"}
 					        </button>
 				    </div>
 				</div>

@@ -17,7 +17,7 @@ class Ireminder extends Component {
 
   render() {
     
-		const { editForm } = this.state;
+		//const { editForm } = this.state;
     return (
       <div className="chat-container">
         <ChatMenu />
@@ -36,9 +36,9 @@ class Ireminder extends Component {
               report = {null} 
             />
 
-            {
+           {/* {
               editForm ? <EditForm /> : <IreminderForm />
-            }
+            }*/}
 
             <IreminderForm />
 
