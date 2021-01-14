@@ -45,10 +45,6 @@ class LogInForm extends Component {
             onSubmit={async (values, { setSubmitting, resetForm }) => {
 
               //removes previous logged users details
-              /*localStorage.removeItem("userId")
-              localStorage.removeItem("bearerToken")
-              localStorage.removeItem("loggedUserDetails")
-              localStorage.removeItem("loggedUserDiary")*/
               localStorage.clear()
 
               this.setState({
@@ -105,7 +101,7 @@ class LogInForm extends Component {
                   <Field type="login" name="login" />
                   <label htmlFor="login">Username, Email or Phone</label>
                 </div>
-                <ErrorMessage name="login" component="p" className="form-errors"/>
+                <ErrorMessage name="login" component="p" className="form-errors" />
 
                 <div className='field'>
                   <Field type="password" name="password" />

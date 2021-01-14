@@ -9,6 +9,7 @@ import Faq from './components/pages/faq';
 import Exercise from './components/pages/Exercise';
 import Dashboard from './components/dashboard/Dashboard';
 import Auth from './components/pages/Auth'
+import Activation from './components/pages/activation'
 // stylesheets
 // import 'bootstrap/dist/css/bootstrap.min.css';
 //import ProtectedRoute from './protectedRoute'
@@ -27,6 +28,7 @@ class App extends Component {
 						<Route exact path="/exercise" component={Exercise} />
 						<Route path="/dashboard" component={Dashboard} />
 						<Route exact path="/auth" component={Auth} />
+						<Route exact path="/activation/:token" component={Activation} />
 					</Switch>
 				</div>
 			</Router>

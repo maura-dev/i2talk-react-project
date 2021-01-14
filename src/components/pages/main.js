@@ -43,6 +43,10 @@ class Main extends Component {
 				<Header />
 					<div>
 
+						<h2 style={{textAlign:"center", marginTop:"20px"}}>
+							A web-based messaging app with focus on efficiency and convenience.
+						</h2>
+
 						<div className="hero">
 							<HeroBox showForm={this.showForm}/>
 							<LogInForm />
@@ -57,7 +61,7 @@ class Main extends Component {
 							</div>
 							
 							<div className="two user-j">
-								<h3>Get Started...</h3>
+								<h2>Get Started...</h2>
 								<div className="userjny">
 									<Card 
 									source={UserJImg1}

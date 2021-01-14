@@ -13,7 +13,7 @@ class HeroBox extends Component{
 				</div>
 
 				<div className="hero_text-box2">
-					<p>A web-based messaging app with focus on efficiency and convenience.</p>
+					<h3>Enjoy limitless communication with amazing features that take your breath away.</h3>
 				</div>
 
 				<div className="hero_text-btn">
