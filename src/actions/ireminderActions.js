@@ -1,7 +1,11 @@
 // import {REMINDER_ITEM} from 'types';
 import {GET_REMINDER} from './types';
 import {ADD_REMINDER} from './types';
-// import {EDIT_REMINDER} from './types';
+import {TOGGLE_EDIT} from './types';
+
+export const ToggleEdit = () => {
+  return {type: TOGGLE_EDIT}
+}
 
 // export const reminderItem = () => {
 //   return {type: REMINDER_ITEM, payload: reminderId}

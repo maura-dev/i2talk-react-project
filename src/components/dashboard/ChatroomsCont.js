@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import ChatMenu from './ChatMenu';
 import axios from 'axios';
-
-
-/*import AllChatrooms from './chatroomPages/allChatrooms';
-import Chatroom from './chatroomPages/Chatroom';*/
 import AllChatrooms from './chatroomPages/allChatrooms';
 import Chatroom from './chatroomPages/Chatroom';
 
@@ -14,7 +10,7 @@ class ChatroomsCont extends Component {
     chatroomsList: []
   }
   componentDidMount(){
-    // const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    // const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
 
     // const accessToken = userDetails.data.accessToken;
     // console.log(accessToken);
@@ -51,8 +47,6 @@ class ChatroomsCont extends Component {
             <div className ="dashboard-feature-container" >
 
               <Switch>
-                {/* <Route exact path="/dashboard/chatroomscont/" component={AllChatrooms} /> */}
-
                 <Route exact path="/dashboard/chatroomscont/" render={(props) => (
                   <AllChatrooms {...props} chatroomsList={chatroomsList} />)} 
                 />

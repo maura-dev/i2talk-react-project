@@ -2,7 +2,7 @@ import React from 'react';
 import EllipsisMenu from './EllipsisMenu';
 //import './././styles/dashboard.css'
 
-export default function Headers({text, id, img, display, leave, view, mute, search, report }){
+export default function Headers({text, id, img, display, back, leave, view, mute, search, report }){
 		return (
 			<nav className="title-bar" id={id}>
 
@@ -16,16 +16,15 @@ export default function Headers({text, id, img, display, leave, view, mute, sear
 
 				<h2>{text}</h2>
 
-				<span>
-					<EllipsisMenu 
-						display ={display}
-						leave={leave} 
-						view={view} 
-						mute={mute} 
-						search={search} 
-						report={report}
-					/>
-				</span>
+				<EllipsisMenu 
+					display ={display}
+					back={back}
+					leave={leave} 
+					view={view} 
+					mute={mute} 
+					search={search} 
+					report={report}
+				/>
 					
 			</nav>
 		)

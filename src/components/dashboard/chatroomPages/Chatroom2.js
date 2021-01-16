@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Headers from '../dashboardComponents/headers';
+
 import useChatroom from "./useChatroom";
 import useTyping from "./useTyping";
 import NewMessageForm from "./NewMessageForm";
 import TypingMessage from "./TypingMessage";
+
 import qs from 'qs';
 import Moment from 'react-moment';
 
-const Chatroom = ( props ) => {
+const Chatroom2 = ( props ) => {
   // get room ID from react router params
   const roomId = props.match.params.chatroomid;
   // get room name form current room object
@@ -105,8 +107,7 @@ const Chatroom = ( props ) => {
       ></NewMessageForm>
     </div>
   )
-
 	
 }
 
-export default Chatroom;
+export default Chatroom2;

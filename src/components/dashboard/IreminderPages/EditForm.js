@@ -10,13 +10,12 @@ class EditForm extends Component {
   render() {
 
     const today = new Date(Date.now());
-    const { remindNote, time } = this.state;
 
     return (
       <div>
         <Formik
 
-          initialValues = {{ remindNote: {remindNote}, time: {time} }}
+          initialValues = {{ remindNote: "", time: "" }}
           
           validationSchema = {Yup.object({
             remindNote: Yup
@@ -50,7 +49,7 @@ class EditForm extends Component {
             <Form>
               <div className="ireminder-form">
                 <div className="ireminder-input">
-                  <Field as="textarea" name="remindNote" placeholder="Remind me of..."/>
+                  <Field as="textarea" name="remindNote" placeholder="Please edit me..."/>
                   <ErrorMessage name="remindNote" component="p" />
                   
                   <Field type="datetime-local" name="time" />

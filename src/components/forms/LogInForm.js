@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { AddLogin } from '../../actions/allUserActions';
 import axios from 'axios'
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import Error from './Error'
 import { Redirect } from 'react-router-dom';
 import swal from 'sweetalert';
 class LogInForm extends Component {
@@ -19,10 +20,10 @@ class LogInForm extends Component {
   render () {
 
     if (this.state.redirect) {
-            return <Redirect to='/dashboard' />
-        }
+        return <Redirect to='/dashboard' />
+    }
 
-    const { loading }= this.state
+    const { loading }= this.state;
 
     return(
       <div className="hero_form" >
@@ -107,7 +108,10 @@ class LogInForm extends Component {
                   <Field type="password" name="password" />
                   <label htmlFor="password">Password</label>
                 </div>
-                <ErrorMessage name="password" component="p" className="form-errors"/>
+                <div>
+                  <ErrorMessage name="password" component="p"/>
+                </div>
+                
 
                 <div className="content">
                   <div className="checkbox">

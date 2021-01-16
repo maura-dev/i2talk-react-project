@@ -16,14 +16,14 @@ class AllNotes extends Component{
 	}
 
 	componentDidMount(){
-      	const accessToken=localStorage.getItem("bearerToken")
+		const accessToken=localStorage.getItem("bearerToken")
 
-        var config = {
-		  method: 'get',
-		  url: 'https://i2talk.live/api/idairy',
-		  headers: { 
-		  	'Authorization': `Bearer ${accessToken}` 
-		  }
+		var config = {
+			method: 'get',
+			url: 'https://i2talk.live/api/idairy',
+			headers: { 
+				'Authorization': `Bearer ${accessToken}` 
+			}
 		};
 
 		axios(config)
@@ -56,11 +56,11 @@ class AllNotes extends Component{
 	}
 
 	render(){
-			const { isLoading,search } = this.state
+			const { isLoading, search } = this.state
 
 			if (this.state.isSearching) {
-            return <Redirect to={`/dashboard/idiary/searchresults/${search}`} />
-        }
+				return <Redirect to={`/dashboard/idiary/searchresults/${search}`} />
+			}
 		return (
 			<React.Fragment>
 
@@ -78,11 +78,11 @@ class AllNotes extends Component{
 				<br />
 				<hr />
 				<Link to="/dashboard/idiary/addnote"><button className="shake" id="add-btn">
-	                  <i className="fas fa-plus-circle"></i>
-	                </button>
-	            </Link>
+						<i className="fas fa-plus-circle"></i>
+					</button>
+				</Link>
 	                
-	            <h3 id="top-heading">Saved Notes</h3>
+	      <h3 id="top-heading">Saved Notes</h3>
 
 				{isLoading ?  (<i className="fa fa-spinner fa-spin" style={{fontSize:"50px",margin:"20% 30% 20% 45%", color:"var(--primary-color)"}}></i>) :
 				(<div id="messages" className="scrollbar">
