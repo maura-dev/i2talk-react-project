@@ -9,6 +9,7 @@ class EllipsisMenu extends Component {
     const {
       menu,
       display,
+      back,
       leave,
       view,
       mute,
@@ -26,9 +27,7 @@ class EllipsisMenu extends Component {
         <ul className={ menu? "show": "hide" } 
         // id="chat-menu-list"
         >
-          <li onClick={()=>{
-            this.props.history.goBack();
-          }} className={leave===null? "hide": "show"}>{leave}</li>
+          <li onClick={back} className={leave===null? "hide": "show"}>{leave}</li>
           <li className={view===null? "hide": "show"}>{view}</li>
           <li className={mute===null? "hide": "show"}>{mute}</li>
           <li className={search===null? "hide": "show"}>{search}</li>
@@ -42,7 +41,7 @@ class EllipsisMenu extends Component {
 
 EllipsisMenu.propTypes = {
   ToggleMenu: PropTypes.func.isRequired,
-  menu: PropTypes.object.isRequired
+  menu: PropTypes.bool.isRequired
 }
 
 const mapStateToProps = (state) => ({

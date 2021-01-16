@@ -10,19 +10,19 @@ export default function (state=[], action){
     case DELETE_NOTE:
       return state.filter(note=>note.ID!==action.payload)
 
-      case ADD_NOTE:
+    case ADD_NOTE:
       return [action.payload, ...state ]
 
-      /*case SEARCHED_NOTES:
-      return {
-        ...state,
-        notes: state.notes.filter(note=> note.id!==action.payload)
-      }*/
+    /*case SEARCHED_NOTES:
+    return {
+      ...state,
+      notes: state.notes.filter(note=> note.id!==action.payload)
+    }*/
 
-      case EDIT_NOTE:
+    case EDIT_NOTE:
       return state.map(note=>
-           note.ID===action.payload.ID ? (note=action.payload) : note 
-          )
+        note.ID===action.payload.ID ? (note=action.payload) : note 
+      )
     
     default:
       return state;

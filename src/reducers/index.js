@@ -1,4 +1,4 @@
-import { applyMiddleware, compose, combineReducers, createStore } from 'redux';
+import { combineReducers } from 'redux';
 // import thunk from 'redux-thunk';
 // import loginReducer from './loginReducer';
 // import { combineReducers } from 'redux';
@@ -11,6 +11,8 @@ import menuReducer from './menuReducer';
 const rootReducer = combineReducers({
   Users: usersReducer,
   reminders: ireminderReducer,
+  editForm: ireminderReducer,
+  reminder: ireminderReducer,
   userData: allUserReducers,
   notes: idiaryReducer,
   menu: menuReducer

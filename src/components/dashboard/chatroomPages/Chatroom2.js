@@ -9,7 +9,7 @@ import TypingMessage from "./TypingMessage";
 import qs from 'qs';
 import Moment from 'react-moment';
 
-const Chatroom = ( props ) => {
+const Chatroom2 = ( props ) => {
   // get room ID from react router params
   const roomId = props.match.params.chatroomid;
   // get room name form current room object
@@ -110,4 +110,4 @@ const Chatroom = ( props ) => {
 	
 }
 
-export default Chatroom;
+export default Chatroom2;

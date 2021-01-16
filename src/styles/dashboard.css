@@ -448,13 +448,27 @@
 }
 
 .chat-new {
-	display: block;
-	padding: 10px 14px;
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	padding: 8px 10px;
 	margin: 10px;
+}
+.msg-head {
+	width: 100%;
+	font-weight: bold;
+	font-size: 11px;
+	padding-bottom: 6px;
+}
+
+.msg-time {
+	/* width: 100%; */
+	align-self: flex-end;
+	font-size: 10px;
 }
 
 .mchat-msg-self {
-	text-align: right;
+	text-align: left;
 	/* background-color: #eff2fd; */
 	background-color: #bbc8f6;
 	color: var(--primary-color);
@@ -472,6 +486,10 @@
 	max-width: 50%;
 	margin-right: auto;
 	border-radius: 1em 1em 1em 0;
+}
+
+.mchat-msg-other .msg-time {
+	text-align: right;
 }
 
 .chat-box-msg p {
@@ -578,7 +596,7 @@
 	top: 0; */
 	color: var(--primary-color);
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	/*padding: 0px 14px;*/
 	align-items: center;
 	/* margin-bottom: 10px; */
@@ -586,13 +604,37 @@
 	height: 15%;
 }
 
-.title-bar > span >i{
-	font-size: 25px;
+.title-bar h2 {
+	width: 80%;
+}
+
+.title-bar > i {
+	font-size: 18px;
 	margin-left: 10px;
 }
 
-.title-bar > span >i:hover{
-	font-size: 30px;
+.title-bar > i:hover{
+	font-size: 24px;
+}
+
+.title-bar ul {
+	width: 50%;
+	margin-left: auto;
+	align-self: flex-end;
+	background: var(--primary-color);
+	color: var(--bg-color);
+	z-index: 2;
+	padding: 6px 4px;
+}
+
+.title-bar ul li {
+	padding: 10px;
+}
+
+.title-bar ul li:hover {
+	background : var(--secondary-color);
+	color: (var--primary-color);
+	transition: all 0.8s;
 }
 
 .dashboard-feature-container{
@@ -1130,6 +1172,7 @@ form p {
 	color: var(--bg-color);
 }
 
+
 /*.chatrooms-container{
 	overflow-y: scroll;
 }
@@ -1174,6 +1217,77 @@ form p {
 
 #active-page{
 	display:none;
+}
+
+/* Typing Message */
+.message-item {
+  display: flex;
+  margin: 8px auto;
+}
+
+.message-avatar-container {
+  align-self: flex-end;
+  margin: 0px 8px;
+}
+
+.message-avatar {
+  vertical-align: middle;
+  border-radius: 50%;
+
+  height: 28px;
+  width: 28px;
+}
+
+/* Typing Animation */
+.dotsContainer {
+  width: 60px;
+  height: 25px;
+  background: #f2f2f2;
+  border-radius: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dot1,
+#dot2,
+#dot3 {
+  width: 7px;
+  height: 7px;
+  background: #cacaca;
+  border-radius: 50%;
+  margin: 3px;
+  transition: all 0.5s ease-in-out;
+  animation: typing 1s infinite;
+}
+
+#dot1 {
+  animation-delay: 1s;
+}
+
+#dot2 {
+  animation-delay: 0.5s;
+}
+
+#dot3 {
+  animation-delay: 0.8s;
+}
+
+@keyframes typing {
+  0% {
+    transform: translateY(0);
+    transition: all 0.5s ease-in-out;
+  }
+
+  50% {
+    transform: translateY(-5px);
+    transition: all 0.5s ease-in-out;
+  }
+
+  100% {
+    transform: translateY(0);
+    transition: all 0.5s ease-in-out;
+  }
 }
 
 
