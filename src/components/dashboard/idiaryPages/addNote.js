@@ -3,7 +3,7 @@ import Button1 from '../dashboardComponents/button1';
 import Button2 from '../dashboardComponents/button2';
 import { AddNote } from '../../../actions/idiaryActions';
 import { connect } from 'react-redux';
-import TextArea from "../dashboardComponents/textArea"; 
+import TextInput from "../dashboardComponents/textArea"; 
 import swal from '@sweetalert/with-react';
 import axios from 'axios';
 
@@ -95,7 +95,7 @@ class AddNotes extends Component{
 		return (
 			<div className="addNew">
 				<p style={{color:'red', textAlign:'center'}}><i id="error" className="fas fa-exclamation-circle"></i> &nbsp;{errors.message}</p>
-				<TextArea 
+				<TextInput 
 				placeholder="Enter your new note ..." 
 				name="message" 
 				className="messageInput textScrollbar"

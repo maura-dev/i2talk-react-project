@@ -16,6 +16,7 @@ import Profile from '../dashboard/Profile';
 import Settings from '../dashboard/Settings';
 import AdminPanel from '../dashboard/adminPages/AdminPanel';
 import RecipeSearch from '../dashboard/recipeSearch';
+import PrivateChat from '../dashboard/privateChat';
 
 // import page styling
 import '../../styles/dashboard.css'
@@ -58,6 +59,7 @@ class Dashboard extends Component {
             {/* <Route exact path="/dashboard/" render={(props) => (
               <DirectMsg {...props} menu={menu} toggleMenu={this.toggleMenu} />)} 
             /> */}
+             <Route exact path="/dashboard/directmsg/:receiver" component={PrivateChat} />
             <Route path="/dashboard/chatroomscont" component={ChatroomsCont} />
             <Route path="/dashboard/idiary" component={Idiary} />
             <Route exact path="/dashboard/ischedule" component={Ischedule} />

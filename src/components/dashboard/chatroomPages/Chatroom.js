@@ -22,24 +22,25 @@ class Chatroom extends Component {
 	// 	document.getElementById("chatroom").style.display="none"
 	// }
 
-	// onChange=(e)=>{
-  //   var autoExpand = function (field) {
+	/* onChange=(e)=>{
+     	var autoExpand = function (field) {
 
-  //   // Reset field height
-  //   field.style.height = 'inherit';
+	    // Reset field height
+	    field.style.height = 'inherit';
 
-  //   // Calculate the height
-  //   var height = field.scrollHeight + 5
-                 
-  //   field.style.height = height + 'px';
+	    // Calculate the height
+	    var height = field.scrollHeight + 5
+	                 
+	    field.style.height = height + 'px';
 
-  //   };
+	    };
 
-  //   document.addEventListener('input', function (event) {
-  //     if (event.target.tagName.toLowerCase() !== 'textarea') return;
-  //     autoExpand(event.target);
-  //   }, false);
-	// }
+	    document.addEventListener('input', function (event) {
+	      if (event.target.tagName.toLowerCase() !== 'textarea') return;
+	      autoExpand(event.target);
+	    }, false);
+	}*/
+
 	componentDidMount () {
 		// get user details from local storage
 		const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
@@ -164,7 +165,11 @@ class Chatroom extends Component {
 						{({ isSubmitting }) => (
 							<Form>
 								
-								<Field type="textarea" name="msg" as="textarea" className= "textScrollbar" id="chatroom-textarea"/>
+								<Field type="textarea" 
+								name="msg" 
+								as="textarea" 
+								className= "textScrollbar" 
+								id="chatroom-textarea" />
 
 								<button type="submit" disabled={isSubmitting} className="pmsg-btn">
 									<i className="far fa-paper-plane"></i>

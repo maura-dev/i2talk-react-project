@@ -674,15 +674,17 @@
 
 .search-btn{
 	padding:5px 0px 5px 0px;
-	border:1px solid var(--primary-color);
-	width:33.33%;
+	border:1px solid var(--bg-color-alt);
+	width:33.34%;
 	text-align:center;
+	background-color: var(--primary-color);
+	color:#fff;
 }
 
 .search-btn:hover,
 .search-btn:focus{
-	background-color: var(--primary-color);
-	color:#fff;
+	background-color: var(--bg-color-alt);
+	color:var(--primary-color);
 }
 
 #iSearch-result {
@@ -1225,6 +1227,18 @@ form p {
 
 #active-page{
 	display:none;
+}
+#chatroom-textarea{
+
+	font-family: 'Roboto', Tahoma, 'Geneva', Verdana, sans-serif;
+	max-height: 30vh;
+	resize: none;
+	padding: 10px;
+	background: #fff;
+	border: 2px solid var(--primary-color);
+	border-radius: 20px;
+	transition: background 0.8s ease-in;
+	height:40px;
 }
 
 

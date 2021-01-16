@@ -3,6 +3,7 @@ import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';
 import axios from 'axios';
 import swal from '@sweetalert/with-react';
+import { Link } from 'react-router-dom'
 //import Button1 from './dashboardComponents/button1'
 //import Button2 from './dashboardComponents/button2';
 
@@ -195,6 +196,8 @@ onChange=(e)=>{
     });
   }
 
+  
+
 
   render() {
     const {loading, search,number, searchResults}= this.state
@@ -253,8 +256,8 @@ onChange=(e)=>{
                             <h4>{user.state}, Nigeria</h4>
                           </div>
                           <div className= "searchResults-btn">
-                            <button className="pmsg-btn"><i className="fas fa-user-circle"></i></button>
-                            <button className="pmsg-btn"><i className="far fa-paper-plane"></i></button>
+                            <button className="pmsg-btn" ><i className="fas fa-user-circle"></i></button>
+                            <Link to={`/dashboard/directmsg/${user.username}`}><button className="pmsg-btn"><i className="far fa-paper-plane"></i></button></Link>
                           </div>
                         </div>
                     </div>)

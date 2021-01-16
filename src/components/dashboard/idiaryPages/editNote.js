@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button1 from '../dashboardComponents/button1'
 import Button2 from '../dashboardComponents/button2'
 import { EditNote } from '../../../actions/idiaryActions';
-//import {GetNotes} from '../../../actions/idiaryActions'
+import TextInput from "../dashboardComponents/textArea"; 
 import { connect } from 'react-redux';
 import axios from 'axios'
 import swal from '@sweetalert/with-react';
@@ -42,6 +42,24 @@ class EditNotes extends Component{
 	}		
 
 	onChange=(e)=>{
+
+		 var autoExpand = function (field) {
+
+	    // Reset field height
+	    field.style.height = 'inherit';
+
+	    // Calculate the height
+	    var height = field.scrollHeight + 5
+	                 
+	    field.style.height = height + 'px';
+
+	    };
+
+	    document.addEventListener('input', function (event) {
+	      if (event.target.tagName.toLowerCase() !== 'textarea') return;
+	      autoExpand(event.target);
+	    }, false);
+	    
 		this.setState({
 			[e.target.name]: e.target.value,
 			errors:{}
@@ -98,11 +116,13 @@ class EditNotes extends Component{
 		return (
 			<div className="editNew">
 				<p style={{color:'red', textAlign:'center'}}><i id="error" className="fas fa-exclamation-circle"></i> &nbsp;{errors.message}</p>
-				<textarea type="text" 
+				
+				<TextInput 
+				placeholder="Enter your new note ..." 
 				name="message" 
-				className="messageInput"
-				value={message}
-				onChange= {this.onChange}></textarea>
+				className="messageInput textScrollbar"
+				onChange={this.onChange}
+				value={message} />
 				<div>
 					<Button1 onClick={this.editNote} text="Add Changes" />
 					<Button2 onClick={()=>this.props.history.goBack()} text="Cancel" />					
