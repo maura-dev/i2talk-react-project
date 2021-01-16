@@ -113,13 +113,17 @@ export default class Auth extends Component{
 
 										axios(config)
 										.then( async (response)=> {
-											this.setState({
+											await this.setState({
 												...this.state,
 												loading: false 
 											});
-											
-											localStorage.setItem('token', response.data.token)
-											await swal("Activation code sent!", "You are one step closer", "success");
+
+											if(config.data.type==="email"){
+												swal("Activation code sent!\n Check your mail", "You are one step closer", "success")
+											}else{
+												localStorage.setItem('token', response.data.token)
+												swal("Activation code sent!", "You are one step closer", "success");
+											}
 										
 										})
 										.catch( (error)=> {
