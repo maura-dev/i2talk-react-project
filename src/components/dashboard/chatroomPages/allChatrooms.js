@@ -12,7 +12,7 @@ export default class AllChatrooms extends Component {
   }
 
   componentDidMount(){
-    //const userDetails = JSON.parse(localStorage.getItem("userDetails"));
+    //const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
     //console.log(userDetails.data)
 
     //const accessToken = userDetails.data.accessToken;

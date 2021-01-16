@@ -22,7 +22,7 @@ class IreminderBody extends Component{
 				<div className="ireminder-body">
 					<h3>Reminder List</h3>
 					{reminders.map(reminder =>
-						<Reminder key={reminder.id} reminder={reminder} showEdit={this.props.showEdit}/>
+						<Reminder key={reminder.id} reminder={reminder}/>
 					)}
 		  	</div>
 			</React.Fragment>

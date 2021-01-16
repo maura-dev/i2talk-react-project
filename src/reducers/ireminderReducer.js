@@ -1,24 +1,28 @@
-import { GET_REMINDER, ADD_REMINDER, EDIT_REMINDER } from '../actions/types';
+import { TOGGLE_EDIT, GET_REMINDER, ADD_REMINDER, EDIT_REMINDER } from '../actions/types';
 
 const initialState = {
-	reminders:[
-    {
-			id: 1,
-			time: "12/1/2021 11:15",
-			remindNote:"My name is Maureen, I live in Lagos"
-		},
-  ]
+	reminders:[],
+  editForm: false
 }
 
 export default function (state = initialState, action){
 	switch (action.type){
+    case TOGGLE_EDIT:
+      return {
+        ...state,
+        editForm: !state.editForm,
+      };
+
     case GET_REMINDER:
-      return {...state};
+      return {
+        ...state,
+        reminders: action.payload
+      };
 
     case ADD_REMINDER:
       return {
         ...state,
-        reminders:[action.payload, ...state.reminders]
+        reminders: [action.payload, ...state.reminders]
       }
 
     case EDIT_REMINDER:
