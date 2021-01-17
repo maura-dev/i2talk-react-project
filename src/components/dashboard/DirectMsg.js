@@ -29,11 +29,7 @@ class DirectMsg extends Component {
   }
 
   render() {
-    //console.log(this.props);
     const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
-    //alert(JSON.stringify(loggedUserDetails))
-    //console.log(userDetails.data);
-    //const loggedUserDetails = userDetails.data;
 
     return (
       <div className="chat-container">

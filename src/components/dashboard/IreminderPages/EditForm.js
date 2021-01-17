@@ -10,6 +10,9 @@ class EditForm extends Component {
   render() {
 
     const today = new Date(Date.now());
+    // Making out a field error space
+    const defaultErr = "error goes here";
+    var errSpace = defaultErr;
 
     return (
       <div>
@@ -45,15 +48,23 @@ class EditForm extends Component {
           }
           >
 
-          {({ isSubmitting }) => (
+          {({ touched, errors, isSubmitting }) => (
             <Form>
               <div className="ireminder-form">
                 <div className="ireminder-input">
                   <Field as="textarea" name="remindNote" placeholder="Please edit me..."/>
-                  <ErrorMessage name="remindNote" component="p" />
-                  
+                  <div className = {`error-space ${errSpace == defaultErr? "hidden" : "visible"}`} > 
+                    {errors.remindNote && touched.remindNote?
+                      (errSpace = errors.remindNote) : (errSpace = defaultErr)
+                    }
+                  </div>
+
                   <Field type="datetime-local" name="time" />
-                  <ErrorMessage name="time" component="p" />
+                  <div className = {`error-space ${errSpace == defaultErr? "hidden" : "visible"}`} > 
+                    {errors.time && touched.time?
+                      (errSpace = errors.time) : (errSpace = defaultErr)
+                    }
+                  </div>
                 </div>
                 
                 <button className="shake" type="submit" disabled={isSubmitting}>

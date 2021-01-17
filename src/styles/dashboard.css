@@ -1157,7 +1157,6 @@ form p {
 
 .swal-button.swal-button--confirm:hover{
 	background-color: var(--secondary-color);
-	box-shadow: 2px 2px 2px 2px var(--secondary-color)
 }
 
 #idiary-loader, #idiary-back-loader{

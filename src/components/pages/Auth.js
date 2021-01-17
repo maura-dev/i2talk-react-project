@@ -41,7 +41,7 @@ export default class Auth extends Component{
 
 	axios(config)
 	.then(async (response)=> {
-	  await swal(`${response.data}`, "Yay!!!", "success");;
+	  await swal(`${response.data}`, "Yay!!!", "success");
 	  localStorage.removeItem("verificationDetails");
 	  localStorage.removeItem("token")
 	   this.setState({
@@ -56,7 +56,7 @@ export default class Auth extends Component{
 			...this.state,
 			otploading:false 
 		});
-	  alert(error);
+	  swal(error);
 	});
   }
 

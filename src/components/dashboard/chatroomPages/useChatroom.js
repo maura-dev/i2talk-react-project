@@ -39,7 +39,7 @@ const useChatroom = (roomName, roomId) => {
         setMessages(result);
       })
       .catch((error) => {
-        console.error(error)
+        console.log(error)
       })
       
     };

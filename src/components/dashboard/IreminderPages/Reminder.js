@@ -1,37 +1,32 @@
 import React, { Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ToggleEdit } from '../../../actions/ireminderActions';
+// import { ToggleEdit } from '../../../actions/ireminderActions';
+import { deleteReminder } from '../../../actions/ireminderActions';
 
 class Reminder extends Component{
 
+  onDeleteClick = ID => {
+    this.props.deleteReminder(ID)
+  }
+
 	render(){
-    console.log(this.props);
-	  const { id, time, remindNote } = this.props.reminder;
+	  const { ID, timeCompleted, message } = this.props.reminder;
     
     return(
       <React.Fragment>
         <div className="ireminder-item">
           <div className="ireminder-head">
-            <p>{time}</p>
-            <i className="far fa-pen edit" onClick={this.props.ToggleEdit(id)}></i>
-            <i className="far fa-trash-alt delete"></i>
+            <p>{timeCompleted}</p>
+            <i className="far fa-pen edit" 
+            // onClick={this.props.ToggleEdit(id)}
+            ></i>
+            {console.log(ID)}
+            <i className="far fa-trash-alt delete" onClick={this.onDeleteClick.bind(this, ID)}></i>
           </div>
           <div className="ireminder-msg">
-            <p> {remindNote} </p>
+            <p> {message} </p>
           </div>
-          
-          {/* <div id="buttons">
-            <Link to={`/idiary/editNote/${id}`}>
-              <span style={{fontSize:"20px", color:"var(--primary-color)"}} align="right">
-                <i className="far fa-edit icon"></i>
-              </span>
-            </Link>
-            
-            <span style={{fontSize:"20px", color: "var(--primary-color)"}} onClick={this.deleteNote.bind(this,id)}>
-              <i className="far fa-trash-alt icon"></i>
-            </span>
-          </div> */}
         </div>
       </React.Fragment>
 		)
@@ -40,12 +35,20 @@ class Reminder extends Component{
 }
 
 Reminder.propTypes = {
-  ToggleEdit: PropTypes.func.isRequired,
-  reminder: PropTypes.object.isRequired
+  // ToggleEdit: PropTypes.func.isRequired,
+  deleteReminder: PropTypes.func.isRequired
 };
+
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     // dispatching plain actions
+//     ToggleEdit: () => dispatch(toggleEdit()),
+//     deleteReminder: () => dispatch(deleteReminder(id))
+//   }
+// }
 
 // const mapStateToProps = (state) => ({
 // 	editForm: state.editForm.editForm
 // })
 
-export default connect( null, { ToggleEdit })(Reminder);
+export default connect( null, { deleteReminder })(Reminder);

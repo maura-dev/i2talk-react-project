@@ -12,8 +12,8 @@ class LogInForm extends Component {
   constructor() {
     super();
     this.state = {
-        redirect: false,
-        loading:false
+      redirect: false,
+      loading:false
     }
   }
 
@@ -24,6 +24,10 @@ class LogInForm extends Component {
     }
 
     const { loading }= this.state;
+
+    // Making out a field error space
+    const defaultErr = "error goes here";
+    var errSpace;
 
     return(
       <div className="hero_form" >
@@ -37,12 +41,15 @@ class LogInForm extends Component {
             validationSchema = {Yup.object({
               login: Yup
                 .string()
+                .min(2, 'Too Short!')
                 .required('Please enter your Username, Email or Phone number'),
               password: Yup
                 .string()
                 .required('Please enter your password'),
-            })}
-
+            })
+            
+          }
+            
             onSubmit={async (values, { setSubmitting, resetForm }) => {
 
               //removes previous logged users details
@@ -60,26 +67,26 @@ class LogInForm extends Component {
                   loading:false 
                 });
 
-              const userDetails= response.data 
-              //alert(JSON.stringify(userDetails))
+                const userDetails= response.data 
+                //alert(JSON.stringify(userDetails))
 
-              //data to be sent to the user actions reducer
-              const userData={
-                user: userDetails.data,
-                isLoggedIn: true
-              }
+                //data to be sent to the user actions reducer
+                const userData={
+                  user: userDetails.data,
+                  isLoggedIn: true
+                }
 
-               //stores logged user id in the local storage
-              localStorage.setItem("userId", userDetails.data.userID)
-              localStorage.setItem("bearerToken", userDetails.accessToken)
-              localStorage.setItem("isLoggedIn", userData.isLoggedIn)
-        
-              //sends the user details to the user reducer
-              this.props.PostLogin(userData);
+                //stores logged user id in the local storage
+                localStorage.setItem("userId", userDetails.data.userID)
+                localStorage.setItem("bearerToken", userDetails.accessToken)
+                localStorage.setItem("isLoggedIn", userData.isLoggedIn)
+          
+                //sends the user details to the user reducer
+                this.props.PostLogin(userData);
 
-              swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
+                swal(`Good job ${userDetails.data.username}!`, "You have logged in successfully!", "success");
 
-              this.setState({...this.state, redirect: true })
+                this.setState({...this.state, redirect: true })
 
               })
 
@@ -88,31 +95,47 @@ class LogInForm extends Component {
                   ...this.state,
                   loading: false 
                 });
-                console.log(error);
-                error.status === 401 ? alert("Please signup first..."): alert (error);
-                // alert(error);
+                var errMsg = "Request failed with status code";
+                if (error.message === `${errMsg} 401`){
+                  swal("Please signup and authenticate your account first...")
+                } else if (error.message === `${errMsg} 400`){
+                  swal("Cannot process your request... Please try again.")
+                } else {
+                  swal("Please hold on... Try again after a few moments.")
+                }
               });
               resetForm();
             }}
           >
 
-            {({ isSubmitting }) => (
+            {({ errors, touched }) => (
               <Form>
                 <div className='field'>
                   <Field type="login" name="login" />
                   <label htmlFor="login">Username, Email or Phone</label>
                 </div>
-                <ErrorMessage name="login" component="p" className="form-errors" />
+                {errors.login && touched.login ?
+                  <Error 
+                    errSpace = { errors.login }
+                  /> :
+                  <Error
+                    errSpace = { defaultErr }
+                  />
+                }
 
                 <div className='field'>
                   <Field type="password" name="password" />
                   <label htmlFor="password">Password</label>
                 </div>
-                <div>
-                  <ErrorMessage name="password" component="p"/>
-                </div>
+                {errors.password && touched.password?
+                  <Error 
+                    errSpace = { errors.password }
+                  /> :
+                  <Error
+                    errSpace = { defaultErr }
+                  />
+                }
                 
-
                 <div className="content">
                   <div className="checkbox">
                     <Field type="checkbox" name="checkbox" />

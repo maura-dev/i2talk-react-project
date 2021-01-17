@@ -50,7 +50,12 @@ class Isearch extends Component {
       });
     })
     .catch(async (error)=> {
-      alert(error);
+      var errMsg = "Request failed with status code";
+      if (error.message === `${errMsg} 401`){
+        swal("Cannot process your request... Please try again.")
+      } else {
+        swal("Please hold on... Try again after a few moments.")
+      }
       await this.setState({
         loading:false 
       });
@@ -84,7 +89,6 @@ class Isearch extends Component {
 
     axios(config)
     .then(async (response)=> {
-      //alert(JSON.stringify(response.data.data))
       const result=response.data.data;
 
       await this.setState({
@@ -109,85 +113,81 @@ class Isearch extends Component {
 
     function geolocationSearch(){
       navigator.geolocation.getCurrentPosition(
-          function (position){
-             const accessToken=localStorage.getItem("bearerToken")
-             var data={
-              "latitude":position.coords.latitude,
-              "longitude": position.coords.longitude,
-              "kilometer":parseInt(position.coords.latitude * 110.574)
-              }
-
-              var config = {
-                method: 'post',
-                url: 'https://i2talk.live/api/isearch/geolocation',
-                headers: {
-                  'Authorization': `Bearer ${accessToken}`
-                },
-                data : data
-              };
-
-              axios(config)
-              .then(async (response) =>{
-                const result=response.data.data;
-                alert(JSON.stringify(response.data));
-                await this.setState({
-                  loading:false,
-                  searchResults:result,
-                  number:`${result.length} user(s) found`  
-                });
-                //localStorage.removeItem("position")
-              })
-              .catch(function (error) {
-                alert(error);
-               // localStorage.removeItem("position")
-              });
-          },
-
-          function (error) {
-            /*if(error.code === 1) {
-                swal("You denied Location Access", "Allow Location Access to Find Nearby Users", "error");
-            } if(error.code === 2) {
-                alert("The network is down or the positioning service can't be reached.");
-            } else if(error.code === 3) {
-                alert("The attempt timed out before it could get the location data.");
-            } else {
-                alert("Geolocation failed due to unknown error.");
-            }
-
-*/
-            alert(error.code)
-            return
+        function (position){
+          const accessToken=localStorage.getItem("bearerToken")
+          var data={
+          "latitude":position.coords.latitude,
+          "longitude": position.coords.longitude,
+          "kilometer":parseInt(position.coords.latitude * 110.574)
           }
 
-        );
+          var config = {
+            method: 'post',
+            url: 'https://i2talk.live/api/isearch/geolocation',
+            headers: {
+              'Authorization': `Bearer ${accessToken}`
+            },
+            data : data
+          };
+
+          axios(config)
+          .then(async (response) =>{
+            const result=response.data.data;
+            alert(JSON.stringify(response.data));
+            await this.setState({
+              loading:false,
+              searchResults:result,
+              number:`${result.length} user(s) found`  
+            });
+            //localStorage.removeItem("position")
+          })
+          .catch(function (error) {
+            alert(error);
+            // localStorage.removeItem("position")
+          });
+        },
+
+        function (error) {
+          // You can use this format to alert error message
+          // var errMsg = "Request failed with status code";
+          // let errAlert;
+          // if (error.message === `${errMsg} 401`) {
+          //   errAlert = swal("You denied Location Access. \n Allow Location Access to Find Nearby Users")
+          // } else if (error.message === `${errMsg} 400`){
+          //   errAlert =swal("Please hold on... Try again after a few moments.")
+          // } else {
+          //   errAlert = swal("Geolocation failed due to unknown error.")
+          // }
+          // return errAlert;
+        }
+      )
     }
 
-
     if("geolocation" in navigator) {
-        geolocationSearch()        
+      geolocationSearch()        
     }
 
     else {
-        swal({
-          title: "Allow Location Access",
-          text: "Allow location access to find nearby users",
-          buttons: true,
-          dangerMode: false,
-        })
-        .then((willShow) => {
-          if (willShow) {
-            geolocationSearch()
-          }
-          else{
-            swal("You denied Location Access", "You need to allow location access to find nearby users", "error");
-          }
-        })
+      swal({
+        title: "Allow Location Access",
+        text: "Allow location access to find nearby users",
+        buttons: true,
+        dangerMode: false,
+      })
+      .then((willShow) => {
+        if (willShow) {
+          geolocationSearch()
+        }
+        else{
+          swal("You denied Location Access", "You need to allow location access to find nearby users", "error");
+        }
+      })
        // return
     }  
 
     this.setState({
-        loading:false 
-      });  
+      loading:false 
+    });  
   }
 
 onChange=(e)=>{
