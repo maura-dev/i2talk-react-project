@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';// import component images
-import DummyDp from '../../img/users/male.png';
+import { Link } from 'react-router-dom'
+//import DummyDp from '../../img/users/male.png';
 
 class Settings extends Component {
   render() {
@@ -32,9 +33,9 @@ class Settings extends Component {
             <div className="settings-main-container scrollbar" id="settings-main">
               <div className="profile-block">
                 <div id="settings-profile-box">
-                  <img src={DummyDp} alt="Profile"/>
+                  <img src={loggedUserDetails.picture} alt="Profile"/>
                 </div>
-                <button className="button" onClick="showProfilePage()"><i className="far fa-edit">&nbsp;</i>&nbsp;Edit Profile</button>
+                <Link to="/dashboard/profile" ><button className="button"><i className="far fa-edit">&nbsp;</i>&nbsp;Edit Profile</button></Link>
               </div>
       
               <h2>Account</h2>

@@ -20,7 +20,7 @@ class IreminderBody extends Component{
     
 		return (
 			<React.Fragment>
-				<div className="ireminder-body">
+				<div className="ireminder-body scrollbar" id="ireminder-body">
 					<h3>Reminder List</h3>
 					{reminders.map((reminder) =>
 						<Reminder key={reminder.ID} reminder={reminder}/>

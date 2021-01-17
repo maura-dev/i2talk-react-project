@@ -62,6 +62,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar-track,
+#ireminder-body::-webkit-scrollbar-track,
 #user-side-bar::-webkit-scrollbar-track,
 #user-chat-menu::-webkit-scrollbar-track,
 #iSearch-result::-webkit-scrollbar-track,
@@ -76,6 +77,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar,
+#ireminder-body::-webkit-scrollbar,
 #user-side-bar::-webkit-scrollbar,
 #user-chat-menu::-webkit-scrollbar,
 #iSearch-result::-webkit-scrollbar,
@@ -89,6 +91,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar-thumb,
+#ireminder-body::-webkit-scrollbar-thumb,
 .textScrollbar::-webkit-scrollbar-thumb,
 #user-side-bar::-webkit-scrollbar-thumb,
 #user-chat-menu::-webkit-scrollbar-thumb,
@@ -716,15 +719,17 @@
 
 .search-btn{
 	padding:5px 0px 5px 0px;
-	border:1px solid var(--primary-color);
-	width:33.33%;
+	border:1px solid var(--bg-color-alt);
+	width:33.34%;
 	text-align:center;
+	background-color: var(--primary-color);
+	color:#fff;
 }
 
 .search-btn:hover,
 .search-btn:focus{
-	background-color: var(--primary-color);
-	color:#fff;
+	background-color: var(--bg-color-alt);
+	color:var(--primary-color);
 }
 
 #iSearch-result {
@@ -1022,7 +1027,7 @@ form p {
 	display:block;
 	margin:10px auto 10px auto;
 	max-width: 30%;
-	height:auto;
+	max-height:30%;
 }
 
 #profile-image-box > img{
@@ -1267,6 +1272,18 @@ form p {
 
 #active-page{
 	display:none;
+}
+#chatroom-textarea{
+
+	font-family: 'Roboto', Tahoma, 'Geneva', Verdana, sans-serif;
+	max-height: 30vh;
+	resize: none;
+	padding: 10px;
+	background: #fff;
+	border: 2px solid var(--primary-color);
+	border-radius: 20px;
+	transition: background 0.8s ease-in;
+	height:40px;
 }
 
 /* Typing Message */
