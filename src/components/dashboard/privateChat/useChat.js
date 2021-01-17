@@ -40,7 +40,7 @@ const useChat = (chatID, isender, receiver) => {
 		      	isender: isender,
 		      	receiver: receiver,
 		      	chatID:chatID,
-		        receiverName: result.username,
+		        receiverName: result.fullName,
 		        receiverPicture: result.picture,
 		        receiverId: result.id,
 		        receiverBio: result.bio

@@ -1,21 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ChatMenu from './ChatMenu';
 import TextInput from './dashboardComponents/textArea';
 import Headers from './dashboardComponents/headers';
 //import "./ChatRoom.css";
 import useChat from "./privateChat/useChat";
-//import ChatMessage from "../ChatMessage/ChatMessage";
-/*import useTyping from "../useTyping";
-import NewMessageForm from "../NewMessageForm/NewMessageForm";
-import TypingMessage from "../TypingMessage/TypingMessage";
-import Users from "../Users/Users";
-import UserAvatar from "../UserAvatar/UserAvatar";
-*/
+// import useTyping from "./charo/useTyping";
+import NewMessageForm from "./chatroomPages/NewMessageForm";
+// import TypingMessage from "./TypingMessage";
+import Moment from 'react-moment';
+import DummyDp from '../../img/users/male.jpg';
+
 const PrivateChat = (props) => {
 
   const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
   const isender= loggedUserDetails.username
   const { receiver }= props.match.params
+  // const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
+  // const userId = userDetails.id;
 
   function getPrivateChatID(isender, receiver) {
     const chatOwner = [isender, receiver];
@@ -36,144 +37,84 @@ const {
     stopTypingMessage,*/
   } = useChat(chatID, isender, receiver);
 
-const onChange=(e)=>{
-    var autoExpand = function (field) {
+  const [newMessage, setNewMessage] = useState("");
+  // const { isTyping, startTyping, stopTyping, cancelTyping } = useTyping();
 
-    // Reset field height
-    field.style.height = 'inherit';
 
-    // Calculate the height
-    var height = field.scrollHeight + 5
-                 
-    field.style.height = height + 'px';
+  const messagesEndRef = useRef(null)
 
-    };
-
-    document.addEventListener('input', function (event) {
-      if (event.target.tagName.toLowerCase() !== 'textarea') return;
-      autoExpand(event.target);
-    }, false);
-
-    setNewMessage(e.target.value);
+  const scrollToBottom = () => {
+    messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
   }
 
-  //const { roomId } = props.match.params;
- 
-  const [newMessage, setNewMessage] = useState("");
+  useEffect(scrollToBottom, [messages]);
 
-  //const { isTyping, startTyping, stopTyping, cancelTyping } = useTyping();
-
-  /*const handleNewMessageChange = (event) => {
+  const handleNewMessageChange = (event) => {
     setNewMessage(event.target.value);
-  };*/
+  };
 
   const handleSendMessage = (event) => {
     event.preventDefault();
-    //cancelTyping();
+    // cancelTyping();
     sendMessage(newMessage);
     setNewMessage("");
+    scrollToBottom();
   };
 
-  const showSchedule =(event)=>{
-    event.preventDefault();
-    //cancelTyping();
-    scheduleMessage(newMessage);
-    setNewMessage("");
+  const backMenu = () => {
+    return props.history.goBack;
   }
-
-  /*useEffect(() => {
-    if (isTyping) startTypingMessage();
-    else stopTypingMessage();
-  }, [isTyping]);*/
 
   return (
    <div className="chat-container">
         <ChatMenu />
-
         <div className="chat-message-container" id="user-msg-container">
-          <div className="chat-message" id="user-direct-chat">
-            <Headers
-              
-              display = "show"
-              leave = {null} 
-              view="View profile details" 
-              mute={null} 
-              search={null} 
-              report="report user"
-            />
-
-            {/*<div className="chat-room-top-bar">
-        <h1 className="room-name">Room: {roomId}</h1>
-        {user && <UserAvatar user={user}></UserAvatar>}
-      </div>
-      <Users users={users}></Users>
-      <div className="messages-container">
-        <ol className="messages-list">
-          {messages.map((message, i) => (
-            <li key={i}>
-              <ChatMessage message={message}></ChatMessage>
-            </li>
-          ))}
-          {typingUsers.map((user, i) => (
-            <li key={messages.length + i}>
-              <TypingMessage user={user}></TypingMessage>
-            </li>
-          ))}
-        </ol>
+        <div className="chat-message" id="user-direct-chat">
+      <Headers
+        text =	{receiver}
+        img = {DummyDp}
+        display = "show"
+        back = {backMenu()}
+        leave = "Leave room" 
+        view = "View details" 
+        mute = {null}
+        search = "Search messages"
+        report = {null}
+      />
+        <div className="chat-body scrollbar" id="style-2">
+        <div className="messages-container">
+          <ol className="messages-list">
+            {messages.map((message,i) => (
+              <li
+                key={i}
+                className = {`chat-new ${message.sender === isender ? "mchat-msg-self" : "mchat-msg-other"}`}
+              >
+                {/* <span className= {`${message.sender === isender ? "hide": "msg-head"}`}>{message.sender}</span> */}
+                {message.message}
+                <span className="msg-time"><Moment format="hh:mm">{message.timePosted}</Moment></span>
+              </li>
+            )) }
+{/* 
+            {typingUsers.map((user, i) => (
+              <li key={messages.length + i}>
+                <TypingMessage user={user}></TypingMessage>
+              </li>
+            ))} */}
+            <div ref={messagesEndRef}/>
+          </ol>
+        </div>
       </div>
       <NewMessageForm
         newMessage={newMessage}
         handleNewMessageChange={handleNewMessageChange}
-        handleStartTyping={startTyping}
-        handleStopTyping={stopTyping}
+        // handleStartTyping={startTyping}
+        // handleStopTyping={stopTyping}
         handleSendMessage={handleSendMessage}
-      ></NewMessageForm>*/}
-
-            <div className="chat-body scrollbar" id="style-2">
-              
-              <div id="pmessages">
-
-                {messages.map( message => (
-
-                  
-                    <li className="mchat-msg-self" key={message.ID}>
-                                                <span id="chat-new">
-                                                <p>{message.message}</p>
-                                                </span>
-                                                </li>
-                ))}
-              </div>
-              <div id="messs">
-                swal(
-                  <div>
-                    <h3> Select the time and date for the message to be sent</h3>
-                  </div>
-
-                )
-
-              </div>
-
-            </div>
-
-            <div className="chat-form">
-
-              <form id="pmessageForm">
-                <TextInput id="pmsg-input" 
-                placeholder="Type message here ..." 
-                rows="1" 
-                onChange={onChange} 
-                className="textScrollbar"
-                value={newMessage}
-                />
-                
-                <button className="pmsg-btn" onClick={handleSendMessage}><i className="far fa-paper-plane"></i></button>
-                <button className="pmsg-btn"  onClick={showSchedule}><i className="far fa-clock"></i></button>
-              </form>
-
-            </div>
-          </div>
-        </div>
-      </div>
+      ></NewMessageForm>
+            
+    </div>
+    </div>
+    </div>
       
   );
 };

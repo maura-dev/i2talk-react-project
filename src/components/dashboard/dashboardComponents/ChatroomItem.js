@@ -8,14 +8,15 @@ class ChatroomItem extends Component {
     const { 
 			ID,
 			chatRoomName,
-			chatRoomDesc 
+			chatRoomDesc, 
+			chatRoomIcon 
 		} = this.props.chatroomsListItem;
 		
 		return (
 			<Link to={`/dashboard/chatroomscont/chatroom/${ID}?room=${chatRoomName}`}>
 				<div className="chatrooms-items">
 					<span>
-						<i className=" "></i>
+						<i className={chatRoomIcon}></i>
 					</span>
 					<div>
 						<h3 id={chatRoomName}>{chatRoomName}</h3>

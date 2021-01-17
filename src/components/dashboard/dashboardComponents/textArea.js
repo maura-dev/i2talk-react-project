@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function TextInput({ placeholder, name, className, id, value, rows, onChange }){
+export default function TextInput({ placeholder, name, className, id, value, rows, onChange, onKeyPress, onKeyUp }){
 	const TextInputStyle={
 		
 		fontFamily: " 'Roboto', Tahoma, 'Geneva', Verdana, sans-serif",
@@ -25,6 +25,8 @@ export default function TextInput({ placeholder, name, className, id, value, row
 			autoCapitalize= "sentences" 
 			autoComplete="on"
 			rows={rows} 
+			onKeyPress={onKeyPress}
+			onKeyUp={onKeyUp}
 			required>
 		</textarea>
 	)

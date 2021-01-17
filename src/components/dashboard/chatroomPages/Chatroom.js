@@ -3,7 +3,7 @@ import Headers from '../dashboardComponents/headers';
 import useChatroom from "./useChatroom";
 import useTyping from "./useTyping";
 import NewMessageForm from "./NewMessageForm";
-import TypingMessage from "./TypingMessage";
+import TypingAnimation from "./TypingAnimation";
 import qs from 'qs';
 import Moment from 'react-moment';
 
@@ -52,11 +52,10 @@ const Chatroom = ( props ) => {
     return props.history.goBack;
   }
 
-  useEffect(() => {
+ useEffect(() => {
     if (isTyping) startTypingMessage();
-      else stopTypingMessage();
-    }, [isTyping]
-  );
+    else stopTypingMessage();
+  }, [isTyping]);
     
   return (
     <div className="chat-message" id="user-direct-chat">
@@ -75,7 +74,6 @@ const Chatroom = ( props ) => {
       <div className="chat-body scrollbar" id="style-2">
         <div className="messages-container">
           <ol className="messages-list">
-            {console.log(messages)}
             {messages.map((message,i) => (
               <li
                 key={i}
@@ -88,8 +86,10 @@ const Chatroom = ( props ) => {
             )) }
 
             {typingUsers.map((user, i) => (
-              <li key={messages.length + i}>
-                <TypingMessage user={user}></TypingMessage>
+              <li key={messages.length + i}
+              className = {`chat-new ${user.userID === userId ? "mchat-msg-self" : "mchat-msg-other"}`}
+              ><p>{user.username} is typing</p> 
+              <TypingAnimation></TypingAnimation>
               </li>
             ))}
             <div ref={messagesEndRef}/>

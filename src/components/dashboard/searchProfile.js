@@ -28,6 +28,7 @@ class SearchProfile extends Component {
           result.bio= "Hi, I'm new to the i2talk chatting platform"
         }
         document.getElementById("dp").src= result.picture
+        document.getElementById("profile-fullname-input").value=result.fullName
         document.getElementById("profile-username-input").value=result.username
         document.getElementById("profile-bio-input").value=result.bio
         document.getElementById("profile-sex-input").value=result.sex
@@ -67,7 +68,10 @@ class SearchProfile extends Component {
                 {/*<img src={DummyDp} alt="Profile" />*/}
                 <img src="" alt="Profile" id="dp"/> 
               </div>
-
+              <p>Full Name</p>
+              <input type="text" id="profile-fullname-input" disabled="disabled" />
+              <br />
+              <hr />
               <p>Username</p>
               <input type="text" id="profile-username-input" disabled="disabled" />
               <br />

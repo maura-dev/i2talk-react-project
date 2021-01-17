@@ -70,10 +70,11 @@ class LogInForm extends Component {
               }
 
                //stores logged user id in the local storage
+               localStorage.setItem("loggedUserDetail", JSON.stringify(userDetails.data));
               localStorage.setItem("userId", userDetails.data.userID)
               localStorage.setItem("bearerToken", userDetails.accessToken)
               localStorage.setItem("isLoggedIn", userData.isLoggedIn)
-              localStorage.setItem("username", userDetails.data.username)
+              //localStorage.setItem("username", userDetails.data.username)
               //sends the user details to the user reducer
               this.props.PostLogin(userData);
 

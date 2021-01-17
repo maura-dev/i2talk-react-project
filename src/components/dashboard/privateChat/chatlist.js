@@ -4,17 +4,24 @@ import axios from "axios";
 
 const SOCKET_SERVER_URL = "https://i2talk.live";
 
-const useChatMenu = ( isender ) => {
-  
-  
+const useChat = (isender) => {
   const [senderChats, setSenderChats] = useState([]);
+  const [senderUser, setsenderUsers] = useState("");
   const socketRef = useRef();
-     
+
+  useEffect(() => {
+    var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
+    var currentUser = (loggedUserDetails.username).toLowerCase();
+    setsenderUsers(currentUser);
+  }, []);
+
  useEffect(() => {
+   
+
     const fetchSenderChats = async () => {
-    	var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
-    	var realSender = (loggedUserDetails.username).toLowerCase()
-    	var bearerToken= localStorage.getItem("bearerToken")
+        var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
+        var realSender = (loggedUserDetails.username).toLowerCase()
+        var bearerToken= localStorage.getItem("bearerToken");
     	//var realSender= isender.toLowerCase()
 
     	var config = {
@@ -36,13 +43,12 @@ const useChatMenu = ( isender ) => {
 	    
     };
 
-
-    setTimeout( function() {fetchSenderChats()}, 1000);
+    fetchSenderChats();
+    
   }, [isender]);
          
 
   useEffect(() => {
-    
     socketRef.current = socketIOClient("https://i2talk.live/chats", {
 		withCredentials: true,
 	    extraHeaders: {
@@ -52,20 +58,23 @@ const useChatMenu = ( isender ) => {
 
     socketRef.current.on("connect", () => {
       console.log(socketRef.current.id);
-
+      socketRef.current.emit('chats', senderUser);
     });
+
+    socketRef.current.on("chatlist", (response) => {
+        setSenderChats(response);
+      });
 
     return () => {
       socketRef.current.disconnect();
     };
-  }, []);
+  }, [senderUser]);
 
-  
 
   return {
     senderChats,
-
+    senderUser
   };
 };
 
-export default useChatMenu;
+export default useChat;
