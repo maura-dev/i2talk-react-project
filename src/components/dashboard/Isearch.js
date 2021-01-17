@@ -52,7 +52,12 @@ class Isearch extends Component {
       });
     })
     .catch(async (error)=> {
-      alert(error);
+      var errMsg = "Request failed with status code";
+      if (error.message === `${errMsg} 401`){
+        swal("Cannot process your request... Please try again.")
+      } else {
+        swal("Please hold on... Try again after a few moments.")
+      }
       await this.setState({
         loading:false 
       });
@@ -87,7 +92,6 @@ class Isearch extends Component {
 
     axios(config)
     .then(async (response)=> {
-      //alert(JSON.stringify(response.data.data))
       const result=response.data.data;
 
       await this.setState({

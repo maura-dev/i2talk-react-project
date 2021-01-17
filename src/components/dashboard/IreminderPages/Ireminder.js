@@ -13,7 +13,6 @@ class Ireminder extends Component {
   
   render() {
     const { editForm } = this.props;
-    console.log(this.props)
 
     return (
       <React.Fragment>

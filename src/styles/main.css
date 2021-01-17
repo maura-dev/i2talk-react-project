@@ -1,4 +1,20 @@
 /*main index page styling*/
+.hidden {
+  visibility: hidden;
+}
+
+.visible {
+  visibility: visible;
+}
+/* form errors */
+.error-space {
+  font-size: 10px;
+  color: red;
+  font-style: oblique;
+  padding: 2px;
+  margin: 2px;
+}
+
 .hero {
   width: 80%;
   margin: 3rem auto;
@@ -79,6 +95,7 @@
 }
 form {
   text-align: center;
+  margin-top: 10px;
 }
 .sex-input-field {
   font-size: 12px;
@@ -94,7 +111,7 @@ form {
 .field{
   /* height: 35px; */
   width: 80%;
-  margin: 14px auto;
+  margin: 2px auto;
   position: relative;
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ContactTextInput from './ContactTextInput';
-
+import Error from './Error';
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
 
@@ -10,6 +10,10 @@ import '../../styles/contactUs.css';
 class ContactForm extends Component {
 
   render () {
+    // Making out a field error space
+    const defaultErr = "error goes here";
+    var errSpace;
+
     return(
       <div className="container">
         <div className ="text">Contact Us</div>
@@ -19,10 +23,14 @@ class ContactForm extends Component {
           validationSchema = {Yup.object({
             firstName: Yup
               .string()
-              .max(15, 'Must be 15 characters or less'),
+              .min(3, 'Must be more than 2 characters')
+              .max(15, 'Must be 15 characters or less')
+              .required('First Name is required'),
             lastName: Yup
               .string()
-              .max(15, 'Must be 15 characters or less'),
+              .min(3, 'Must be more than 2 characters')
+              .max(15, 'Must be 15 characters or less')
+              .required('Last Name is required'),
             username: Yup
               .string()
               .max(20, 'Must be 20 characters or less')
@@ -46,22 +54,39 @@ class ContactForm extends Component {
           }}
         >
 
-          {({ isSubmitting }) => (
+          {({ touched, errors, isSubmitting }) => (
             <Form>
               <div className="form-row">
                 <div className='input-data'>
                   <Field type="firstName" name="firstName" />
                   <div className="underline"></div>
-                  <label htmlFor="firstName">Full Name</label>
+                  <label htmlFor="firstName">First Name</label>
                 </div>
-                
-
+               
                 <div className='input-data'>
                   <Field type="lastName" name="lastName" />
                   <div className="underline"></div>
-                  <label htmlFor="lastName">Full Name</label>
+                  <label htmlFor="lastName">Last Name</label>
                 </div>
                 
+              </div>
+              <div className= "form-row">
+                {errors.firstName && touched.firstName?
+                  <Error 
+                    errSpace = { errors.firstName }
+                  /> :
+                  <Error
+                    errSpace = { defaultErr }
+                  />
+                }
+                {errors.lastName && touched.lastName?
+                  <Error 
+                    errSpace = { errors.lastName }
+                  /> :
+                  <Error
+                    errSpace = { defaultErr }
+                  />
+                }
               </div>
 
               <div className="form-row">
@@ -70,14 +95,30 @@ class ContactForm extends Component {
                   <div className="underline"></div>
                   <label htmlFor="username">Username</label>
                 </div>
-    
 
                 <div className='input-data'>
                   <Field type="email" name="email" />
                   <div className="underline"></div>
                   <label htmlFor="email">Email</label>
                 </div>
-                
+              </div>
+              <div className= "form-row">
+                {errors.username && touched.username?
+                  <Error 
+                    errSpace = { errors.username }
+                  /> :
+                  <Error
+                    errSpace = { defaultErr }
+                  />
+                }
+                {errors.email && touched.email?
+                  <Error 
+                    errSpace = { errors.email }
+                  /> :
+                  <Error
+                    errSpace = { defaultErr }
+                  />
+                }
               </div>
 
               <div className="form-row">
@@ -86,14 +127,15 @@ class ContactForm extends Component {
                   <div className="underline"></div>
                   <label htmlFor="message">Message</label>
                 </div>
-                
               </div>
-
-              <ErrorMessage name="firstName" component="div" />
-              <ErrorMessage name="lastName" component="div" />
-              <ErrorMessage name="username" component="div" />
-              <ErrorMessage name="email" component="div" />
-              <ErrorMessage name="message" component="div" />
+              {errors.message && touched.message?
+                <Error 
+                  errSpace = { errors.message }
+                /> :
+                <Error
+                  errSpace = { defaultErr }
+                />
+              }
               
               <button type="submit">
                 Submit

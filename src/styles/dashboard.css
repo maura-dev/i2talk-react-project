@@ -62,6 +62,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar-track,
+#ireminder-body::-webkit-scrollbar-track,
 #user-side-bar::-webkit-scrollbar-track,
 #user-chat-menu::-webkit-scrollbar-track,
 #iSearch-result::-webkit-scrollbar-track,
@@ -76,6 +77,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar,
+#ireminder-body::-webkit-scrollbar,
 #user-side-bar::-webkit-scrollbar,
 #user-chat-menu::-webkit-scrollbar,
 #iSearch-result::-webkit-scrollbar,
@@ -89,6 +91,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar-thumb,
+#ireminder-body::-webkit-scrollbar-thumb,
 .textScrollbar::-webkit-scrollbar-thumb,
 #user-side-bar::-webkit-scrollbar-thumb,
 #user-chat-menu::-webkit-scrollbar-thumb,
@@ -1159,7 +1162,6 @@ form p {
 
 .swal-button.swal-button--confirm:hover{
 	background-color: var(--secondary-color);
-	box-shadow: 2px 2px 2px 2px var(--secondary-color)
 }
 
 #idiary-loader, #idiary-back-loader{

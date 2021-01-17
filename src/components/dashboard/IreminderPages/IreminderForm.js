@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from 'yup';
+import Error from '../../forms/Error';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addReminder } from '../../../actions/ireminderActions';
@@ -9,11 +10,15 @@ import { v4 as uuid } from 'uuid';
 class IreminderForm extends Component {
   render() {
     const today = new Date(Date.now());
+    // Making out a field error space
+    const defaultErr = "error goes here";
+    var errSpace = defaultErr;
+
     return (
       <div>
         <Formik
 
-          initialValues={{ remindNote: '', time: '' }}
+          initialValues={{ message: '', timeCompleted: '' }}
           
           validationSchema = {Yup.object({
             remindNote: Yup
@@ -28,29 +33,43 @@ class IreminderForm extends Component {
 
           onSubmit={
             (values, { resetForm }) => {
-              const correctTime = values.time;
-              correctTime.slice(-6, -5);
+              const correctTime = values.timeCompleted;
               const newReminder = {
                 id: uuid(),
-                remindNote: values.remindNote,
+                message: values.message,
                 time: correctTime
               };
 
               this.props.addReminder(newReminder);
+
               resetForm();
             }
           }
           >
 
-          {({ isSubmitting }) => (
+          {({ touched, errors, isSubmitting }) => (
             <Form>
               <div className="ireminder-form">
                 <div className="ireminder-input">
-                  <Field as="textarea" name="remindNote" placeholder="Remind me of..."/>
-                  <ErrorMessage name="remindNote" component="p" />
+                  <Field as="textarea" name="message" placeholder="Remind me of..."/>
+                  {errors.message && touched.message?
+                    <Error 
+                      errSpace = { errors.message }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
                   
                   <Field type="datetime-local" name="time" />
-                  <ErrorMessage name="time" component="p" />
+                  {errors.timeCompleted && touched.timeCompleted?
+                    <Error 
+                      errSpace = { errors.timeCompleted }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
                 </div>
                 
                 <button className="shake" type="submit" disabled={isSubmitting}>
