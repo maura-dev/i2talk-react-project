@@ -70,7 +70,7 @@ if (senderChats.length > 0) {
                 <h4>{ChatScreenName(chat.chatID, senderUser)}</h4> 
                 <span class="chat-counter">1</span>
                 <p>{chat.lastMessage}</p>
-                <h6>&nbsp; &nbsp;<Moment format="hh:mm A">{chat.updatedAt}</Moment></h6>
+                <h6><Moment format="hh:mm">{chat.updatedAt}</Moment></h6>
                 </div>
                 </div>
                 </Link>

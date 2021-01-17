@@ -19,19 +19,20 @@ class DirectMsg extends Component {
               
               display = "show"
               leave = {null} 
-              view="View profile details" 
+              view={null} 
               mute={null} 
               search={null} 
-              report="report user"
+              report={null}
             />
 
            
-            <div class="chat-message-container" id="user-msg-container">
+            <div class="chat-message-container" id="user-msg-container" style={{width:"100%"}}>
               <div class="chat-message">
                 <div id="main-container">
+                  
+                    <h1 style={{textAlign:"center", marginTop:"25%"}}>Welcome to i2talk</h1>
+                    <p style={{textAlign:"center"}}>No conversation in sync. Please, search for users and start chat.</p>
                 
-                  <h1>Welcome to i2talk</h1>
-                  <p>No conversation in sync. Please, search for users and start chat.</p>
                 </div>    
               </div>
             </div>
