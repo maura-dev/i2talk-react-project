@@ -63,7 +63,7 @@ const useChatroom = (roomName, roomId) => {
       return;
     }
     socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
-      query: { username: userDetails.username, userId: userDetails.id, roomId, roomName },
+      query: { username: userDetails.username, userId: userDetails.id, roomId: roomId, roomName: roomName },
       withCredentials: true,
       extraHeaders: {
         "my-custom-header": "abcd"
@@ -80,7 +80,7 @@ const useChatroom = (roomName, roomId) => {
     });
 
     socketRef.current.on(USER_LEAVE_CHAT_EVENT, (user) => {
-      setUsers((users) => users.filter((u) => u.id !== user.id));
+      setUsers((users) => users.filter((u) => u.userId !== user.userId));
     });
 
     socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
@@ -91,16 +91,19 @@ const useChatroom = (roomName, roomId) => {
     });
 
     socketRef.current.on(START_TYPING_MESSAGE_EVENT, (typingInfo) => {
+      console.log("typing received")
       if (typingInfo.senderId !== socketRef.current.id) {
         const user = typingInfo.user;
+        console.log(user)
         setTypingUsers((users) => [...users, user]);
       }
     });
 
     socketRef.current.on(STOP_TYPING_MESSAGE_EVENT, (typingInfo) => {
+      console.log("typing")
       if (typingInfo.senderId !== socketRef.current.id) {
         const user = typingInfo.user;
-        setTypingUsers((users) => users.filter((u) => u.name !== user.name));
+        setTypingUsers((users) => users.filter((u) => u.username !== user.username));
       }
     });
 
@@ -115,8 +118,9 @@ const useChatroom = (roomName, roomId) => {
     socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
       message: messageBody,
       senderId: socketRef.current.id,
+      chatRoomId: roomId,
       userID: userId,
-      username: username
+      user
     });
 
   }
@@ -125,6 +129,7 @@ const useChatroom = (roomName, roomId) => {
     if (!socketRef.current) return;
     socketRef.current.emit(START_TYPING_MESSAGE_EVENT, {
       senderId: socketRef.current.id,
+      chatRoomName: roomName,
       user,
     });
   };
@@ -133,6 +138,7 @@ const useChatroom = (roomName, roomId) => {
     if (!socketRef.current) return;
     socketRef.current.emit(STOP_TYPING_MESSAGE_EVENT, {
       senderId: socketRef.current.id,
+      chatRoomName: roomName,
       user,
     });
   };
