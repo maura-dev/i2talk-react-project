@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
 // import react router link 
 import { Link } from 'react-router-dom';
-import useChat from "./privateChat/useChat";
+import useChatMenu from "./privateChat/useChatMenu";
 // import component images
 import DummyDp from '../../img/users/male.png';
 
 const ChatMenu =() => {
-    const loggedUserDetails= JSON.stringify(localStorage.getItem("loggedUserDetails"))
-    var isender = loggedUserDetails.username;
-    const bearerToken= localStorage.getItem("bearerToken")
+    //const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+    //const isender= loggedUserDetails.username
+    //const bearerToken= localStorage.getItem("bearerToken")
    // const chatNo = document.getElementsByClassName("chat-counter")[0]
     //const chatImg = document.getElementsByClassName("chat-head-img")[0]
     //const chatScreen = document.getElementById("chat-menu");
+    const isender= localStorage.getItem("username")
   
-  const { senderChats } = useChat(isender);
+  const { senderChats } = useChatMenu(isender);
 
    // const ChatScreenName = chatroomiid => {
    //      const a = chatroomiid.replace(isender, "")
@@ -57,13 +58,14 @@ const ChatMenu =() => {
 
         <div className="chat-contact-list scrollbar" id="user-chat-menu">
           <div id="chat-menu">
+          <br />
               {senderChats.map( chat => (
 
                 <Link to={`/dashboard/directmsg/${chat.receiver}`}>  
                 <div class="chat-box">
                   <div class="chat-box-col1">
                   <div class="chat-box-img">
-                    <img src={DummyDp} />
+                    <img src={DummyDp} alt=""/>
                   </div>
                   </div>
                   <div class="chat-box-col2">

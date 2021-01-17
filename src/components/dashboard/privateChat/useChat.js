@@ -16,7 +16,6 @@ const useChat = (chatID, isender, receiver) => {
   //const [users, setUsers] = useState([]);
   const [typingUsers, setTypingUsers] = useState([]);
   const [user, setUser] = useState();
-  const [senderChats, setSenderChats] = useState([]);
   const socketRef = useRef();
 
   useEffect(() => {
@@ -83,38 +82,6 @@ const useChat = (chatID, isender, receiver) => {
 
     fetchMessages();
   }, [chatID]);
-    
-  
-      
- useEffect(() => {
-    const fetchSenderChats = async () => {
-    	var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
-    	var realSender = (loggedUserDetails.username).toLowerCase()
-    	var bearerToken= localStorage.getItem("bearerToken")
-    	//var realSender= isender.toLowerCase()
-
-    	var config = {
-	      method: 'get',
-	      url: `${SOCKET_SERVER_URL}/api/chats/${realSender}`,
-	      headers: {
-	        'Authorization': `Bearer ${bearerToken}` 
-	      }
-	    };
-
-	    await axios(config)
-	    .then(  (response)=> {
-	      var chatMessages = response.data.data;
-	      setSenderChats(chatMessages);
-	    })
-	    .catch(function (error) {
-	      alert(error);
-	    });
-	    
-    };
-
-
-    fetchSenderChats();
-  }, [isender]);
          
 
   useEffect(() => {
@@ -214,7 +181,6 @@ const useChat = (chatID, isender, receiver) => {
     // typingUsers,
     sendMessage,
     scheduleMessage,
-    senderChats,
     /*startTypingMessage,
     stopTypingMessage,*/
   };

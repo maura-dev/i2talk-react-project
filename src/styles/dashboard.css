@@ -1024,7 +1024,7 @@ form p {
 	display:block;
 	margin:10px auto 10px auto;
 	max-width: 30%;
-	height:auto;
+	max-height:30%;
 }
 
 #profile-image-box > img{

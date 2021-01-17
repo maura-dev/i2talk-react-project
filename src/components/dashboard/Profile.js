@@ -20,8 +20,8 @@ class Profile extends Component {
     document.getElementById("profile-location-input").value=`${loggedUserDetails.state}`
   }
   render() {
-    const loggedUserDetails = JSON.parse(localStorage.getItem("loggedUserDetails"))
-    const displayPic = loggedUserDetails.img;
+   // const loggedUserDetails = JSON.parse(localStorage.getItem("loggedUserDetails"))
+    //const displayPic = loggedUserDetails.img;
 
     return (
       <div className="chat-container">

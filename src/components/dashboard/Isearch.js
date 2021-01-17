@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
-import * as Yup from 'yup';
+//import { Formik, Form, Field, ErrorMessage  } from 'formik';
+//import * as Yup from 'yup';
 import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';
 import axios from 'axios';
-import swal from '@sweetalert/with-react';
+//import swal from '@sweetalert/with-react';
 import { Link } from 'react-router-dom'
 //import Button1 from './dashboardComponents/button1'
 //import Button2 from './dashboardComponents/button2';
@@ -20,6 +20,7 @@ class Isearch extends Component {
 
 
   usersearch=()=>{
+    document.getElementById("isearch-steps").style.display="none"
     const accessToken=localStorage.getItem("bearerToken")
     const{ search }= this.state
     this.setState({
@@ -60,6 +61,7 @@ class Isearch extends Component {
   }
 
   locationsearch=()=>{
+    document.getElementById("isearch-steps").style.display="none"
     this.setState({
       loading:true,
       searchResults:[],
@@ -100,95 +102,50 @@ class Isearch extends Component {
     });
   }
 
-  nearbysearch=()=>{
+  phonesearch=()=>{
+    document.getElementById("isearch-steps").style.display="none"
+    const accessToken=localStorage.getItem("bearerToken")
+    const{ search }= this.state
     this.setState({
       loading:true,
       searchResults:[],
       number:"" 
     });
 
+    var data = {
+      "username_phone": search
+    };
 
-    function geolocationSearch(){
-      navigator.geolocation.getCurrentPosition(
-          function (position){
-             const accessToken=localStorage.getItem("bearerToken")
-             var data={
-              "latitude":position.coords.latitude,
-              "longitude": position.coords.longitude,
-              "kilometer":parseInt(position.coords.latitude * 110.574)
-              }
+    var config = {
+      method: 'post',
+      url: 'https://i2talk.live/api/isearch/username-phone',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`
+      },
+      data : data
+    };
 
-              var config = {
-                method: 'post',
-                url: 'https://i2talk.live/api/isearch/geolocation',
-                headers: {
-                  'Authorization': `Bearer ${accessToken}`
-                },
-                data : data
-              };
-
-              axios(config)
-              .then(async (response) =>{
-                const result=response.data.data;
-                alert(JSON.stringify(response.data));
-                await this.setState({
-                  loading:false,
-                  searchResults:result,
-                  number:`${result.length} user(s) found`  
-                });
-                //localStorage.removeItem("position")
-              })
-              .catch(function (error) {
-                alert(error);
-               // localStorage.removeItem("position")
-              });
-          },
-
-          function (error) {
-            /*if(error.code === 1) {
-                swal("You denied Location Access", "Allow Location Access to Find Nearby Users", "error");
-            } if(error.code === 2) {
-                alert("The network is down or the positioning service can't be reached.");
-            } else if(error.code === 3) {
-                alert("The attempt timed out before it could get the location data.");
-            } else {
-                alert("Geolocation failed due to unknown error.");
-            }
-
-*/
-            alert(error.code)
-            return
-          }
-
-        );
-    }
-
-
-    if("geolocation" in navigator) {
-        geolocationSearch()        
-    }
-
-    else {
-        swal({
-          title: "Allow Location Access",
-          text: "Allow location access to find nearby users",
-          buttons: true,
-          dangerMode: false,
-        })
-        .then((willShow) => {
-          if (willShow) {
-            geolocationSearch()
-          }
-          else{
-            swal("You denied Location Access", "You need to allow location access to find nearby users", "error");
-          }
-        })
-       // return
-    }  
-
-    this.setState({
+    axios(config)
+    .then(async (response)=> {
+      const result=response.data.data;
+      await this.setState({
+        loading:false,
+        searchResults:result,
+        number: `${result.length} user(s) found`
+      });
+    })
+    .catch(async (error)=> {
+      if(error==="Error: Request failed with status code 404"){
+        document.getElementById("isearch-steps").innerHTML="<h3>No user found matching the credentials provided!</h3>"
+      }
+      else{
+        alert(error)
+      }
+      await this.setState({
         loading:false 
-      });  
+      });
+    });
+
   }
 
 onChange=(e)=>{
@@ -203,6 +160,8 @@ onChange=(e)=>{
 
   render() {
     const {loading, search,number, searchResults}= this.state
+
+
     return (
       <div className="chat-container">
         <ChatMenu />
@@ -222,27 +181,29 @@ onChange=(e)=>{
             
             <p id="iSearch-header">Search for Users</p>
 
-            {/*<input type="text" 
-              name="search" 
-              placeholder="Search for users" 
-              onChange={this.onChange} 
-              className="searchInput" 
-              value={search}/>*/}
-
             <input className="searchInput isearch-input" 
             name="search"
             type="text" 
-            placeholder="Type location here e.g Lagos" 
+            placeholder="Type something here ...." 
             onChange={this.onChange}
             value={search} required />
           
             <div className="isearch-btns">
               <p className="search-btn" onClick={this.usersearch}>Username</p>
               <p className="search-btn" onClick={this.locationsearch}>Location</p>
-              <p className="search-btn" onClick={this.nearbysearch}>Nearby users</p>
+              <p className="search-btn" onClick={this.phonesearch}>Phone Number</p>
             </div>
 
             <div className="scrollbar" id="iSearch-result">
+
+                <div id="isearch-steps" style={{display:"block", padding:"20px", border:"2px solid var(--primary-color)",margin:"5% 20% 5% 20%"}}>
+
+                  <br /><h3>Steps to effectively search for a user</h3><br />
+                  <p>1. Type in the complete username, phone or location of your user preference </p><br />
+                  <p>2. Click the bar that corresponds to your search option</p><br />
+                  <p>3. You can then view the profile and message a user that interests you.</p><br />
+    
+                </div>
                 {loading ?  
                   (<i className="fa fa-spinner fa-spin" 
                     style={{fontSize:"50px", margin:"20% 30% 20% 45%", color:"var(--primary-color)"}}>
@@ -258,7 +219,7 @@ onChange=(e)=>{
                             <h4>{user.state}, Nigeria</h4>
                           </div>
                           <div className= "searchResults-btn">
-                            <button className="pmsg-btn" ><i className="fas fa-user-circle"></i></button>
+                            <Link to={`/dashboard/searchprofile/${user.username}`}><button className="pmsg-btn" ><i className="fas fa-user-circle"></i></button></Link>
                             <Link to={`/dashboard/directmsg/${user.username}`}><button className="pmsg-btn"><i className="far fa-paper-plane"></i></button></Link>
                           </div>
                         </div>

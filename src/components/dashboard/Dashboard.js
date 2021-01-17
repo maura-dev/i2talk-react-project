@@ -17,6 +17,7 @@ import Settings from '../dashboard/Settings';
 import AdminPanel from '../dashboard/adminPages/AdminPanel';
 import RecipeSearch from '../dashboard/recipeSearch';
 import PrivateChat from '../dashboard/privateChat';
+import SearchProfile from '../dashboard/searchProfile'
 
 // import page styling
 import '../../styles/dashboard.css'
@@ -24,7 +25,7 @@ import '../../styles/dashboard.css'
 import axios from'axios'
 class Dashboard extends Component {
   
-  componentDidMount(){
+  async componentDidMount (){
     var loggedUserId= localStorage.getItem("userId")
     var bearerToken= localStorage.getItem("bearerToken")
     //alert(loggedUserId)
@@ -37,7 +38,7 @@ class Dashboard extends Component {
       }
     };
 
-    axios(config)
+   await  axios(config)
     .then( async (response)=> {
       await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
       //alert(JSON.stringify(response.data))
@@ -68,6 +69,7 @@ class Dashboard extends Component {
             <Route exact path="/dashboard/profile" component={Profile} />
             <Route exact path="/dashboard/settings" component={Settings} />
             <Route exact path="/dashboard/admin" component={AdminPanel} />
+            <Route exact path="/dashboard/searchprofile/:receiver" component={SearchProfile} />
             <Route exact path="/dashboard/recipe-search" component={RecipeSearch} />
           </Switch>
         </div>
