@@ -6,7 +6,8 @@ import LocationInput from './LocationInput';
 import PhoneInputField from './phone';
 import SexInput from './sexInput';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { formatPhoneNumber } from 'react-phone-number-input'
+import { formatPhoneNumber } from 'react-phone-number-input';
+import Error from './Error'
 import { addUser } from '../../actions/usersAction';
 // import { RegionDropdown, CountryDropdown } from 'react-country-region-selector';
 // import PhoneInputCountry from './PhoneInputCountry'
@@ -34,7 +35,11 @@ class SignUpForm extends Component {
       )
     }
 
-    const { loading } = this.state
+    const { loading } = this.state;
+
+    // Making out a field error space
+    const defaultErr = "error goes here";
+    var errSpace;
 
     return(
         <div className="hero-modal-form" >
@@ -57,6 +62,18 @@ class SignUpForm extends Component {
                   .string()
                   .email('Invalid email address')
                   .required('Email is required'),
+                sex: Yup
+                  .string()
+                  .required('Sex is required'),
+                state: Yup
+                  .string()
+                  .required('State is required'),
+                phone: Yup
+                  .string()
+                  .required('Phone is required')
+                  .matches(/^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/,
+                    'Please enter a valid phone number'
+                  ),
                 password: Yup
                   .string()
                   .required('Please enter your password')
@@ -121,34 +138,61 @@ class SignUpForm extends Component {
                     ...this.state,
                     loading:false 
                   });
-                  alert(error.message);
+                  var errMsg = "Request failed with status code";
+                  if (error.message === `${errMsg} 422`){
+                    swal("Please signup with valid details...")
+                  } else if (error.message === `${errMsg} 400`){
+                    swal("Cannot process your request... Please try again.")
+                  } else {
+                    swal("Please hold on... Try again after a few moments.")
+                  }
                 });
                 resetForm();
               }}
             >
 
               {({
-                isSubmitting, values, handleChange, handleBlur
+                isSubmitting, values, handleChange, handleBlur, touched, errors
               }) => (
                 <Form>
                   <div className='field'>
                     <Field type="text" name="fullName" />
                     <label htmlFor="fullName">Full Name</label>
                   </div>
-                  <ErrorMessage name="fullName" component="p" className="form-errors"/>
+                  {errors.fullName && touched.fullName?
+                    <Error 
+                      errSpace = { errors.fullName }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
 
                   <div className='field'>
                     <Field type="text" name="username" />
                     <label htmlFor="username">Username</label>
                   </div>
-                  <ErrorMessage name="username" component="p" className="form-errors"/>
+                  {errors.username && touched.username?
+                    <Error 
+                      errSpace = { errors.username }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
 
                   <div className='field'>
                     <Field type="email" name="email" />
                     <label htmlFor="email">Email</label>
                   </div>
-                  <ErrorMessage name="email" component="p" className="form-errors"/>
-
+                  {errors.email && touched.email?
+                    <Error 
+                      errSpace = { errors.email }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
                   {/* <div className='sex-input-field'>
                     <div className="label"> Sex: </div>
                     <label>
@@ -169,17 +213,38 @@ class SignUpForm extends Component {
                     component={PhoneInputField}
                     />
                   </div>
+                  {errors.phone && touched.phone?
+                    <Error 
+                      errSpace = { errors.phone }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
 
                   <div className="field">
-                    <LocationInput />                
+                    <LocationInput name="state" />                
                   </div>
-                  <ErrorMessage name="state" component="div" className="form-errors"/>
+                  {errors.state && touched.state?
+                    <Error 
+                      errSpace = { errors.state }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
 
                   <div className="field">
-                    <SexInput />                
+                    <SexInput name="sex"/>                
                   </div>
-                  <ErrorMessage name="state" component="div" className="form-errors"/>
-
+                  {errors.sex && touched.sex?
+                    <Error 
+                      errSpace = { errors.sex }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
                   {/* <div className='field'>
                     <Field
                       type="tel" component= { PhoneInputCountry } name="phone" value=""
@@ -201,14 +266,27 @@ class SignUpForm extends Component {
                     <Field type="password" name="password" />
                     <label htmlFor="password">Password</label>
                   </div>
-                  <ErrorMessage name="password" component="p" className="form-errors" />
+                  {errors.password && touched.password?
+                    <Error 
+                      errSpace = { errors.password }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
 
                   <div className='field'>
                     <Field type="password" name="cPassword" />
                     <label htmlFor="cPassword">Confirm password</label>
                   </div>
-                  <ErrorMessage name="cPassword" component="p" className="form-errors"/>
-
+                  {errors.cpassword && touched.cpassword?
+                    <Error 
+                      errSpace = { errors.cpassword }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
                   <p><small>By clicking Sign Up, you agree to our <a href="./terms.html">Terms</a>, 
                     <a href="./security&privacy.html">Privacy Policy</a>. 
                     You may receive SMS notifications from us and can opt out at any time.</small>

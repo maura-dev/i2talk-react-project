@@ -28,7 +28,6 @@ class Dashboard extends Component {
   async componentDidMount (){
     var loggedUserId= localStorage.getItem("userId")
     var bearerToken= localStorage.getItem("bearerToken")
-    //alert(loggedUserId)
 
     var config = {
       method: 'get',
@@ -41,10 +40,14 @@ class Dashboard extends Component {
    await  axios(config)
     .then( async (response)=> {
       await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
-      //alert(JSON.stringify(response.data))
     })
     .catch(function (error) {
-      alert(error);
+      var errMsg = "Request failed with status code";
+      if (error.message === `${errMsg} 401`){
+        console.log("Session timed out please login and try again...")
+      } else {
+        console.log("Please hold on... Try again after a few moments.")
+      }
     });
     
   }

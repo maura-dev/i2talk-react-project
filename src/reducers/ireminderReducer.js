@@ -1,8 +1,8 @@
-import { TOGGLE_EDIT, GET_REMINDER, ADD_REMINDER, EDIT_REMINDER } from '../actions/types';
+import { TOGGLE_EDIT, GET_REMINDERS, ADD_REMINDER, DELETE_REMINDER, EDIT_REMINDER } from '../actions/types';
 
 const initialState = {
-	reminders:[],
-  editForm: false
+  editForm: false,
+	reminders: []
 }
 
 export default function (state = initialState, action){
@@ -10,10 +10,10 @@ export default function (state = initialState, action){
     case TOGGLE_EDIT:
       return {
         ...state,
-        editForm: !state.editForm,
+        editForm: !state.editForm
       };
 
-    case GET_REMINDER:
+    case GET_REMINDERS:
       return {
         ...state,
         reminders: action.payload
@@ -23,6 +23,14 @@ export default function (state = initialState, action){
       return {
         ...state,
         reminders: [action.payload, ...state.reminders]
+      }
+
+    case DELETE_REMINDER:
+      return {
+        ...state,
+        reminders: state.reminders.filter(
+          reminder => reminder.ID !== action.payload
+        )
       }
 
     case EDIT_REMINDER:

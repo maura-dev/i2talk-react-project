@@ -5,24 +5,25 @@ import Reminder from './Reminder';
 // import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getReminder } from '../../../actions/ireminderActions'
+import { getReminders } from '../../../actions/ireminderActions'
 
 
 class IreminderBody extends Component{
 
 	componentDidMount(){
-		this.props.getReminder()
+		this.props.getReminders()
 	}
 
 	render(){
-    const { reminders } = this.props;
+		const { reminders } = this.props;
+		console.log(reminders)
     
 		return (
 			<React.Fragment>
-				<div className="ireminder-body">
+				<div className="ireminder-body scrollbar" id="ireminder-body">
 					<h3>Reminder List</h3>
-					{reminders.map(reminder =>
-						<Reminder key={reminder.id} reminder={reminder}/>
+					{reminders.map((reminder) =>
+						<Reminder key={reminder.ID} reminder={reminder}/>
 					)}
 		  	</div>
 			</React.Fragment>
@@ -35,11 +36,11 @@ class IreminderBody extends Component{
 
 IreminderBody.propTypes={
 	reminders: PropTypes.array.isRequired,
-	getReminder: PropTypes.func.isRequired
+	getReminders: PropTypes.func.isRequired
 }
 
 const mapStateToProps = (state) => ({
 	reminders: state.reminders.reminders
 })
 
-export default connect(mapStateToProps, { getReminder })(IreminderBody);
+export default connect(mapStateToProps, { getReminders })(IreminderBody);

@@ -7,15 +7,16 @@ import DummyDp from '../../img/users/male.png';
 import Moment from 'react-moment';
 
 const ChatMenu =() => {
-  var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
+  var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
   //var realSender = (loggedUserDetails.username).
-  const isender= loggedUserDetails.username
+  console.log(loggedUserDetails)
+  const isender= loggedUserDetails.username;
     
   const { senderChats, senderUser } = useChat(isender);
 
   function ChatScreenName(user, option) {
     const a = user.replace(option, "");
-    const result = a.replace("_", "")
+    const result = a.replace("_", "");
     return result;
 }
 
