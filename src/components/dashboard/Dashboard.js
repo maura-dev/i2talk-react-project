@@ -39,7 +39,7 @@ class Dashboard extends Component {
 
    await  axios(config)
     .then( async (response)=> {
-      await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
+      await localStorage.setItem("loggedUserDetail", JSON.stringify(response.data));
     })
     .catch(function (error) {
       var errMsg = "Request failed with status code";

@@ -10,7 +10,7 @@ const useChat = (isender) => {
   const socketRef = useRef();
 
   useEffect(() => {
-    var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+    var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
     var currentUser = (loggedUserDetails.username).toLowerCase();
     setsenderUsers(currentUser);
   }, []);
@@ -19,7 +19,7 @@ const useChat = (isender) => {
    
 
     const fetchSenderChats = async () => {
-        var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+        var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
         var realSender = (loggedUserDetails.username).toLowerCase()
         var bearerToken= localStorage.getItem("bearerToken");
     	//var realSender= isender.toLowerCase()

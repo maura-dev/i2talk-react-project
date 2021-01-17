@@ -7,7 +7,7 @@ import DummyDp from '../../img/users/male.png';
 import Moment from 'react-moment';
 
 const ChatMenu =() => {
-  var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+  var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
   //var realSender = (loggedUserDetails.username).
   console.log(loggedUserDetails)
   const isender= loggedUserDetails.username;

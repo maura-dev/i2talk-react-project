@@ -7,7 +7,7 @@ import DummyDp from '../../img/users/male.png';
 class Profile extends Component {
 
   componentDidMount(){
-    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"))
 
     if(loggedUserDetails.bio===""){
       loggedUserDetails.bio= "Hi, I'm new to the i2talk chatting platform"
