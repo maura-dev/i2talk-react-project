@@ -1,61 +1,54 @@
 // import {REMINDER_ITEM} from 'types';
 import axios from 'axios'
-import {GET_REMINDERS, ADD_REMINDER, DELETE_REMINDER, TOGGLE_EDIT} from './types';
+import {GET_REMINDERS, ADD_REMINDER, DELETE_REMINDER, GET_REMINDER, EDIT_REMINDER } from './types';
 import swal from '@sweetalert/with-react';
+
+
 
 
 // get user details from local storage
 const accessToken = localStorage.getItem("bearerToken");
 
-
-export const ToggleEdit = () => {
-  return {type: TOGGLE_EDIT}
+export const getReminder = (ID) => async dispatch => {
+  await axios
+  dispatch ({
+    type: GET_REMINDER, 
+    payload: ID
+  })
 }
 
-// export const reminderItem = () => {
-//   return {type: REMINDER_ITEM, payload: reminderId}
-// }
-
 export const getReminders = () => async dispatch => {
-  console.log(accessToken)
-  var config = {
-    method: 'get',
-    url: 'https://i2talk.live/api/ireminder',
-    headers: { 
-      'Authorization': `Bearer ${accessToken}` 
+  const response = await axios.get (
+    'https://i2talk.live/api/ireminder', { 
+      headers: { 
+        'Authorization': `Bearer ${accessToken}`
+      }
     }
-  };
-  await axios(config)
-  .then((response) => {
-    console.log(response.data)
-    const res = response.data.data;
-    return res;
+  )
+  const res = response.data.data;
+  dispatch({
+    type: GET_REMINDERS,
+    payload: res
   })
-  .then(res => {
-    dispatch({
-      type: GET_REMINDERS,
-      payload: res
-    })
-  })
-  .catch((error) => {
-    console.log (error);
-  });
 };
 
-export const addReminder = (newReminder) => async dispatch => {
+export const addReminder = data => async dispatch => {
   var config = {
     method: 'post',
     url: 'https://i2talk.live/api/ireminder/add',
     headers: { 
       'Authorization': `Bearer ${accessToken}` 
     },
-    data : newReminder
+    data : data
   };
-  const res = await axios(config);
+  const res = await axios(config)
   dispatch({
     type: ADD_REMINDER,
-    payload: res.data
+    payload: data
   })
+  swal(res.data.message, {
+    icon: "success",
+  });
 }
 
 export const deleteReminder = ID => async dispatch => {

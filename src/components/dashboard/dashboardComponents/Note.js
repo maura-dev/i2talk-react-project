@@ -1,4 +1,4 @@
-import React, { Component} from 'react'
+import React, { Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { DeleteNote } from '../../../actions/idiaryActions';
@@ -8,7 +8,7 @@ import swal from '@sweetalert/with-react';
 
 class Note extends Component{
 
-		deleteNote= (ID) =>{
+	deleteNote= (ID) =>{
 		swal({
 			title: "Are you sure?",
 			text: "Once deleted, you will not be able to recover this note!",

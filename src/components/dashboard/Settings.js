@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 
 class Settings extends Component {
   render() {
-    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
 
     if (loggedUserDetails.bio === "") {
       loggedUserDetails.bio = "Hi, I'm new to the i2talk chatting platform"

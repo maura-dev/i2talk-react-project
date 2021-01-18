@@ -8,6 +8,7 @@ import ContactUs from './components/pages/ContactUs';
 import Faq from './components/pages/faq';
 import Exercise from './components/pages/Exercise';
 import Dashboard from './components/dashboard/Dashboard';
+import Logout from './components/dashboard/Logout';
 import Auth from './components/pages/Auth'
 import Activation from './components/pages/activation'
 // stylesheets
@@ -29,6 +30,7 @@ class App extends Component {
 						<Route path="/dashboard" component={Dashboard} />
 						<Route exact path="/auth" component={Auth} />
 						<Route exact path="/activation/:token" component={Activation} />
+						<Route exact path="/logout" component={Logout} />
 					</Switch>
 				</div>
 			</Router>
