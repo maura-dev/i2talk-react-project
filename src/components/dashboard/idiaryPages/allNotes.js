@@ -58,9 +58,13 @@ class AllNotes extends Component{
 	render(){
 		const { isLoading, search } = this.state
 
-		if (this.state.isSearching) {
-			return <Redirect to={`/dashboard/idiary/searchresults/${search}`} />
-		}
+			if (this.state.isSearching) {
+				return <Redirect to={`/dashboard/idiary/searchresults/${search}`} />
+			}
+
+			/*if(this.props.notes.length< 1){
+				document.getElementById("isearch-steps").style.display="block"
+			}*/
 		return (
 			<React.Fragment>
 
@@ -83,7 +87,7 @@ class AllNotes extends Component{
 					</button>
 				</Link>
 	                
-	      <h3 id="top-heading">Saved Notes</h3>
+	      		<h3 id="top-heading">Saved Notes</h3>
 
 				{isLoading ?  (<i className="fa fa-spinner fa-spin" style={{fontSize:"50px",margin:"20% 30% 20% 45%", color:"var(--primary-color)"}}></i>) :
 				(<div id="messages" className="scrollbar">
@@ -91,6 +95,8 @@ class AllNotes extends Component{
 						<Note key={note.ID} note={note}/>)
 					)}
 				</div>)}
+
+
 			</React.Fragment>
 		)
 	}

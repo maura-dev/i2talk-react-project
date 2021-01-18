@@ -9,7 +9,7 @@ import Moment from 'react-moment';
 const ChatMenu =() => {
   var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
   //var realSender = (loggedUserDetails.username).
-  console.log(loggedUserDetails)
+  //console.log(loggedUserDetails)
   const isender= loggedUserDetails.username;
     
   const { senderChats, senderUser } = useChat(isender);
@@ -71,7 +71,7 @@ if (senderChats.length > 0) {
                     <h4>{ChatScreenName(chat.chatID, senderUser)}</h4> 
                     <span className="chat-counter">1</span>
                     <p>{chat.lastMessage}</p>
-                    <h6>&nbsp; &nbsp;<Moment format="hh:mm A">{chat.updatedAt}</Moment></h6>
+                    <h6 style={{textAlign:"right"}}><Moment format="hh:mm A">{chat.updatedAt}</Moment></h6>
                   </div>
                 </div>
               </Link>
