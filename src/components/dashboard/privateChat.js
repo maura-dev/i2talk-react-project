@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import TextInput from './dashboardComponents/textArea';
 import Headers from './dashboardComponents/headers';
 //import "./ChatRoom.css";
@@ -66,8 +66,6 @@ const {
   }
 
   return (
-   <div className="chat-container">
-        <ChatMenu />
         <div className="chat-message-container" id="user-msg-container">
         <div className="chat-message" id="user-direct-chat">
       <Headers
@@ -112,7 +110,6 @@ const {
         handleSendMessage={handleSendMessage}
       ></NewMessageForm>
             
-    </div>
     </div>
     </div>
       

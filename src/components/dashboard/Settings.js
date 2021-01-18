@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';// import component images
 import { Link } from 'react-router-dom'
 //import DummyDp from '../../img/users/male.png';
@@ -13,8 +13,6 @@ class Settings extends Component {
     }
 
     return (
-      <div className="chat-container">
-        <ChatMenu />
 
         <div className="chat-message-container" id="user-msg-container">
         
@@ -82,7 +80,6 @@ class Settings extends Component {
       
           </div>
         </div>
-      </div>
     )
   }
 }

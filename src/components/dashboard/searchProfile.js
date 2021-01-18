@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';
 import axios from 'axios'
 import Button2 from './dashboardComponents/button2'
@@ -44,8 +44,6 @@ class SearchProfile extends Component {
     const {receiver}= this.props.match.params
 
     return (
-      <div className="chat-container">
-        <ChatMenu />
 
         <div className="chat-message-container" id="user-msg-container">
         
@@ -93,7 +91,7 @@ class SearchProfile extends Component {
             </div>
           </div>
         </div>
-      </div>
+
     )
   }
 }

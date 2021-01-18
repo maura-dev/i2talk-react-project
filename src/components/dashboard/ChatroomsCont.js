@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import axios from 'axios';
 import AllChatrooms from './chatroomPages/allChatrooms';
 import Chatroom from './chatroomPages/Chatroom';
@@ -39,8 +39,8 @@ class ChatroomsCont extends Component {
     return (
       
       <Router>
-        <div className="chat-container">
-          <ChatMenu />
+       {/* <div className="chat-container">
+          <ChatMenu />*/}
 
 
           <div className="chat-message-container" id="user-msg-container">
@@ -58,7 +58,6 @@ class ChatroomsCont extends Component {
               </Switch> 
             </div>
           </div>
-        </div>
       </Router>
     )
   }

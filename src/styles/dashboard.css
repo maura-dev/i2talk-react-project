@@ -926,6 +926,7 @@ form p {
 .button:hover{
 	background-color: var(--bg-color-alt);
 	color:var(--primary-color);
+	border: 2px solid var(--primary-color);
 	
 }
 #settings-profile-box{
@@ -1037,6 +1038,11 @@ form p {
 	margin:10px auto 10px auto;
 	max-width: 30%;
 	height:auto;
+}
+
+.profile-details {
+	overflow-y: scroll;
+	height: 85%;
 }
 
 #profile-image-box {

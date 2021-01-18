@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatMenu from '../ChatMenu';
+//import ChatMenu from '../ChatMenu';
 import Headers from '../dashboardComponents/headers';
 import EditForm from './EditForm';
 import { connect } from 'react-redux';
@@ -16,8 +16,6 @@ class Ireminder extends Component {
 
     return (
       <React.Fragment>
-        <div className="chat-container">
-          <ChatMenu />
 
           <div className="chat-message-container" id="user-msg-container">
             <div className="dashboard-feature-container">
@@ -38,7 +36,7 @@ class Ireminder extends Component {
               <IreminderBody />
             </div>
           </div>
-        </div>
+  
       </React.Fragment>
     )
   }

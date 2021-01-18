@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Headers from './dashboardComponents/headers';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import AddNotes from  './idiaryPages/addNote';
 import EditNotes from  './idiaryPages/editNote';
 import AllNotes from './idiaryPages/allNotes';
@@ -14,9 +14,6 @@ class Idiary extends Component {
   	
     return (
     	<Router>
-				<div className="chat-container">
-          <ChatMenu />
-
           <div className="chat-message-container" id="user-msg-container">
 						<div className="dashboard-feature-container">
 							<Headers 
@@ -39,7 +36,6 @@ class Idiary extends Component {
 						
 						</div>
 					</div>
-				</div>
 	      
 			</Router>
     )

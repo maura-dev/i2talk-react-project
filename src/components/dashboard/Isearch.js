@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 //import { Formik, Form, Field, ErrorMessage  } from 'formik';
 //import * as Yup from 'yup';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';
 import axios from 'axios';
-//import swal from '@sweetalert/with-react';
+import swal from '@sweetalert/with-react';
 import { Link } from 'react-router-dom'
 //import Button1 from './dashboardComponents/button1'
 //import Button2 from './dashboardComponents/button2';
@@ -167,8 +167,6 @@ onChange=(e)=>{
 
 
     return (
-      <div className="chat-container">
-        <ChatMenu />
 
         <div className="chat-message-container" id="user-msg-container">
           <div className="dashboard-feature-container" id="user-iSearch-page">
@@ -234,7 +232,6 @@ onChange=(e)=>{
             </div>
           </div>
         </div>
-      </div>
     )
   }
 }
