@@ -6,10 +6,14 @@ import * as Yup from 'yup';
 // import { editReminder } from '../../../actions/ireminderActions';
 
 class EditForm extends Component {
-
+  componentDidMount(){
+		this.props.getReminder()
+  }
+  
   render() {
 
     const today = new Date(Date.now());
+
     // Making out a field error space
     const defaultErr = "error goes here";
     var errSpace = defaultErr;

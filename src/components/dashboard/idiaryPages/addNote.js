@@ -14,8 +14,8 @@ class AddNotes extends Component{
 	}
 
 	submitNote=(newNote)=>{
-		const accessToken=localStorage.getItem("bearerToken")
-		const { message }= this.state
+		const accessToken=localStorage.getItem("bearerToken");
+		const { message }= this.state;
 		//ERROR CHECKING
 		if(message===""){
 			this.setState({

@@ -11,7 +11,6 @@ import menuReducer from './menuReducer';
 const rootReducer = combineReducers({
   Users: usersReducer,
   reminders: ireminderReducer,
-  editForm: ireminderReducer,
   reminder: ireminderReducer,
   userData: allUserReducers,
   notes: idiaryReducer,

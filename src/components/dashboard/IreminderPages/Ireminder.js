@@ -2,50 +2,52 @@ import React, { Component } from 'react';
 import ChatMenu from '../ChatMenu';
 import Headers from '../dashboardComponents/headers';
 import EditForm from './EditForm';
-import { connect } from 'react-redux';
-import { ToggleEdit } from '../../../actions/ireminderActions'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import IreminderForm from './IreminderForm';
 import IreminderBody from './IreminderBody';
 
 
 class Ireminder extends Component {
  
-  
   render() {
-    const { editForm } = this.props;
 
     return (
-      <React.Fragment>
-        <div className="chat-container">
-          <ChatMenu />
+      <Router>
+        <React.Fragment>
+          <div className="chat-container">
+            <ChatMenu />
 
-          <div className="chat-message-container" id="user-msg-container">
-            <div className="dashboard-feature-container">
-              
-              <Headers 
-                text="iReminder"
-                img = {null}
-                display = "show"
-                leave = {null} 
-                view = {null}
-                mute = {null} 
-                search = "Search reminders"
-                report = {null} 
-              />
+            <div className="chat-message-container" id="user-msg-container">
+              <div className="dashboard-feature-container">
+                
+                <Headers 
+                  text="iReminder"
+                  img = {null}
+                  display = "show"
+                  leave = {null} 
+                  view = {null}
+                  mute = {null} 
+                  search = "Search reminders"
+                  report = {null} 
+                />
 
-              {editForm ? <EditForm /> : <IreminderForm />}
+                <Switch>
+                  <Route exact path="/dashboard/ireminder/" render = {() => (
+                    <IreminderForm/>
+                  )} />
+                  <Route exact path="/dashboard/ireminder/editForm/:ID" render = {() => (
+                    <EditForm/>
+                  )} />
+                </Switch>
 
-              <IreminderBody />
+                <IreminderBody />
+              </div>
             </div>
           </div>
-        </div>
-      </React.Fragment>
+        </React.Fragment>
+      </Router>
     )
   }
 }
 
-const mapStateToProps = (state) => ({
-	editForm: state.editForm.editForm
-})
-
-export default connect(mapStateToProps, {ToggleEdit})( Ireminder );
+export default Ireminder;

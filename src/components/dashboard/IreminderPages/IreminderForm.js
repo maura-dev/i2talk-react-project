@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Formik, Form, Field, ErrorMessage  } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Error from '../../forms/Error';
 import PropTypes from 'prop-types';
@@ -10,6 +10,7 @@ import { v4 as uuid } from 'uuid';
 class IreminderForm extends Component {
   render() {
     const today = new Date(Date.now());
+    var loggedUserId= localStorage.getItem("userId")
     // Making out a field error space
     const defaultErr = "error goes here";
     var errSpace = defaultErr;
@@ -18,13 +19,13 @@ class IreminderForm extends Component {
       <div>
         <Formik
 
-          initialValues={{ message: '', timeCompleted: '' }}
+          initialValues={{ ID: uuid(), message: '', timeCompleted: '' }}
           
           validationSchema = {Yup.object({
-            remindNote: Yup
+            message: Yup
               .string()
               .required('Please enter reminder details!'),
-            time: Yup
+            timeCompleted: Yup
               .date()
               .min(today, "You can't go back to the past, please enter a future date..."
               )
@@ -33,14 +34,13 @@ class IreminderForm extends Component {
 
           onSubmit={
             (values, { resetForm }) => {
-              const correctTime = values.timeCompleted;
-              const newReminder = {
-                id: uuid(),
-                message: values.message,
-                time: correctTime
+              const data = {
+                title: "reminder",
+                userID: loggedUserId,
+                ...values
               };
 
-              this.props.addReminder(newReminder);
+              this.props.addReminder(data);
 
               resetForm();
             }
@@ -61,7 +61,7 @@ class IreminderForm extends Component {
                     />
                   }
                   
-                  <Field type="datetime-local" name="time" />
+                  <Field type="datetime-local" name="timeCompleted" />
                   {errors.timeCompleted && touched.timeCompleted?
                     <Error 
                       errSpace = { errors.timeCompleted }
