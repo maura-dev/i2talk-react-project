@@ -12,39 +12,35 @@ class Ireminder extends Component {
   render() {
 
     return (
+      
       <Router>
-        <React.Fragment>
-          <div className="chat-container">
-            <ChatMenu />
+        <div className="chat-container">
+          <ChatMenu />
 
-            <div className="chat-message-container" id="user-msg-container">
-              <div className="dashboard-feature-container">
-                
-                <Headers 
-                  text="iReminder"
-                  img = {null}
-                  display = "show"
-                  leave = {null} 
-                  view = {null}
-                  mute = {null} 
-                  search = "Search reminders"
-                  report = {null} 
-                />
+          <div className="chat-message-container" id="user-msg-container">
+            <div className="dashboard-feature-container">
+              
+              <Headers 
+                text="iReminder"
+                img = {null}
+                display = "show"
+                leave = {null} 
+                view = {null}
+                mute = {null} 
+                search = "Search reminders"
+                report = {null} 
+              />
 
-                <Switch>
-                  <Route exact path="/dashboard/ireminder/" render = {() => (
-                    <IreminderForm/>
-                  )} />
-                  <Route exact path="/dashboard/ireminder/editForm/:ID" render = {() => (
-                    <EditForm/>
-                  )} />
-                </Switch>
+              <Switch>
+                <Route exact path="/dashboard/ireminder/" component={IreminderForm}/>
+                <Route exact path="/dashboard/ireminder/editForm/:ID" component={EditForm}/>
+              </Switch>
 
-                <IreminderBody />
-              </div>
+              <IreminderBody />
             </div>
           </div>
-        </React.Fragment>
+        </div>
+      
       </Router>
     )
   }
