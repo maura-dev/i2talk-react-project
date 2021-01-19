@@ -2,66 +2,99 @@ import React, { Component } from 'react';
 //import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';
 import swal from '@sweetalert/with-react';
-
-// import image components
-//import DummyDp from '../../img/users/male.png';
+import axios from 'axios'
 class Profile extends Component {
 
   state={
-    loading:false
+    loading:false,
+    file:null,
+    fullName:"",
+    bio:"",
+    state:""
   }
 
   componentDidMount(){
     const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
 
-}
-  /*function readURL(){
-    file = document.getElementById("getval").files[0];
-    reader = new FileReader();
-    reader.onloadend = function(){
-    document.getElementById('profile-image-box').style.backgroundImage = "url(" + reader.result + ")";
-    document.getElementById('imga').style.display ="none"   
-    document.getElementById("getval").style.display ="none"
-    document.getElementById("fa-upload").style.display ="none"
-    }
-    if(file){
-        reader.readAsDataURL(file);
-        alert(reader.result)
-    }else{
-  }
-}
-*/
-
-/*handlePictureSelect=(e)=>{
-  var pic=e.target.files[0]
-  var src=URL.createObjectURL(pic)
-  alert(src)
-}
-submitProfile=()=>{
-  //document.getElementById('getval') 
-  var data= new FormData();
-  //var fs= new FileStream()
-  data.append("username", document.getElementById("username-input").value)
-  data.append("email", document.getElementById("email-input").value)
-  data.append("bio", document.getElementById("bio-input").value)
-  data.append("profile-picture", fs.createReadStream())
-  data.append("phone", document.getElementById("phone-input").value)
-  data.append("sex", document.getElementById("sex-input").value)
-  data.append("location", document.getElementById("location-input").value)
-
-}
-*/
-  
-  render() {
-
-   const loggedUserDetails = JSON.parse(localStorage.getItem("loggedUserDetails"))
-
-    if(loggedUserDetails.bio===""){
+     if(loggedUserDetails.bio===""){
       loggedUserDetails.bio= "Hi, I'm new to the i2talk chatting platform"
     }
-     
+
+    this.setState({
+      ...this.state,
+      fullName:loggedUserDetails.fullName,
+      bio:loggedUserDetails.bio,
+      state:loggedUserDetails.state
+    });
+
+}
+
+handlePictureSelect=(e)=>{
+  this.setState({
+    ...this.state,
+    file:e.target.files[0]
+  });
+}
+
+onChange=(e)=>{
+  this.setState({
+      [e.target.name]: [e.target.value]
+  });
+}
+  
+submitProfile=(e)=>{
+  e.preventDefault()
+  this.setState({
+      loading:true 
+  });
+
+ const { fullName, bio,state, file  }= this.state 
+ //alert(JSON.stringify(this.state))
+ const accessToken=localStorage.getItem("bearerToken")
+  var data= new FormData();
+ 
+  data.append("fullName", fullName)
+  data.append("bio", bio)
+  data.append("profile-picture",file )
+  data.append("state",state )
+
+  var config = {
+      method: 'put',
+      url: 'https://i2talk.live/api/users/editProfile',
+      headers: {
+        'Authorization': `Bearer ${accessToken}`,
+        'Content-Type': 'multipart/form-data'
+      },
+      data : data
+    };
+
+    axios(config)
+    .then(async (response)=> {
+      this.setState({
+          loading:false 
+      });
+      swal("Yayy!", "Profile updated successfully", "success")
+
+    })
+    .catch(async (error)=> {
+      var errMsg = "Request failed with status code";
+      if (error.message === `${errMsg} 401`){
+        swal("Cannot process your request... Please try again.")
+      } else {
+        swal("Please hold on... Try again after a few moments.")
+      }
+      await this.setState({
+        loading:false 
+      });
+    });
+
+}
+
+  
+  render() {
+  const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
   const displayPic = loggedUserDetails.picture;
-  const { loading }= this.state
+  const { loading, fullName, bio, state } =this.state
 
     return (
       
@@ -71,7 +104,7 @@ submitProfile=()=>{
           <div className= "dashboard-feature-container">
             <Headers 
               text="My Profile"
-              img = {null}
+              img = {displayPic}
               display = "hide"
               leave = {null} 
               view = {null}
@@ -85,57 +118,42 @@ submitProfile=()=>{
               </span>
               <div id="profile-image-box">
                 <img src={displayPic} alt="profile" />
-                {/*<img id="imga" src={loggedUserDetails.picture.bind(this)} />
                 <input type="file" 
                 name="logo" 
                 id='getval' 
                 className="upload w180" 
                 title="Dimensions 180 X 180" 
-                id="imag"
-                onChange={this.handlePictureSelect} />
-                 <i id="fa-upload" class="fa fa-upload fa-5x"></i>
-              */}
+                onChange={this.handlePictureSelect} required />
+                 <i id="fa-upload" className="fa fa-upload fa-5x"></i>
               </div>
 
               <hr/>
               
               <br/>
-              <p>Username</p>
-              <input type="text" placeholder="Enter your username" id="username-input" value={loggedUserDetails.username} required />
-              <br/>
-              <hr/>
-
-              <br/>
-              <p>Email</p>
-              <input type="email" placeholder="Enter your email" id="email-input" value={loggedUserDetails.email} required />
+              <p>Full Name</p>
+              <input type="text"
+              name="fullName" 
+              placeholder="Enter your full name" 
+              value={fullName}
+              onChange={this.onChange} 
+              required />
               <br/>
               <hr/>
 
               <br/>
               <p>Bio</p>
-              <input type="text" placeholder="Enter your bio" id="bio-input" value={loggedUserDetails.bio} required />
-              <br/>
-              <hr/>
-
-              <br/>
-              <p>Phone number</p>
-              <input type="text" placeholder="Enter your number" id="number-input" value={loggedUserDetails.phone} required />
-              <br/>
-              <hr/>
-
-              <br/>
-              <p>Sex</p>
-                <select id="sex-input" required>
-                  <option value="none" disabled selected>-- Select Sex --</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
+              <input type="text" 
+              name="bio"
+              placeholder="Enter your bio" 
+              value={bio} 
+              onChange={this.onChange} 
+              required />
               <br/>
               <hr/>
 
               <br/>
               <p>Location</p>
-                <select id="location-input" required>
+                <select name="state" onChange={this.onChange} value={state} required>
                   <option value="none" disabled selected>--Select State--</option>
                   <option value="Abia">Abia</option>
                   <option value="Adamawa">Adamawa</option>

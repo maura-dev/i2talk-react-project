@@ -215,7 +215,8 @@ onChange=(e)=>{
                   {searchResults.map(user=>(     
                     <div className="ireminder-item" key={user.id}>
                         <div className="ireminder-msg searchResults-msg">
-                          <div>
+                          <div><img src={user.picture} alt="user pics" width="100px" height="100px" /></div>
+                          <div> 
                             <h3> {user.fullName} </h3>
                             <p>@{user.username}</p>
                             <h4>{user.state}, Nigeria</h4>

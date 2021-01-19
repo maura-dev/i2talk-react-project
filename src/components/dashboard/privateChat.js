@@ -87,7 +87,7 @@ const PrivateChat = (props) => {
                 key={i}
                 className = {`chat-new ${message.sender === isender ? "mchat-msg-self" : "mchat-msg-other"}`}
               >
-                {/* <span className= {`${message.sender === isender ? "hide": "msg-head"}`}>{message.sender}</span> */}
+                {/*<span><i className="fas fa-chevron-down"></i></span><br />  */}             
                 {message.message}
                 <span className="msg-time"><Moment format="hh:mm">{message.timePosted}</Moment></span>
               </li>
