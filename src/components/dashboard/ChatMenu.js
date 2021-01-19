@@ -8,6 +8,9 @@ import Moment from 'react-moment';
 
 const ChatMenu =() => {
   var loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
+  var logged= JSON.parse(localStorage.getItem("loggedUserDetails"))
+
+
   //var realSender = (loggedUserDetails.username).
   //console.log(loggedUserDetails)
   const isender= loggedUserDetails.username;

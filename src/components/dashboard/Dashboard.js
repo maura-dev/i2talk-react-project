@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 // import page components
 import SideBar from './SideBar';
-// import ChatMenu from './ChatMenu';
+import ChatMenu from './ChatMenu';
 import DirectMsg from '../dashboard/DirectMsg';
 import ChatroomsCont from '../dashboard/ChatroomsCont';
 import Idiary from '../dashboard/Idiary';
@@ -14,7 +14,7 @@ import Ireminder from '../dashboard/IreminderPages/Ireminder';
 import Isearch from '../dashboard/Isearch';
 import Profile from '../dashboard/Profile';
 import Settings from '../dashboard/Settings';
-import AdminPanel from '../dashboard/adminPages/AdminPanel';
+//import AdminPanel from '../dashboard/adminPages/AdminPanel';
 import RecipeSearch from '../dashboard/recipeSearch';
 import PrivateChat from '../dashboard/privateChat';
 import SearchProfile from '../dashboard/searchProfile';
@@ -40,7 +40,7 @@ class Dashboard extends Component {
 
    await  axios(config)
     .then( async (response)=> {
-      await localStorage.setItem("loggedUserDetail", JSON.stringify(response.data));
+      await localStorage.setItem("loggedUserDetails", JSON.stringify(response.data));
     })
     .catch(function (error) {
       var errMsg = "Request failed with status code";
@@ -59,6 +59,8 @@ class Dashboard extends Component {
       <Router>
         <div className="chat-container-main">
           <SideBar />
+          <div className="chat-container">
+            <ChatMenu />
           <Switch>
             <Route exact path="/dashboard/" component={DirectMsg} />
             {/* <Route exact path="/dashboard/" render={(props) => (
@@ -72,11 +74,12 @@ class Dashboard extends Component {
             <Route exact path="/dashboard/isearch" component={Isearch} />
             <Route exact path="/dashboard/profile" component={Profile} />
             <Route exact path="/dashboard/settings" component={Settings} />
-            <Route exact path="/dashboard/admin" component={AdminPanel} />
+            {/*<Route exact path="/dashboard/admin" component={AdminPanel} />*/}
             <Route exact path="/dashboard/logout" component={Logout} />
             <Route exact path="/dashboard/searchprofile/:receiver" component={SearchProfile} />
             <Route exact path="/dashboard/recipe-search" component={RecipeSearch} />
           </Switch>
+        </div>
         </div>
       </Router>
     )

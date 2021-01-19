@@ -43,9 +43,9 @@ class Main extends Component {
 				<Header />
 					<div>
 
-						<h2 style={{textAlign:"center", marginTop:"20px"}}>
+{/*						<h2 style={{textAlign:"center", marginTop:"20px"}}>
 							A web-based messaging app with focus on efficiency and convenience.
-						</h2>
+						</h2>*/}
 
 						<div className="hero">
 							<HeroBox showForm={this.showForm}/>

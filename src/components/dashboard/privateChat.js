@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import TextInput from './dashboardComponents/textArea';
 import Headers from './dashboardComponents/headers';
 //import "./ChatRoom.css";
@@ -66,8 +66,6 @@ const PrivateChat = (props) => {
   }
 
   return (
-   <div className="chat-container">
-        <ChatMenu />
         <div className="chat-message-container" id="user-msg-container">
         <div className="chat-message" id="user-direct-chat">
       <Headers
@@ -89,7 +87,7 @@ const PrivateChat = (props) => {
                 key={i}
                 className = {`chat-new ${message.sender === isender ? "mchat-msg-self" : "mchat-msg-other"}`}
               >
-                {/* <span className= {`${message.sender === isender ? "hide": "msg-head"}`}>{message.sender}</span> */}
+                {/*<span><i className="fas fa-chevron-down"></i></span><br />  */}             
                 {message.message}
                 <span className="msg-time"><Moment format="hh:mm">{message.timePosted}</Moment></span>
               </li>
@@ -112,7 +110,6 @@ const PrivateChat = (props) => {
         handleSendMessage={handleSendMessage}
       ></NewMessageForm>
             
-    </div>
     </div>
     </div>
       

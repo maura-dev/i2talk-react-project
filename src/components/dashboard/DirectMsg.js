@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 //import TextInput from './dashboardComponents/textArea';
 import Headers from './dashboardComponents/headers';
 
@@ -10,8 +10,6 @@ class DirectMsg extends Component {
   render() {
 
     return (
-      <div className="chat-container">
-        <ChatMenu />
 
         <div className="chat-message-container" id="user-msg-container">
           <div className="chat-message" id="user-direct-chat">
@@ -38,7 +36,7 @@ class DirectMsg extends Component {
             </div>
           </div>
         </div>
-      </div>
+
     )
   }
 }

@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
-import ChatMenu from './ChatMenu';
+//import ChatMenu from './ChatMenu';
 import Headers from './dashboardComponents/headers';// import component images
 import { Link } from 'react-router-dom'
 //import DummyDp from '../../img/users/male.png';
 
 class Settings extends Component {
   render() {
-    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"));
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"));
 
     if (loggedUserDetails.bio === "") {
       loggedUserDetails.bio = "Hi, I'm new to the i2talk chatting platform"
     }
 
     return (
-      <div className="chat-container">
-        <ChatMenu />
 
         <div className="chat-message-container" id="user-msg-container">
         
@@ -82,7 +80,6 @@ class Settings extends Component {
       
           </div>
         </div>
-      </div>
     )
   }
 }
