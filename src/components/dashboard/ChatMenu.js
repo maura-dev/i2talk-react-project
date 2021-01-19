@@ -61,20 +61,20 @@ if (senderChats.length > 0) {
             {senderChats.map( chat => (
 
               <Link to={`/dashboard/directmsg/${ChatScreenName(chat.chatID, senderUser)}`}>  
-              <div class="chat-box">
-                <div class="chat-box-col1">
-                <div class="chat-box-img">
-                  <img src={DummyDp} alt="profile"/>
+                <div className="chat-box">
+                  <div className="chat-box-col1">
+                    <div className="chat-box-img">
+                      <img src={DummyDp} alt="profile"/>
+                    </div>
+                  </div>
+                  <div className="chat-box-col2">
+                    <h4>{ChatScreenName(chat.chatID, senderUser)}</h4> 
+                    <span className="chat-counter">1</span>
+                    <p>{chat.lastMessage}</p>
+                    <h6 style={{textAlign:"right"}}><Moment format="hh:mm A">{chat.updatedAt}</Moment></h6>
+                  </div>
                 </div>
-                </div>
-                <div class="chat-box-col2">
-                <h4>{ChatScreenName(chat.chatID, senderUser)}</h4> 
-                <span class="chat-counter">1</span>
-                <p>{chat.lastMessage}</p>
-                <h6><Moment format="hh:mm">{chat.updatedAt}</Moment></h6>
-                </div>
-                </div>
-                </Link>
+              </Link>
               ))}
         </div>
       </div>

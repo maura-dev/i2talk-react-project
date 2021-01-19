@@ -1,18 +1,11 @@
-import { TOGGLE_EDIT, GET_REMINDERS, ADD_REMINDER, DELETE_REMINDER, EDIT_REMINDER } from '../actions/types';
+import { GET_REMINDERS, ADD_REMINDER, DELETE_REMINDER, EDIT_REMINDER, GET_REMINDER } from '../actions/types';
 
 const initialState = {
-  editForm: false,
 	reminders: []
 }
 
 export default function (state = initialState, action){
 	switch (action.type){
-    case TOGGLE_EDIT:
-      return {
-        ...state,
-        editForm: !state.editForm
-      };
-
     case GET_REMINDERS:
       return {
         ...state,

@@ -12,24 +12,24 @@ import DummyDp from '../../img/users/male.jpg';
 
 const PrivateChat = (props) => {
 
-  const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+  const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetail"))
   const isender= loggedUserDetails.username
   const { receiver }= props.match.params
-  // const userDetails = JSON.parse(localStorage.getItem("loggedUserDetails"));
+  // const userDetails = JSON.parse(localStorage.getItem("loggedUserDetail"));
   // const userId = userDetails.id;
 
   function getPrivateChatID(isender, receiver) {
     const chatOwner = [isender, receiver];
     chatOwner.sort((a, b) => a.localeCompare(b));
     return  `${chatOwner[0]}_${chatOwner[1]}`
-}
+  }
 
-const chatID= getPrivateChatID(isender,receiver)
+  const chatID= getPrivateChatID(isender, receiver)
 
-const {
+  const {
     messages,
     user,
-/*    users,
+    /* users,
     typingUsers,*/
     sendMessage,
     scheduleMessage,

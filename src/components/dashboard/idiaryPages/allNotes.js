@@ -56,7 +56,7 @@ class AllNotes extends Component{
 	}
 
 	render(){
-			const { isLoading, search } = this.state
+		const { isLoading, search } = this.state
 
 			if (this.state.isSearching) {
 				return <Redirect to={`/dashboard/idiary/searchresults/${search}`} />
@@ -81,7 +81,8 @@ class AllNotes extends Component{
 				</div>
 				<br />
 				<hr />
-				<Link to="/dashboard/idiary/addnote"><button className="shake" id="add-btn">
+				<Link to="/dashboard/idiary/addnote">
+					<button className="shake" id="add-btn">
 						<i className="fas fa-plus-circle"></i>
 					</button>
 				</Link>

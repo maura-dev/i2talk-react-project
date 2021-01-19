@@ -17,7 +17,8 @@ import Settings from '../dashboard/Settings';
 //import AdminPanel from '../dashboard/adminPages/AdminPanel';
 import RecipeSearch from '../dashboard/recipeSearch';
 import PrivateChat from '../dashboard/privateChat';
-import SearchProfile from '../dashboard/searchProfile'
+import SearchProfile from '../dashboard/searchProfile';
+import Logout from '../dashboard/Logout';
 
 // import page styling
 import '../../styles/dashboard.css'
@@ -60,25 +61,25 @@ class Dashboard extends Component {
           <SideBar />
           <div className="chat-container">
             <ChatMenu />
-
-            <Switch>
-              <Route exact path="/dashboard/" component={DirectMsg} />
-              {/* <Route exact path="/dashboard/" render={(props) => (
-                <DirectMsg {...props} menu={menu} toggleMenu={this.toggleMenu} />)} 
-              /> */}
-               <Route exact path="/dashboard/directmsg/:receiver" component={PrivateChat} />
-              <Route path="/dashboard/chatroomscont" component={ChatroomsCont} />
-              <Route path="/dashboard/idiary" component={Idiary} />
-              <Route exact path="/dashboard/ischedule" component={Ischedule} />
-              <Route exact path="/dashboard/ireminder" component={Ireminder} />
-              <Route exact path="/dashboard/isearch" component={Isearch} />
-              <Route exact path="/dashboard/profile" component={Profile} />
-              <Route exact path="/dashboard/settings" component={Settings} />
-              {/*<Route exact path="/dashboard/admin" component={AdminPanel} />*/}
-              <Route exact path="/dashboard/searchprofile/:receiver" component={SearchProfile} />
-              <Route exact path="/dashboard/recipe-search" component={RecipeSearch} />
-            </Switch>
-          </div>
+          <Switch>
+            <Route exact path="/dashboard/" component={DirectMsg} />
+            {/* <Route exact path="/dashboard/" render={(props) => (
+              <DirectMsg {...props} menu={menu} toggleMenu={this.toggleMenu} />)} 
+            /> */}
+             <Route exact path="/dashboard/directmsg/:receiver" component={PrivateChat} />
+            <Route path="/dashboard/chatroomscont" component={ChatroomsCont} />
+            <Route path="/dashboard/idiary" component={Idiary} />
+            <Route exact path="/dashboard/ischedule" component={Ischedule} />
+            <Route exact path="/dashboard/ireminder" component={Ireminder} />
+            <Route exact path="/dashboard/isearch" component={Isearch} />
+            <Route exact path="/dashboard/profile" component={Profile} />
+            <Route exact path="/dashboard/settings" component={Settings} />
+            {/*<Route exact path="/dashboard/admin" component={AdminPanel} />*/}
+            <Route exact path="/dashboard/logout" component={Logout} />
+            <Route exact path="/dashboard/searchprofile/:receiver" component={SearchProfile} />
+            <Route exact path="/dashboard/recipe-search" component={RecipeSearch} />
+          </Switch>
+        </div>
         </div>
       </Router>
     )

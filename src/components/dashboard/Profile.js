@@ -11,6 +11,10 @@ class Profile extends Component {
     loading:false
   }
 
+  componentDidMount(){
+    const loggedUserDetails= JSON.parse(localStorage.getItem("loggedUserDetails"))
+
+}
   /*function readURL(){
     file = document.getElementById("getval").files[0];
     reader = new FileReader();
