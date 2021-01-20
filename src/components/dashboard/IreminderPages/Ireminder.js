@@ -7,12 +7,9 @@ import IreminderForm from './IreminderForm';
 import IreminderBody from './IreminderBody';
 
 
-class Ireminder extends Component {
- 
+class Ireminder extends Component { 
   render() {
-
-    return (
-      
+    return (      
       <Router>
           <div className="chat-message-container" id="user-msg-container">
             <div className="dashboard-feature-container">
