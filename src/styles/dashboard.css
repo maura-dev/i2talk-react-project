@@ -62,7 +62,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar-track,
-#ireminder-body::-webkit-scrollbar-track,
+#ireminder-scroll::-webkit-scrollbar-track,
 #user-side-bar::-webkit-scrollbar-track,
 #user-chat-menu::-webkit-scrollbar-track,
 #iSearch-result::-webkit-scrollbar-track,
@@ -77,7 +77,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar,
-#ireminder-body::-webkit-scrollbar,
+#ireminder-scroll::-webkit-scrollbar,
 #user-side-bar::-webkit-scrollbar,
 #user-chat-menu::-webkit-scrollbar,
 #iSearch-result::-webkit-scrollbar,
@@ -91,7 +91,7 @@
 }
 
 #admin-panel-body::-webkit-scrollbar-thumb,
-#ireminder-body::-webkit-scrollbar-thumb,
+#ireminder-scroll::-webkit-scrollbar-thumb,
 .textScrollbar::-webkit-scrollbar-thumb,
 #user-side-bar::-webkit-scrollbar-thumb,
 #user-chat-menu::-webkit-scrollbar-thumb,
@@ -814,9 +814,13 @@ form p {
 
 .ireminder-form button {
 	border-radius: 50%;
-	padding: 6px;
+	width: 50px;
+	height: 50px;
+	padding: 4px;
+	margin: 4px;
 	font-size: 26px;
 }
+
 .shake:hover {
   animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
   transform: translate3d(0, 0, 0);
@@ -841,8 +845,11 @@ form p {
     transform: translate3d(4px, 0, 0);
   }
 }
-
-.ireminder-body h3 {
+.ireminder-body {
+	overflow-y: scroll;
+	height: 40%;
+} 
+.ireminder-body-cont h3 {
 	text-align: center;
 }
 

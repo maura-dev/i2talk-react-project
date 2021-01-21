@@ -43,22 +43,22 @@ class EditNotes extends Component{
 
 	onChange=(e)=>{
 
-		 var autoExpand = function (field) {
+		var autoExpand = function (field) {
 
-	    // Reset field height
-	    field.style.height = 'inherit';
+		// Reset field height
+		field.style.height = 'inherit';
 
-	    // Calculate the height
-	    var height = field.scrollHeight + 5
-	                 
-	    field.style.height = height + 'px';
+		// Calculate the height
+		var height = field.scrollHeight + 5
+									
+		field.style.height = height + 'px';
 
-	    };
+		};
 
-	    document.addEventListener('input', function (event) {
-	      if (event.target.tagName.toLowerCase() !== 'textarea') return;
-	      autoExpand(event.target);
-	    }, false);
+		document.addEventListener('input', function (event) {
+			if (event.target.tagName.toLowerCase() !== 'textarea') return;
+			autoExpand(event.target);
+		}, false);
 	    
 		this.setState({
 			[e.target.name]: e.target.value,

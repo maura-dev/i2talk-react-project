@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { DeleteNote } from '../../../actions/idiaryActions';
 //import EditNotes from  '../idiaryPages/editNote'
-import axios from 'axios'
+import axios from 'axios';
 import swal from '@sweetalert/with-react';
 
 class Note extends Component{
@@ -54,21 +54,18 @@ class Note extends Component{
 	
 		const{ ID, timeCreated, message}= this.props.note	
 		return( 
-
-			 <div className="ireminder-item">
-		        <div className="ireminder-head">
-		          <p>{timeCreated}</p>
-		          <Link to={`/dashboard/idiary/editnote/${ID}`}><i className="far fa-pen edit"></i></Link>
-		          <i className="far fa-trash-alt delete"  onClick={this.deleteNote.bind(this,ID)}></i>
-		        </div>
-		        <div className="ireminder-msg">
-		          <p> {message} </p>
-		        </div>
-		     </div>
-
+			<div className="ireminder-item">
+				<div className="ireminder-head">
+					<p>{timeCreated}</p>
+					<Link to={`/dashboard/idiary/editnote/${ID}`}><i className="far fa-pen edit"></i></Link>
+					<i className="far fa-trash-alt delete"  onClick={this.deleteNote.bind(this,ID)}></i>
+				</div>
+				<div className="ireminder-msg">
+					<p> {message} </p>
+				</div>
+			</div>
 		)
 	}
-	
 }
 
 
