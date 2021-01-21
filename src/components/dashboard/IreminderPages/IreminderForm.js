@@ -3,9 +3,11 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Error from '../../forms/Error';
 import PropTypes from 'prop-types';
+import swal from '@sweetalert/with-react';
 import { connect } from 'react-redux';
 import { addReminder } from '../../../actions/ireminderActions';
-import { v4 as uuid } from 'uuid';
+// import { v4 as uuid } from 'uuid';
+import axios from 'axios';
 
 class IreminderForm extends Component {
   render() {
@@ -19,7 +21,7 @@ class IreminderForm extends Component {
       <div>
         <Formik
 
-          initialValues={{ ID: uuid(), message: '', timeCompleted: '' }}
+          initialValues={{ message: '', timeCompleted: '' }}
           
           validationSchema = {Yup.object({
             message: Yup
@@ -39,13 +41,27 @@ class IreminderForm extends Component {
                 userID: loggedUserId,
                 ...values
               };
-
-              this.props.addReminder(data);
-
-              resetForm();
+              const accessToken=localStorage.getItem("bearerToken");
+              var config = {
+                method: 'post',
+                url: 'https://i2talk.live/api/ireminder/add',
+                headers: { 
+                  'Authorization': `Bearer ${accessToken}` 
+                },
+                data : data
+              };
+              axios(config)
+              .then(async(response) => {
+                this.props.addReminder(data);
+                await swal(response.data.message, "success");
+                resetForm();
+              })
+              .catch((error) => {
+                console.log(error);
+              })
+          
             }
-          }
-          >
+          }>
 
           {({ touched, errors, isSubmitting }) => (
             <Form>
@@ -78,7 +94,6 @@ class IreminderForm extends Component {
               </div>
             </Form>
           )}
-
         </Formik>
       </div>
     )
@@ -89,4 +104,4 @@ IreminderForm.propTypes = {
   addReminder: PropTypes.func.isRequired
 }
 
-export default connect(null, { addReminder })( IreminderForm);
+export default connect(null, { addReminder })( IreminderForm );

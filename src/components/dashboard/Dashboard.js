@@ -70,7 +70,7 @@ class Dashboard extends Component {
             <Route path="/dashboard/chatroomscont" component={ChatroomsCont} />
             <Route path="/dashboard/idiary" component={Idiary} />
             <Route exact path="/dashboard/ischedule" component={Ischedule} />
-            <Route exact path="/dashboard/ireminder" component={Ireminder} />
+            <Route path="/dashboard/ireminder" component={Ireminder} />
             <Route exact path="/dashboard/isearch" component={Isearch} />
             <Route exact path="/dashboard/profile" component={Profile} />
             <Route exact path="/dashboard/settings" component={Settings} />
