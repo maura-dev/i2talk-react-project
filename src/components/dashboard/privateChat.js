@@ -69,7 +69,7 @@ const PrivateChat = (props) => {
         <div className="chat-message-container" id="user-msg-container">
         <div className="chat-message" id="user-direct-chat">
       <Headers
-        text =	{receiver}
+        text =  {receiver}
         img = {DummyDp}
         display = "show"
         back = {backMenu()}
