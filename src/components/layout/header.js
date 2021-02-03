@@ -1,8 +1,18 @@
 import React, { Component } from 'react';
 import {Link} from 'react-router-dom';
-
+import Logo from './logo.png'
 import '../../App.css';
 import '../../styles/header.css'
+var logoStyle = {
+	width: "30px",
+	height: "30px",
+};
+
+var logoStyles = {
+	display: "flex",
+	width: "100px",
+	alignItems: "space-between"
+};
 
 class Header extends Component {
 
@@ -40,7 +50,14 @@ class Header extends Component {
 			<header>
 				<nav>
 					<ul className="menu">
-						<li className="logo"><Link to="/">i2Talk</Link></li>
+						<li className="logo">
+							<Link to="/">
+								<div style={logoStyles}>
+								<img src={Logo} alt="" style={logoStyle} />
+								<h4>&nbsp;&nbsp;i2talk</h4>
+								</div>
+							</Link>
+						</li>
 						<li className="item"><Link to="/">Home</Link></li>
 						<li className="item"><Link to="/features">Features</Link></li>
 						<li className="item nav-button"><Link to="/contact">Contact</Link></li>
