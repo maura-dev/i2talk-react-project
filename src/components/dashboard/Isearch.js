@@ -226,6 +226,14 @@ onChange=(e)=>{
             </div>
 
             <div className="scrollbar" id="iSearch-result">
+              <div id="isearch-steps" style={{display:"block", padding:"20px", border:"2px solid var(--primary-color)",margin:"5% 20% 5% 20%"}}>
+
+                  <br /><h3>Steps to effectively search for a user</h3><br />
+                  <p>1. Type in the complete username, phone or location of your user preference </p><br />
+                  <p>2. Click the bar that corresponds to your search option</p><br />
+                  <p>3. You can then view the profile and message a user that interests you.</p><br />
+
+              </div>
                 {loading ?  
                   (<i className="fa fa-spinner fa-spin" 
                     style={{fontSize:"50px", margin:"20% 30% 20% 45%", color:"var(--primary-color)"}}>
