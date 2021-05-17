@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import 'react-phone-number-input/style.css'
-import PhoneInput, { formatPhoneNumber, formatPhoneNumberInt1, isValidPhoneNumber } from 'react-phone-number-input'
+import PhoneInput from 'react-phone-number-input'
 import { getIn } from 'formik'
 import PropTypes from 'prop-types'
 
@@ -66,7 +66,7 @@ export default function PhoneInputField(props) {
 	    />
 
 	    <label htmlFor={name}>{label}</label>
-	    <div className=" flex h-5 items-end text-red-100 text-xs">
+	    <div className=" flex h-5 items-end text-red-100 text-xs" style={{display:"none"}}>
 	    	{isError && getIn(errors, name)}
 	    </div>
 	</div>

@@ -23,6 +23,7 @@ class Isearch extends Component {
 
 
   usersearch=()=>{
+    document.getElementById("isearch-steps").style.display="none"
     const accessToken=localStorage.getItem("bearerToken")
     const{ search }= this.state
     this.setState({
@@ -63,6 +64,7 @@ class Isearch extends Component {
   }
 
   locationsearch=()=>{
+    document.getElementById("isearch-steps").style.display="none"
     this.setState({
       loading:true,
       searchResults:[],
@@ -104,7 +106,7 @@ class Isearch extends Component {
   }
 
   nearbysearch=()=>{
-    
+    document.getElementById("isearch-steps").style.display="none"
     this.setState({
       loading:true,
       searchResults:[],
@@ -181,7 +183,9 @@ onChange=(e)=>{
     
     this.setState({
       [e.target.name]: e.target.value,
+      loading:false
     });
+    document.getElementById("isearch-steps").style.display="block"
   }
 
   

@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 //import Auth from '../pages/Auth'
 import LocationInput from './LocationInput';
-import PhoneInputField from './phone';
+//import PhoneInputField from './phone';
 import SexInput from './sexInput';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { formatPhoneNumber } from 'react-phone-number-input';
 import Error from './Error'
 import { addUser } from '../../actions/usersAction';
-// import { RegionDropdown, CountryDropdown } from 'react-country-region-selector';
-// import PhoneInputCountry from './PhoneInputCountry'
+//import validator from 'validator' 
 import swal from '@sweetalert/with-react';
-
 import * as Yup from 'yup';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
@@ -97,19 +95,21 @@ class SignUpForm extends Component {
                   loading: true
                 });
 
-                const tel= values.phone
-                const national= tel && formatPhoneNumber(tel)
-                const newPhone= national.split(" ").join("")
+                //const tel= values.phone
+                //const national= tel && formatPhoneNumber(tel)
+                //const newPhone= national.split(" ").join("")
                  const newValues={
                    "fullName": values.fullName, 
                    "username": values.username, 
                    "password": values.password,
                    "email": values.email,
                    "countryCode": "234", 
-                   "phone": newPhone, 
+                   "phone": values.phone, 
                    "sex":values.sex,
                    "state":values.state    
                  }
+
+                 alert(JSON.stringify(newValues))
                    
                 var config = {
                   method: 'post',
@@ -193,20 +193,21 @@ class SignUpForm extends Component {
                       errSpace = { defaultErr }
                     />
                   }
-                  {/* <div className='sex-input-field'>
-                    <div className="label"> Sex: </div>
-                    <label>
-                      <Field type="checkbox" name="sex" value="female" />
-                      <span> Female</span>
-                    </label>
-                    <label>
-                      <Field type="checkbox" name="sex" value="male" />
-                      <span> Male</span>
-                    </label> 
-                    <ErrorMessage name="sex" component="p" />
-                  </div> */}
 
-                  <div className="field">
+                  <div className='field'>
+                    <Field type="tel" name="phone" />
+                    <label htmlFor="phone">Phone</label>
+                  </div>
+                  {errors.phone && touched.phone?
+                    <Error 
+                      errSpace = { errors.phone }
+                    /> :
+                    <Error
+                      errSpace = { defaultErr }
+                    />
+                  }
+
+                  {/*<div className="field">
                     <Field
                     type="phone"
                     name="phone"
@@ -220,7 +221,7 @@ class SignUpForm extends Component {
                     <Error
                       errSpace = { defaultErr }
                     />
-                  }
+                  }*/}
 
                   <div className="field">
                     <LocationInput name="state" />                
@@ -245,22 +246,6 @@ class SignUpForm extends Component {
                       errSpace = { defaultErr }
                     />
                   }
-                  {/* <div className='field'>
-                    <Field
-                      type="tel" component= { PhoneInputCountry } name="phone" value=""
-                    />
-                  </div>
-                  <ErrorMessage name="phone" component="p" />
-
-                  <div className='field country-select'>
-                    <CountryDropdown name="country" value={values.country}
-  	                  onChange={(_, e) => handleChange(e)} onBlur={handleBlur} 
-                    />
-                    <RegionDropdown name="state" country={values.country} value={values.state}
-  	                  onChange={(_, e) => handleChange(e)} onBlur={handleBlur} 
-                    />
-                  </div>
-                  <ErrorMessage name="state" component="p" /> */}
                   
                   <div className='field'>
                     <Field type="password" name="password" />

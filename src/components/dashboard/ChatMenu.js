@@ -31,7 +31,9 @@ if (senderChats.length > 0) {
         <div className="chat-menu-profile">
           <div className="chat-menu-open side-bar-profile"> 
             <Link to="/dashboard/profile">
-              <img src={DummyDp} alt=""/>
+              <div style={{width:"70px", height:"70px"}}>
+                <img src={DummyDp} alt=""/>
+              </div>
             </Link>
           </div>
           
